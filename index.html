@@ -106,6 +106,8 @@ body {
 }
 .float-wl  { bottom: 64px; }
 .float-fcs { bottom: 110px; }
+.float-top { bottom: 156px; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+.float-top.visible { opacity: 1; pointer-events: all; }
 
 /* ── 滚动内容区 ── */
 .scroll-area {
@@ -161,10 +163,26 @@ body {
 
 /* ── 活动横幅 ── */
 .banner-wrap { margin: 4px 12px 2px; }
-.banner-carousel { position: relative; overflow: hidden; border-radius: 8px; height: 80px; }
+.banner-carousel { position: relative; overflow: hidden; border-radius: 10px; height: 96px; }
 .banner-slides { display: flex; height: 100%; transition: transform 0.45s ease; }
-.banner-slide { min-width: 100%; height: 100%; cursor: pointer; }
+.banner-slide { min-width: 100%; height: 100%; cursor: pointer; position: relative; overflow: hidden; }
+.banner-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .banner-slide .img-ph { height: 100%; width: 100%; border-radius: 0; font-size: 10px; letter-spacing: 0; }
+.banner-slide-text {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.18) 55%, transparent 100%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 14px 12px;
+}
+.banner-slide-text h3 {
+  margin: 0; color: #fff; font-size: 14px; font-weight: 700;
+  line-height: 1.35; letter-spacing: 0.02em;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+.banner-slide-text p {
+  margin: 3px 0 0; color: rgba(255,255,255,0.82); font-size: 11px;
+  line-height: 1.3; text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
 .banner-dots {
   position: absolute; bottom: 7px; left: 50%; transform: translateX(-50%);
   display: flex; gap: 4px; align-items: center;
@@ -252,7 +270,7 @@ body {
 /* ── 详情页横幅 ── */
 .detail-banner { height: 165px; position: relative; flex-shrink: 0; overflow: hidden; }
 .carousel-track { display: flex; height: 100%; transition: transform 0.28s ease; }
-.carousel-slide { flex-shrink: 0; width: 100%; height: 100%; }
+.carousel-slide { flex-shrink: 0; width: 100%; height: 100%; position: relative; }
 .carousel-dots {
   position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
   display: flex; align-items: center; gap: 5px; z-index: 5; pointer-events: none;
@@ -262,6 +280,16 @@ body {
   background: rgba(255,255,255,0.55); cursor: pointer; pointer-events: all;
   transition: all 0.22s;
 }
+.car-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  z-index: 6; width: 26px; height: 26px;
+  background: rgba(0,0,0,0.28); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: opacity 0.18s;
+}
+.car-prev { left: 8px; }
+.car-next { right: 8px; }
+.car-arrow.disabled { opacity: 0.25; pointer-events: none; }
 .cdot.active { width: 14px; background: #fff; }
 .video-badge {
   position: absolute; bottom: 10px; right: 12px;
@@ -620,17 +648,32 @@ body {
 
       <div class="scroll-area">
         <!-- Banner 轮播：有重要活动时显示 -->
-        <div class="banner-wrap">
+        <div class="banner-wrap" style="position:relative;">
           <div class="banner-carousel">
-            <div class="banner-slides" id="bannerSlides">
-              <div class="banner-slide" onclick="goTo('page-activity-detail-1','首页 › 湖滨银泰品牌开幕活动')">
-                <div class="img-ph" style="background:#C8D0DC;">🎉 湖滨银泰品牌开幕 · 机器人展演活动 · 点击查看 ▶</div>
+            <div style="position:absolute;top:8px;left:8px;z-index:10;background:rgba(0,0,0,0.45);backdrop-filter:blur(4px);color:#fff;font-size:10px;font-weight:600;padding:3px 8px;border-radius:20px;display:flex;align-items:center;gap:3px;pointer-events:none;">
+            <span style="font-size:10px;">🔥</span>近期热门活动
+          </div>
+          <div class="banner-slides" id="bannerSlides">
+              <div class="banner-slide" onclick="goTo('page-activity-detail-1','首页 › 商场智能导览')">
+                <img src="图片/银泰导览.jpg" alt="">
+                <div class="banner-slide-text">
+                  <h3>商场智能导览</h3>
+                  <p>全程自主引路 · 无需人工干预</p>
+                </div>
               </div>
-              <div class="banner-slide" onclick="goTo('page-activity-detail-2','首页 › 2024 工博会展示')">
-                <div class="img-ph" style="background:#C5D5E8;">🏭 2024 工博会 · 机器人集群展示 · 点击查看 ▶</div>
+              <div class="banner-slide" onclick="goTo('page-activity-detail-2','首页 › 展演活动引爆人气')">
+                <img src="图片/西子廊桥表演.jpg" alt="">
+                <div class="banner-slide-text">
+                  <h3>展演活动引爆人气</h3>
+                  <p>舞蹈编队 · 品牌活动现场效果拉满</p>
+                </div>
               </div>
-              <div class="banner-slide" onclick="showModal()">
-                <div class="img-ph" style="background:#C4D9C8;">🤖 全新场景方案上线 · 立即咨询 ▶</div>
+              <div class="banner-slide" onclick="goTo('page-product-detail-4','首页 › 具能租')">
+                <img src="图片/人形机器人基地导览.jpg" alt="">
+                <div class="banner-slide-text">
+                  <h3>具能租 · 人形机器人租用平台</h3>
+                  <p>随用随租 · 商业落地首选</p>
+                </div>
               </div>
             </div>
             <div class="banner-dots" id="bannerDots">
@@ -646,47 +689,17 @@ body {
         <!-- 瀑布流：混合 本体 / 场景 / 产品 / 活动 四种内容 -->
         <div class="xhs-grid" style="padding-top:6px;">
           <!-- 左列 -->
-          <div id="wfColLeft" class="xhs-col">
-            <div class="xhs-card" onclick="goTo('page-product-detail-2','首页 › 四足机器人 Go2')">
-              <div class="xhs-img-wrap"><div class="img-ph" style="height:130px;">图片</div><span class="xhs-src-badge" style="background:#1859BD;color:#fff;">本体</span></div>
-              <div class="xhs-body"><div class="xhs-title">四足机器人 Go2</div><div class="xhs-meta">负重 8kg · IP67 防护</div></div>
-            </div>
-            <div class="xhs-card" onclick="goTo('page-scene-detail-1','首页 › 品牌活动引流场景')">
-              <div class="xhs-img-wrap"><div class="img-ph" style="height:148px;">图片</div><span class="xhs-src-badge" style="background:#2E7D32;color:#fff;">场景</span></div>
-              <div class="xhs-body"><div class="xhs-title">品牌活动引流场景</div><div class="xhs-meta">含 4 件商品 · 适合展会/开幕</div></div>
-            </div>
-            <div class="xhs-card" onclick="goTo('page-activity-detail-2','首页 › 2024 工博会展示')">
-              <div class="xhs-img-wrap"><div class="img-ph" style="height:125px;">图片</div><span class="xhs-src-badge" style="background:#C2185B;color:#fff;">活动</span></div>
-              <div class="xhs-body"><div class="xhs-title">2024 工博会 · 机器人集群展示</div><div class="xhs-meta">2024-11 · 上海</div></div>
-            </div>
-            <div class="xhs-card" onclick="goTo('page-product-detail-3','首页 › 自助巡检系统')">
-              <div class="xhs-img-wrap"><div class="img-ph" style="height:118px;">图片</div><span class="xhs-src-badge" style="background:#C75E00;color:#fff;">产品</span></div>
-              <div class="xhs-body"><div class="xhs-title">自助巡检系统</div><div class="xhs-meta">适配四足机器人 · 7×24h</div></div>
-            </div>
-          </div>
+          <div id="wfColLeft" class="xhs-col"></div>
           <!-- 右列 -->
-          <div id="wfColRight" class="xhs-col">
-            <div class="xhs-card" onclick="goTo('page-activity-detail-1','首页 › 湖滨银泰品牌开幕活动')">
-              <div class="xhs-img-wrap"><div class="img-ph" style="height:155px;">图片</div><span class="xhs-src-badge" style="background:#C2185B;color:#fff;">活动</span></div>
-              <div class="xhs-body"><div class="xhs-title">湖滨银泰品牌开幕 · 机器人舞蹈引流</div><div class="xhs-meta">2024-11 · 杭州</div></div>
-            </div>
-            <div class="xhs-card" onclick="goTo('page-product-detail-1','首页 › 人形导览系统')">
-              <div class="xhs-img-wrap"><div class="img-ph" style="height:118px;">图片</div><span class="xhs-src-badge" style="background:#C75E00;color:#fff;">产品</span></div>
-              <div class="xhs-body"><div class="xhs-title">人形导览系统</div><div class="xhs-meta">适配人形机器人 · 可定制</div></div>
-            </div>
-            <div class="xhs-card" onclick="goTo('page-product-detail-4','首页 › H1 人形机器人')">
-              <div class="xhs-img-wrap"><div class="img-ph" style="height:145px;">图片</div><span class="xhs-src-badge" style="background:#1859BD;color:#fff;">本体</span></div>
-              <div class="xhs-body"><div class="xhs-title">H1 人形机器人</div><div class="xhs-meta">身高 1.8m · 舞蹈/引导</div></div>
-            </div>
-            <div class="xhs-card" onclick="goTo('page-scene-detail-2','首页 › 园区智能巡检场景')">
-              <div class="xhs-img-wrap"><div class="img-ph" style="height:136px;">图片</div><span class="xhs-src-badge" style="background:#2E7D32;color:#fff;">场景</span></div>
-              <div class="xhs-body"><div class="xhs-title">园区智能巡检场景</div><div class="xhs-meta">含 2 件商品 · 替代人工巡检</div></div>
-            </div>
-          </div>
+          <div id="wfColRight" class="xhs-col"></div>
         </div>
         <div style="height:16px;"></div>
       </div>
 
+      <!-- 悬浮回顶 -->
+      <div class="float-action float-top" onclick="scrollToTop()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1859BD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+      </div>
       <!-- 悬浮联系客服 -->
       <div class="float-action float-fcs" onclick="showModal()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1859BD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
@@ -1081,6 +1094,10 @@ body {
       </div>
 
 
+      <!-- 悬浮回顶 -->
+      <div class="float-action float-top" onclick="scrollToTop()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1859BD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+      </div>
       <!-- 悬浮联系客服 -->
       <div class="float-action float-fcs" onclick="showModal()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1859BD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
@@ -1414,11 +1431,11 @@ body {
         <div class="icon-btn">⋯</div>
       </div>
       <div class="scroll-area">
-        <div class="detail-banner">
-          <div class="img-ph" style="height:100%;width:100%;">活动现场图片 / 视频</div>
-          <div class="video-badge">▶ 播放视频</div>
+        <div class="detail-banner"
+          data-slides='["图片/银泰导览.jpg","图片/银泰导览活动.jpg","图片/人形机器人西湖银泰导览活动.jpg"]'
+          data-video="page-video-yintai-nav"
+          data-video-src="图片/20260622_西湖银泰商场导览.mp4">
         </div>
-        <!-- 来源信息栏 -->
         <div class="source-bar">
           <div class="source-bar-left">
             <span class="source-tag source-shipinhao">视频号</span>
@@ -1428,9 +1445,9 @@ body {
         </div>
         <div class="detail-body">
           <span class="tag">活动案例</span>
-          <div class="detail-title">湖滨银泰品牌开幕活动</div>
-          <div style="font-size:10px;color:#AAA;margin:4px 0 10px;">2025.06.15 · 杭州湖滨银泰 in77</div>
-          <div class="detail-desc">机器人舞蹈表演 + 机器狗现场互动，打造沉浸式品牌体验。活动吸引 2000+ 人次驻足，现场意向咨询 35 次，品牌曝光量达 10 万+。</div>
+          <div class="detail-title">西湖银泰商场 · 人形机器人导览</div>
+          <div style="font-size:10px;color:#AAA;margin:4px 0 10px;">2026-06 · 杭州西湖银泰商场</div>
+          <div class="detail-desc">H1 人形机器人正式入驻西湖银泰，承担商场导览与访客引路任务。机器人全程自主导航，引导顾客至目标楼层与店铺，全天无需人工干预。活动期间现场围观人次超 3000，多名访客主动拍照打卡，引发大量社交媒体传播。</div>
 
           <div class="detail-sec">本次活动使用的商品</div>
           <div class="prd-item" onclick="goTo('page-product-detail-1','湖滨活动 › 人形机器人（舞蹈版）')">
@@ -1488,37 +1505,38 @@ body {
         <div class="icon-btn">⋯</div>
       </div>
       <div class="scroll-area">
-        <div class="detail-banner">
-          <div class="img-ph" style="height:100%;width:100%;">活动现场图片 / 视频</div>
-          <div class="video-badge">▶ 播放视频</div>
+        <div class="detail-banner"
+          data-slides='["图片/西子廊桥表演.jpg","图片/西子廊桥表演2.jpg","图片/人形机器人西子廊桥展演活动.jpg"]'
+          data-video="page-video-xizi"
+          data-video-src="图片/20260622_西子廊桥展演.mp4">
         </div>
         <div class="source-bar">
           <div class="source-bar-left">
-            <span class="source-tag source-douyin">抖音</span>
-            <span>内容来源于抖音</span>
+            <span class="source-tag source-shipinhao">视频号</span>
+            <span>内容来源于视频号</span>
           </div>
           <span class="source-bar-link">查看原视频 ›</span>
         </div>
         <div class="detail-body">
           <span class="tag">活动案例</span>
-          <div class="detail-title">具身智能产业博览会展演</div>
-          <div style="font-size:10px;color:#AAA;margin:4px 0 10px;">2025.05.20 · 深圳会展中心</div>
-          <div class="detail-desc">园区巡检与人形导览双场景联动展示，覆盖展馆 3 个展位，吸引同行及采购方持续驻足，现场意向咨询超 40 次。</div>
+          <div class="detail-title">西子廊桥 · 人形机器人展演</div>
+          <div style="font-size:10px;color:#AAA;margin:4px 0 10px;">2026-06 · 杭州西子廊桥景区</div>
+          <div class="detail-desc">H1 人形机器人亮相西子廊桥，以舞蹈与互动表演的形式融入景区场景。演出全程自主控制、音乐精准同步，现场观众自发围观并拍摄传播，吸引过路游客大量驻足，多条视频登上同城热门。</div>
 
           <div class="detail-sec">本次展演使用的商品</div>
-          <div class="prd-item" onclick="goTo('page-product-detail-3','展会详情 › 自助巡检系统')">
+          <div class="prd-item" onclick="goTo('page-product-detail-4','廊桥展演 › H1 人形机器人')">
             <div class="img-ph prd-thumb">图</div>
-            <div><div class="prd-name">自助巡检系统</div><div class="prd-qty">×1 套 · 应用产品</div></div>
+            <div><div class="prd-name">H1 人形机器人</div><div class="prd-qty">×2 台 · 本体</div></div>
             <div class="prd-arrow">›</div>
           </div>
-          <div class="prd-item" onclick="goTo('page-product-detail-1','展会详情 › 人形导览系统')">
+          <div class="prd-item" onclick="goTo('page-product-detail-perf','廊桥展演 › 表演控制系统')">
             <div class="img-ph prd-thumb">图</div>
-            <div><div class="prd-name">人形导览系统</div><div class="prd-qty">×1 套 · 应用产品</div></div>
+            <div><div class="prd-name">表演控制系统</div><div class="prd-qty">×1 套 · 应用产品</div></div>
             <div class="prd-arrow">›</div>
           </div>
           <div class="prd-item">
             <div class="img-ph prd-thumb">图</div>
-            <div><div class="prd-name">展会运维技术人员</div><div class="prd-qty">×3 人 · 技术服务</div></div>
+            <div><div class="prd-name">现场运维技术人员</div><div class="prd-qty">×2 人 · 技术服务</div></div>
             <div class="prd-arrow">›</div>
           </div>
 
@@ -1526,16 +1544,16 @@ body {
           <div class="detail-sec">展演数据</div>
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;">
             <div style="background:#F7F8FA;border-radius:8px;padding:10px;text-align:center;">
-              <div style="font-size:16px;font-weight:700;color:#1859BD;">3</div>
-              <div style="font-size:9px;color:#AAA;margin-top:2px;">覆盖展位</div>
+              <div style="font-size:16px;font-weight:700;color:#1859BD;">5000+</div>
+              <div style="font-size:9px;color:#AAA;margin-top:2px;">现场驻足</div>
             </div>
             <div style="background:#F7F8FA;border-radius:8px;padding:10px;text-align:center;">
-              <div style="font-size:16px;font-weight:700;color:#1859BD;">40+</div>
-              <div style="font-size:9px;color:#AAA;margin-top:2px;">意向咨询</div>
+              <div style="font-size:16px;font-weight:700;color:#1859BD;">20w+</div>
+              <div style="font-size:9px;color:#AAA;margin-top:2px;">视频播放</div>
             </div>
             <div style="background:#F7F8FA;border-radius:8px;padding:10px;text-align:center;">
-              <div style="font-size:16px;font-weight:700;color:#1859BD;">2天</div>
-              <div style="font-size:9px;color:#AAA;margin-top:2px;">展会周期</div>
+              <div style="font-size:16px;font-weight:700;color:#1859BD;">热门</div>
+              <div style="font-size:9px;color:#AAA;margin-top:2px;">同城榜上榜</div>
             </div>
           </div>
         </div>
@@ -2618,6 +2636,81 @@ body {
       </div>
     </div>
 
+    <!-- ════════════ PAGE: 视频播放 · 西湖银泰商场导览 ════════════ -->
+    <div class="page" id="page-video-yintai-nav" style="background:#000;overflow:hidden;">
+      <video id="vid-yintai" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" playsinline onclick="toggleVideo('vid-yintai')">
+        <source src="图片/20260622_西湖银泰商场导览.mp4" type="video/mp4">
+      </video>
+      <div id="vid-yintai-overlay" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;" onclick="toggleVideo('vid-yintai')">
+        <div style="width:58px;height:58px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;"><span style="color:#fff;font-size:26px;margin-left:5px;">▶</span></div>
+      </div>
+      <div class="status-bar" style="position:absolute;top:0;left:0;right:0;background:transparent;color:#fff;z-index:10;"><span>9:41</span><span>●●●</span></div>
+      <div onclick="goBack()" style="position:absolute;top:22px;left:12px;z-index:10;color:#fff;font-size:20px;width:30px;height:30px;background:rgba(0,0,0,0.35);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;">‹</div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:40px 14px 22px;background:linear-gradient(transparent,rgba(0,0,0,0.88));z-index:10;">
+        <div style="display:flex;align-items:flex-end;gap:10px;">
+          <div style="flex:1;min-width:0;">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+              <div style="width:22px;height:22px;background:#1859BD;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;">租</div>
+              <span style="color:rgba(255,255,255,0.75);font-size:10px;">具能租</span>
+            </div>
+            <div style="color:#fff;font-size:13px;font-weight:600;line-height:1.4;margin-bottom:3px;">西湖银泰 · 人形机器人导览实录</div>
+            <div style="color:rgba(255,255,255,0.55);font-size:10px;">H1 人形机器人 · 2026-06 · 杭州</div>
+          </div>
+          <div onclick="goTo('page-activity-detail-1','视频 › 银泰导览')" style="flex-shrink:0;background:#fff;color:#111;font-size:10px;font-weight:600;padding:8px 12px;border-radius:16px;cursor:pointer;text-align:center;line-height:1.5;">查看<br>详情</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════ PAGE: 视频播放 · 西子廊桥展演 ════════════ -->
+    <div class="page" id="page-video-xizi" style="background:#000;overflow:hidden;">
+      <video id="vid-xizi" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" playsinline onclick="toggleVideo('vid-xizi')">
+        <source src="图片/20260622_西子廊桥展演.mp4" type="video/mp4">
+      </video>
+      <div id="vid-xizi-overlay" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;" onclick="toggleVideo('vid-xizi')">
+        <div style="width:58px;height:58px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;"><span style="color:#fff;font-size:26px;margin-left:5px;">▶</span></div>
+      </div>
+      <div class="status-bar" style="position:absolute;top:0;left:0;right:0;background:transparent;color:#fff;z-index:10;"><span>9:41</span><span>●●●</span></div>
+      <div onclick="goBack()" style="position:absolute;top:22px;left:12px;z-index:10;color:#fff;font-size:20px;width:30px;height:30px;background:rgba(0,0,0,0.35);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;">‹</div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:40px 14px 22px;background:linear-gradient(transparent,rgba(0,0,0,0.88));z-index:10;">
+        <div style="display:flex;align-items:flex-end;gap:10px;">
+          <div style="flex:1;min-width:0;">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+              <div style="width:22px;height:22px;background:#1859BD;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;">租</div>
+              <span style="color:rgba(255,255,255,0.75);font-size:10px;">具能租</span>
+            </div>
+            <div style="color:#fff;font-size:13px;font-weight:600;line-height:1.4;margin-bottom:3px;">西子廊桥 · 机器人展演完整实录</div>
+            <div style="color:rgba(255,255,255,0.55);font-size:10px;">H1 人形机器人 · 2026-06 · 杭州</div>
+          </div>
+          <div onclick="goTo('page-activity-detail-2','视频 › 西子廊桥展演')" style="flex-shrink:0;background:#fff;color:#111;font-size:10px;font-weight:600;padding:8px 12px;border-radius:16px;cursor:pointer;text-align:center;line-height:1.5;">查看<br>详情</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════ PAGE: 视频播放 · 人形机器人基地导览 ════════════ -->
+    <div class="page" id="page-video-base-nav" style="background:#000;overflow:hidden;">
+      <video id="vid-base" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" playsinline onclick="toggleVideo('vid-base')">
+        <source src="图片/20260622_人形机器人基地导览.mp4" type="video/mp4">
+      </video>
+      <div id="vid-base-overlay" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;" onclick="toggleVideo('vid-base')">
+        <div style="width:58px;height:58px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;"><span style="color:#fff;font-size:26px;margin-left:5px;">▶</span></div>
+      </div>
+      <div class="status-bar" style="position:absolute;top:0;left:0;right:0;background:transparent;color:#fff;z-index:10;"><span>9:41</span><span>●●●</span></div>
+      <div onclick="goBack()" style="position:absolute;top:22px;left:12px;z-index:10;color:#fff;font-size:20px;width:30px;height:30px;background:rgba(0,0,0,0.35);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;">‹</div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:40px 14px 22px;background:linear-gradient(transparent,rgba(0,0,0,0.88));z-index:10;">
+        <div style="display:flex;align-items:flex-end;gap:10px;">
+          <div style="flex:1;min-width:0;">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+              <div style="width:22px;height:22px;background:#1859BD;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;">租</div>
+              <span style="color:rgba(255,255,255,0.75);font-size:10px;">具能租</span>
+            </div>
+            <div style="color:#fff;font-size:13px;font-weight:600;line-height:1.4;margin-bottom:3px;">人形机器人 · 基地导览完整实录</div>
+            <div style="color:rgba(255,255,255,0.55);font-size:10px;">H1 人形机器人 · 2026-06 · 杭州</div>
+          </div>
+          <div onclick="goTo('page-scene-detail-3','视频 › 基地导览')" style="flex-shrink:0;background:#fff;color:#111;font-size:10px;font-weight:600;padding:8px 12px;border-radius:16px;cursor:pointer;text-align:center;line-height:1.5;">查看<br>详情</div>
+        </div>
+      </div>
+    </div>
+
     <!-- ════════════ PAGE: 活动详情 · 深圳具身智能博览会 ════════════ -->
     <div class="page" id="page-activity-detail-shenzhen">
       <div class="status-bar"><span>9:41</span><span>●●●</span></div>
@@ -2804,15 +2897,14 @@ body {
 const history = ['page-home'];
 const crumbNames = { 'page-home':'首页', 'page-product':'商品中心', 'page-activity':'活动中心', 'page-mine':'我的', 'page-platform-products':'商品管理', 'page-platform-publish':'活动发布', 'page-platform-stats':'数据看板' };
 let customCrumb = '';
+const _scrollPos = {};
 
-function showPage(pageId) {
+function showPage(pageId, restoreScroll) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const target = document.getElementById(pageId);
   if (target) target.classList.add('active');
-  // 滚动重置
   const sa = target ? target.querySelector('.scroll-area') : null;
-  if (sa) sa.scrollTop = 0;
-  // 意向清单底部栏初始化
+  if (sa) sa.scrollTop = restoreScroll || 0;
   if (pageId === 'page-wishlist') updateWlBar();
 }
 
@@ -2824,11 +2916,47 @@ const csMockRecent = [
   { pageId:'page-scene-detail-2',    title:'巡检场景方案' },
 ];
 
+const videoPageMap = {
+  'page-video-yintai-nav': 'vid-yintai',
+  'page-video-xizi':       'vid-xizi',
+  'page-video-base-nav':   'vid-base',
+};
+function stopAllVideos() {
+  Object.values(videoPageMap).forEach(vid => {
+    const v = document.getElementById(vid);
+    if (v && !v.paused) { v.pause(); v.currentTime = 0; }
+    const ov = document.getElementById(vid + '-overlay');
+    if (ov) ov.style.display = 'flex';
+  });
+  // 详情页内嵌视频
+  document.querySelectorAll('[id^="dv-"]').forEach(v => {
+    if (v.tagName === 'VIDEO' && !v.paused) { v.pause(); v.currentTime = 0; }
+  });
+  document.querySelectorAll('[id^="dv-ovr-"]').forEach(o => { o.style.display = 'flex'; });
+}
+function startPageVideo(pageId) {
+  const vid = videoPageMap[pageId];
+  if (!vid) return;
+  const v = document.getElementById(vid);
+  const ov = document.getElementById(vid + '-overlay');
+  if (v) { v.currentTime = 0; v.play().catch(() => {}); }
+  if (ov) ov.style.display = 'none';
+}
+
 function goTo(pageId, crumb) {
+  stopAllVideos();
+  // 保存离开页的滚动位置
+  const curId = history[history.length - 1];
+  if (curId) {
+    const curPage = document.getElementById(curId);
+    const curSa = curPage ? curPage.querySelector('.scroll-area') : null;
+    if (curSa) _scrollPos[curId] = curSa.scrollTop;
+  }
   history.push(pageId);
   customCrumb = crumb || '';
   showPage(pageId);
   updateCrumb();
+  startPageVideo(pageId);
   if (/^page-(product-detail|scene-detail|activity-detail)/.test(pageId)) {
     const title = crumb ? crumb.replace(/^.*›\s*/, '').trim() : pageId;
     const idx = csRecentViewed.findIndex(r => r.pageId === pageId);
@@ -2840,16 +2968,17 @@ function goTo(pageId, crumb) {
 
 function goBack() {
   if (history.length > 1) {
+    stopAllVideos();
     history.pop();
     const prev = history[history.length - 1];
-    showPage(prev);
-    // 重建面包屑
+    showPage(prev, _scrollPos[prev] || 0);
     customCrumb = '';
     updateCrumb();
   }
 }
 
 function switchTab(tab) {
+  stopAllVideos();
   const map = {
     home:    'page-home',
     product: 'page-product',
@@ -3253,40 +3382,99 @@ setActiveNav('home');
 
 // 瀑布流无限加载
 const wfPool = [
-  // ── 图文
-  { type:'本体',  color:'#1859BD', title:'四足机器人 Go2',            meta:'负重 8kg · IP67 防护',        mediaType:'image', page:'page-product-detail-2' },
-  { type:'活动',  color:'#C2185B', title:'湖滨银泰品牌开幕',          meta:'2024-11 · 杭州',              mediaType:'image', page:'page-activity-detail-1' },
-  // ── 视频
-  { type:'本体',  color:'#1859BD', title:'H1 编队演出 · 完整实录',    meta:'4 台同步 · 时长 3:12',        mediaType:'video',  videoPage:'page-video-h1',             page:'page-product-detail-4' },
-  { type:'活动',  color:'#C2185B', title:'银泰开幕 · 机器人现场高光', meta:'2024-11 · 杭州',              mediaType:'video',  videoPage:'page-video-activity-yintai', page:'page-activity-detail-1' },
-  // ── 图文
-  { type:'场景',  color:'#2E7D32', title:'品牌活动引流场景',          meta:'含 4 件商品 · 展会/开幕',     mediaType:'image', page:'page-scene-detail-1' },
-  { type:'产品',  color:'#C75E00', title:'人形导览系统',              meta:'适配人形机器人 · 可定制',     mediaType:'image', page:'page-product-detail-1' },
-  { type:'本体',  color:'#1859BD', title:'H1 人形机器人',             meta:'身高 1.8m · 舞蹈/引导',       mediaType:'image', page:'page-product-detail-4' },
-  // ── 视频
-  { type:'场景',  color:'#2E7D32', title:'演绎场景 · 舞台实况',       meta:'品牌发布会 · 上海',           mediaType:'video',  videoPage:'page-video-scene-show',     page:'page-scene-detail-show' },
-  // ── 图文
-  { type:'场景',  color:'#2E7D32', title:'园区智能巡检场景',          meta:'含 2 件商品 · 替代人工巡检',  mediaType:'image', page:'page-scene-detail-2' },
-  { type:'产品',  color:'#C75E00', title:'自助巡检系统',              meta:'适配四足机器人 · 7×24h',     mediaType:'image', page:'page-product-detail-3' },
-  // ── 视频
-  { type:'本体',  color:'#1859BD', title:'Go2 夜间自主巡检实拍',      meta:'园区实测 · 无人值守',         mediaType:'video',  videoPage:'page-video-go2',            page:'page-product-detail-2' },
-  // ── 图文
-  { type:'活动',  color:'#C2185B', title:'2024 工博会展示',           meta:'2024-11 · 上海',              mediaType:'image', page:'page-activity-detail-2' },
-  { type:'本体',  color:'#1859BD', title:'G1 人形机器人',             meta:'轻量化 · 灵活作业',           mediaType:'image', page:'page-product-detail-g1' },
-  { type:'场景',  color:'#2E7D32', title:'人形导览场景',              meta:'含 1 件商品 · 景区/展馆',     mediaType:'image', page:'page-scene-detail-3' },
-  { type:'产品',  color:'#C75E00', title:'表演控制系统',              meta:'多机编队 · 音乐同步',         mediaType:'image', page:'page-product-detail-perf' },
-  { type:'活动',  color:'#C2185B', title:'深圳具身智能博览会',        meta:'2024-09 · 深圳',              mediaType:'image', page:'page-activity-detail-shenzhen' },
-  { type:'本体',  color:'#1859BD', title:'B1 双臂协作机器人',         meta:'双臂精密操作',                mediaType:'image', page:'page-product-detail-b1' },
-  { type:'场景',  color:'#2E7D32', title:'餐饮服务场景',              meta:'含 3 件商品 · 餐厅/食堂',     mediaType:'image', page:'page-scene-detail-4' },
-  { type:'产品',  color:'#C75E00', title:'迎宾互动系统',              meta:'NLP 对话 · 人脸识别',         mediaType:'image', page:'page-product-detail-greet' },
-  { type:'活动',  color:'#C2185B', title:'上海人工智能大会',          meta:'2024-07 · 上海',              mediaType:'image', page:'page-activity-detail-shanghai' },
-  // ── 图文 · 同商品不同视角
-  { type:'本体',  color:'#1859BD', title:'H1 · 展会互动高光',         meta:'NFC 感应 · 访客互动',         mediaType:'image', page:'page-product-detail-4' },
-  { type:'场景',  color:'#2E7D32', title:'导览场景 · 景区真实部署',   meta:'讲解准确率 98% · 日均 50 组', mediaType:'image', page:'page-scene-detail-3' },
-  { type:'产品',  color:'#C75E00', title:'迎宾系统 · 双语接待上线',   meta:'中英双语 · 展厅引导',         mediaType:'image', page:'page-product-detail-greet' },
-  { type:'活动',  color:'#C2185B', title:'工博会 · 互动体验区爆满',   meta:'2024-11 · 上海',              mediaType:'image', page:'page-activity-detail-2' },
+  { type:'活动', color:'#C2185B', title:'西湖银泰 · 人形机器人正式上岗',       meta:'2026-06 · 杭州',              mediaType:'image', img:'图片/银泰导览.jpg',                      page:'page-activity-detail-1' },
+  { type:'场景', color:'#2E7D32', title:'人形机器人 · 基地导览全程执行',        meta:'自主导航 · 真实部署',         mediaType:'image', img:'图片/人形机器人基地导览.jpg',            page:'page-scene-detail-3' },
+  { type:'活动', color:'#C2185B', title:'西子廊桥 · 人形机器人展演现场',        meta:'2026-06 · 杭州',              mediaType:'image', img:'图片/西子廊桥表演.jpg',                 page:'page-activity-detail-2' },
+  { type:'场景', color:'#2E7D32', title:'品牌活动引流场景',                     meta:'含 4 件商品 · 展会/开幕',    mediaType:'image', page:'page-scene-detail-1' },
+  { type:'活动', color:'#C2185B', title:'机器人跳舞比我好看，直接破防了',       meta:'廊桥展演 · 实拍片段',         mediaType:'image', img:'图片/frames/frame_xizi_01.jpg',         page:'page-activity-detail-2' },
+  { type:'场景', color:'#2E7D32', title:'基地的机器人导览，讲得比人清楚',       meta:'基地导览实拍 · 2026-06',      mediaType:'image', img:'图片/frames/frame_base_01.jpg',         page:'page-scene-detail-3' },
+  { type:'活动', color:'#C2185B', title:'廊桥展演 · 人形机器人惊艳全场',        meta:'2026-06 · 杭州 · 演出实况',  mediaType:'video',  src:'图片/20260622_西子廊桥展演.mp4',        videoPage:'page-video-xizi',       page:'page-activity-detail-2' },
+  { type:'活动', color:'#C2185B', title:'这机器人比导购还好用，不是开玩笑',     meta:'银泰导览实拍 · 2026-06',      mediaType:'image', img:'图片/frames/frame_yintai_01.jpg',       page:'page-activity-detail-1' },
+  { type:'场景', color:'#2E7D32', title:'基地导览 · 机器人任务现场',            meta:'路线规划 · 无人干预',         mediaType:'image', img:'图片/人形机器人基地导览任务.jpg',        page:'page-scene-detail-3' },
+  { type:'活动', color:'#C2185B', title:'银泰商场 · 机器人引路全程记录',        meta:'2026-06 · 杭州 · 商场实拍',  mediaType:'video',  portrait:true, src:'图片/20260622_西湖银泰商场导览.mp4', videoPage:'page-video-yintai-nav', page:'page-activity-detail-1' },
+  { type:'活动', color:'#C2185B', title:'在西子廊桥看到这个，杭州人确实不一样', meta:'机器人表演 · 现场震撼',       mediaType:'image', img:'图片/西子廊桥表演2.jpg',                page:'page-activity-detail-2' },
+  { type:'产品', color:'#C75E00', title:'人形导览系统',                         meta:'适配人形机器人 · 可定制',    mediaType:'image', page:'page-product-detail-1' },
+  { type:'活动', color:'#C2185B', title:'基地导览 · 机器人独立执行全程',        meta:'自主导航 · 全程无干预',       mediaType:'video',  src:'图片/20260622_人形机器人基地导览.mp4',  videoPage:'page-video-base-nav',   page:'page-scene-detail-3' },
+  { type:'活动', color:'#C2185B', title:'商场里遇到它，我当场停下来拍了一路',   meta:'银泰导览现场 · 实拍',         mediaType:'image', img:'图片/银泰导览活动.jpg',                  page:'page-activity-detail-1' },
+  { type:'本体', color:'#1859BD', title:'近距离实测 · 基地人形导览机器人',      meta:'讲解准确率 98%',              mediaType:'image', img:'图片/基地人形导览-机器人图片.png',       page:'page-product-detail-4' },
+  { type:'本体', color:'#1859BD', title:'H1 跳舞能比专业舞者，你信吗',          meta:'4 台编队 · 音乐同步',         mediaType:'video',  videoPage:'page-video-h1',                  page:'page-product-detail-4' },
+  { type:'活动', color:'#C2185B', title:'西子廊桥展演 · 舞蹈编队精准同步',      meta:'多机协同 · 无人干预',         mediaType:'image', img:'图片/frames/frame_xizi_02.jpg',         page:'page-activity-detail-2' },
+  { type:'场景', color:'#2E7D32', title:'全自主执行，没人管，这才叫未来',       meta:'基地导览 · 无人值守',         mediaType:'image', img:'图片/人形机器人-基地导览任务.jpg',      page:'page-scene-detail-3' },
+  { type:'活动', color:'#C2185B', title:'银泰商场 · 智能迎宾全程实拍',          meta:'H1 人形机器人 · 自主导览',    mediaType:'image', img:'图片/人形机器人西湖银泰导览活动.jpg',     page:'page-activity-detail-1' },
+  { type:'活动', color:'#C2185B', title:'具身智能到底啥感觉，看这条就懂了',     meta:'西湖银泰 · 导览完整版',       mediaType:'video',  portrait:true, src:'图片/20260622_西湖银泰商场导览.mp4', videoPage:'page-video-yintai-nav', page:'page-activity-detail-1' },
+  { type:'活动', color:'#C2185B', title:'银泰机器人当班 · 路引比 GPS 还准',     meta:'商场智能导览 · 全程自主',     mediaType:'image', img:'图片/frames/frame_yintai_02.jpg',       page:'page-activity-detail-1' },
+  { type:'场景', color:'#2E7D32', title:'人形导览 · 基地任务全程零人工干预',    meta:'自主导航 · 智能规划',         mediaType:'image', img:'图片/frames/frame_base_02.jpg',         page:'page-scene-detail-3' },
+  { type:'活动', color:'#C2185B', title:'廊桥展演现场 · 观众围得里三层外三层',  meta:'人气爆棚 · 真实记录',         mediaType:'image', img:'图片/frames/frame_xizi_03.jpg',         page:'page-activity-detail-2' },
+  { type:'场景', color:'#2E7D32', title:'在基地看到它那一刻，我知道未来来了',   meta:'H1 人形机器人 · 基地实测',    mediaType:'image', img:'图片/frames/frame_base_03.jpg',         page:'page-scene-detail-3' },
+  { type:'活动', color:'#C2185B', title:'人形机器人亮相西子廊桥',               meta:'展演活动 · 全程实况',         mediaType:'image', img:'图片/人形机器人西子廊桥展演活动.jpg',     page:'page-activity-detail-2' },
+  { type:'活动', color:'#C2185B', title:'我爸妈第一次见机器人引路，整不会了',   meta:'银泰现场反应 · 真实记录',     mediaType:'image', img:'图片/frames/frame_yintai_03.jpg',       page:'page-activity-detail-1' },
+  { type:'场景', color:'#2E7D32', title:'人形导览场景 · 基地真实部署',          meta:'讲解准确率 98% · 日均 50 组', mediaType:'video',  src:'图片/20260622_人形机器人基地导览.mp4',  videoPage:'page-video-base-nav',   page:'page-scene-detail-3' },
+  { type:'活动', color:'#C2185B', title:'西子廊桥 · 舞蹈同步零失误',            meta:'多机编队 · 现场震撼',         mediaType:'video',  src:'图片/20260622_西子廊桥展演.mp4',        videoPage:'page-video-xizi',       page:'page-activity-detail-2' },
+  { type:'本体', color:'#1859BD', title:'四足机器人 Go2',                       meta:'负重 8kg · IP67 防护',        mediaType:'image', page:'page-product-detail-2' },
+  { type:'场景', color:'#2E7D32', title:'园区智能巡检场景',                     meta:'含 2 件商品 · 替代人工巡检',  mediaType:'image', page:'page-scene-detail-2' },
+  { type:'本体', color:'#1859BD', title:'H1 人形机器人',                        meta:'身高 1.8m · 舞蹈/引导',       mediaType:'image', page:'page-product-detail-4' },
+  { type:'场景', color:'#2E7D32', title:'演绎场景 · 舞台实况',                  meta:'品牌发布会 · 上海',           mediaType:'video',  videoPage:'page-video-scene-show',          page:'page-scene-detail-show' },
+  { type:'产品', color:'#C75E00', title:'自助巡检系统',                         meta:'适配四足机器人 · 7×24h',     mediaType:'image', page:'page-product-detail-3' },
+  { type:'本体', color:'#1859BD', title:'Go2 夜巡这段，有点科幻了',             meta:'园区实测 · 无人值守',         mediaType:'video',  videoPage:'page-video-go2',                 page:'page-product-detail-2' },
+  { type:'本体', color:'#1859BD', title:'G1 人形机器人',                        meta:'轻量化 · 灵活作业',           mediaType:'image', page:'page-product-detail-g1' },
+  { type:'产品', color:'#C75E00', title:'表演控制系统',                         meta:'多机编队 · 音乐同步',         mediaType:'image', page:'page-product-detail-perf' },
+  { type:'产品', color:'#C75E00', title:'迎宾互动系统',                         meta:'NLP 对话 · 人脸识别',         mediaType:'image', page:'page-product-detail-greet' },
+  { type:'本体', color:'#1859BD', title:'H1 · 展会互动高光',                    meta:'NFC 感应 · 访客互动',         mediaType:'image', page:'page-product-detail-4' },
 ];
 const wfHeights = [128, 145, 118, 155, 135, 142, 122, 150, 130, 138, 125, 148];
+
+// 为每张卡打场景 key，同场景的牌不相邻
+function wfSceneKey(item) {
+  const p = item.videoPage || item.page || '';
+  if (p === 'page-activity-detail-1' || p === 'page-video-yintai-nav') return 'yintai';
+  if (p === 'page-activity-detail-2' || p === 'page-video-xizi')        return 'xizi';
+  if (p === 'page-video-base-nav')                                       return 'base';
+  if (p === 'page-product-detail-4' && (item.img || item.src))          return 'base';
+  if (p === 'page-scene-detail-3'   && (item.img || item.src))          return 'base';
+  return p; // 占位卡每个 page 不同，天然不相邻
+}
+
+// Fisher-Yates shuffle
+function fyShuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+// 贪心：排除最近两步的场景，同时避免紧邻（i vs i+1）和同列相邻（i vs i+2）
+function noAdjacentArrange(arr) {
+  const buckets = {};
+  arr.forEach(item => {
+    const k = wfSceneKey(item);
+    (buckets[k] = buckets[k] || []).push(item);
+  });
+  Object.values(buckets).forEach(fyShuffle);
+  const result = [];
+  let prev1 = null, prev2 = null;
+  while (true) {
+    const keys = Object.keys(buckets).filter(k => buckets[k].length > 0);
+    if (!keys.length) break;
+    const excluded = new Set([prev1, prev2].filter(Boolean));
+    const avail = keys.filter(k => !excluded.has(k));
+    const pick  = (avail.length ? avail : keys)
+      .sort((a, b) => buckets[b].length - buckets[a].length)[0];
+    result.push(buckets[pick].shift());
+    prev2 = prev1;
+    prev1 = pick;
+    if (!buckets[pick].length) delete buckets[pick];
+  }
+  return result;
+}
+
+function buildWfOrder(pool) {
+  const real = pool.filter(item => item.img || item.src);
+  const fake = pool.filter(item => !item.img && !item.src);
+  return [...noAdjacentArrange(real), ...noAdjacentArrange(fake)];
+}
+
+const wfOrder = buildWfOrder(wfPool);
 let wfIdx = 0, wfBusy = false;
 
 function wfMakeCard(item, i) {
@@ -3296,11 +3484,34 @@ function wfMakeCard(item, i) {
   const isVideo = item.mediaType === 'video';
   const dest = isVideo ? item.videoPage : item.page;
   el.onclick = dest ? () => goTo(dest, '首页 › ' + item.title) : () => showModal();
+  const playOverlay = '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;"><div style="width:30px;height:30px;background:rgba(255,255,255,0.85);border-radius:50%;display:flex;align-items:center;justify-content:center;"><span style="color:#111;font-size:12px;margin-left:2px;">▶</span></div></div>';
+  let mediaHtml;
+  if (item.src) {
+    // 视频卡：随机帧缩略图 + 播放 overlay
+    // portrait:true → 竖屏内容被横屏录制，CSS 放大并居中以裁掉黑边
+    //   原视频 1920×1080，竖屏内容宽 608px 位于 x=656，scale=1920/608≈316%，left=-108%
+    const vidStyle = item.portrait
+      ? 'position:absolute;top:50%;left:-108%;width:316%;height:auto;transform:translateY(-50%);'
+      : 'height:' + h + 'px;width:100%;object-fit:cover;display:block;';
+    const spacer = item.portrait ? '<div style="height:' + h + 'px;"></div>' : '';
+    mediaHtml = spacer +
+      '<video src="' + item.src + '" muted preload="metadata" playsinline ' +
+      'style="' + vidStyle + '" ' +
+      'onloadedmetadata="this.currentTime=Math.random()*this.duration"></video>' +
+      playOverlay;
+  } else if (item.img) {
+    // 真实图片
+    mediaHtml =
+      '<img src="' + item.img + '" style="height:' + h + 'px;width:100%;object-fit:cover;display:block;" loading="lazy">' +
+      (isVideo ? playOverlay : '');
+  } else {
+    mediaHtml =
+      '<div class="img-ph" style="height:' + h + 'px;' + (isVideo ? 'background:#1c1c2e;color:#666;' : '') + '">' + (isVideo ? '▶' : '图片') + '</div>';
+  }
   el.innerHTML =
     '<div class="xhs-img-wrap">' +
-      '<div class="img-ph" style="height:' + h + 'px;' + (isVideo ? 'background:#1c1c2e;color:#666;' : '') + '">' + (isVideo ? '▶' : '图片') + '</div>' +
+      mediaHtml +
       '<span class="xhs-src-badge" style="background:' + item.color + ';color:#fff;">' + item.type + '</span>' +
-      (isVideo ? '<div style="position:absolute;bottom:7px;right:7px;background:rgba(0,0,0,0.55);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:9px;pointer-events:none;">▶</div>' : '') +
     '</div>' +
     '<div class="xhs-body">' +
       '<div class="xhs-title">' + item.title + '</div>' +
@@ -3316,7 +3527,7 @@ function wfLoadMore() {
   const colRight = document.getElementById('wfColRight');
   for (let i = 0; i < 4; i++) {
     const col = colLeft.offsetHeight <= colRight.offsetHeight ? colLeft : colRight;
-    col.appendChild(wfMakeCard(wfPool[wfIdx % wfPool.length], wfIdx));
+    col.appendChild(wfMakeCard(wfOrder[wfIdx % wfOrder.length], wfIdx));
     wfIdx++;
   }
   wfBusy = false;
@@ -3324,6 +3535,30 @@ function wfLoadMore() {
 
 document.querySelector('#page-home .scroll-area').addEventListener('scroll', function() {
   if (this.scrollTop + this.clientHeight >= this.scrollHeight - 250) wfLoadMore();
+});
+// 首屏预填（3批=12张）
+wfLoadMore(); wfLoadMore(); wfLoadMore();
+
+function toggleVideo(id) {
+  const v = document.getElementById(id);
+  const overlay = document.getElementById(id + '-overlay');
+  if (!v) return;
+  if (v.paused) { v.play(); if (overlay) overlay.style.display = 'none'; }
+  else { v.pause(); if (overlay) overlay.style.display = 'flex'; }
+}
+
+function scrollToTop() {
+  const activePage = document.querySelector('.page.active');
+  if (!activePage) return;
+  const sa = activePage.querySelector('.scroll-area');
+  if (sa) sa.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.querySelectorAll('.scroll-area').forEach(sa => {
+  sa.addEventListener('scroll', function() {
+    const btn = this.closest('.page').querySelector('.float-top');
+    if (btn) btn.classList.toggle('visible', this.scrollTop > 80);
+  });
 });
 
 function showToast(msg) {
@@ -3368,35 +3603,148 @@ function switchActTab(el, type) {
 }
 
 /* ── 轮播 ── */
+function updateCarArrows(banner, idx, total) {
+  const prev = banner.querySelector('.car-prev');
+  const next = banner.querySelector('.car-next');
+  if (prev) prev.classList.toggle('disabled', idx === 0);
+  if (next) next.classList.toggle('disabled', idx === total - 1);
+}
+
 function switchSlide(trackId, idx, dot) {
   const track = document.getElementById(trackId);
   if (!track) return;
   track.style.transform = 'translateX(-' + (idx * 100) + '%)';
-  dot.parentElement.querySelectorAll('.cdot').forEach((d, i) => d.classList.toggle('active', i === idx));
+  const dotList = dot.parentElement.querySelectorAll('.cdot');
+  dotList.forEach((d, i) => d.classList.toggle('active', i === idx));
+  updateCarArrows(track.closest('.detail-banner'), idx, dotList.length);
+}
+
+function carMove(trackId, dir) {
+  const track = document.getElementById(trackId);
+  if (!track) return;
+  const banner = track.closest('.detail-banner');
+  const dots = banner.querySelectorAll('.cdot');
+  const cur  = Array.from(dots).findIndex(d => d.classList.contains('active'));
+  const nxt  = Math.max(0, Math.min(dots.length - 1, cur + dir));
+  if (nxt !== cur) switchSlide(trackId, nxt, dots[nxt]);
 }
 
 function initCarousels() {
   document.querySelectorAll('.detail-banner').forEach((banner, bi) => {
-    const hasVideo = !!banner.querySelector('.video-badge');
-    const count = hasVideo ? 4 : 3;
+    const rawSlides  = banner.dataset.slides;
+    const videoPage  = banner.dataset.video || null;
+    const videoSrc   = banner.dataset.videoSrc || null;
+    const slides     = rawSlides ? JSON.parse(rawSlides) : [];
+    const legacyVid  = !videoPage && !!banner.querySelector('.video-badge');
+    const poster     = slides[0] || null;
+
+    // 视频在第一位
+    const slideItems = [];
+    if (videoPage) {
+      slideItems.push({ kind: 'video', poster, src: videoSrc });
+    } else if (legacyVid) {
+      slideItems.push({ kind: 'video-legacy' });
+    }
+    slides.forEach(src => slideItems.push({ kind: 'image', src }));
+    if (!slideItems.length) {
+      for (let i = 0; i < 3; i++) slideItems.push({ kind: 'placeholder', n: i + 1 });
+    }
+    const total   = slideItems.length;
     const trackId = 'ctrack-' + bi;
+    const vidId   = 'dv-' + bi;
+    const ovrId   = 'dv-ovr-' + bi;
+
+    function makeSlide(item) {
+      if (item.kind === 'video') {
+        const srcAttr = item.src ? ' src="' + item.src + '"' : '';
+        return '<div class="carousel-slide" style="position:relative;background:#000;">' +
+          '<video id="' + vidId + '"' + srcAttr + ' playsinline preload="none"' +
+          ' style="width:100%;height:100%;object-fit:contain;display:block;"' +
+          ' onended="document.getElementById(\'' + ovrId + '\').style.display=\'flex\';"></video>' +
+          // 封面遮罩（含播放按钮）
+          '<div id="' + ovrId + '" onclick="dvPlay(\'' + vidId + '\',\'' + ovrId + '\')" ' +
+          'style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;cursor:pointer;">' +
+            (item.poster
+              ? '<img src="' + item.poster + '" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">'
+              : '<div style="position:absolute;inset:0;background:#111;"></div>') +
+            '<div style="position:relative;z-index:2;width:48px;height:48px;background:rgba(0,0,0,0.45);border-radius:50%;display:flex;align-items:center;justify-content:center;">' +
+              '<svg width="18" height="20" viewBox="0 0 18 20" fill="none"><path d="M2 1l14 9-14 9V1z" fill="#fff"/></svg>' +
+            '</div>' +
+          '</div>' +
+          // 全屏按钮（右下角，视频播放后可见）
+          '<div onclick="event.stopPropagation();dvFullscreen(\'' + vidId + '\')" ' +
+          'style="position:absolute;bottom:10px;right:10px;z-index:8;width:28px;height:28px;' +
+          'background:rgba(0,0,0,0.45);border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;">' +
+            '<svg width="14" height="14" viewBox="0 0 14 14" fill="none">' +
+              '<path d="M1 5V1h4M9 1h4v4M13 9v4H9M5 13H1V9" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
+            '</svg>' +
+          '</div>' +
+        '</div>';
+      }
+      if (item.kind === 'image') {
+        return '<div class="carousel-slide"><img src="' + item.src +
+          '" style="height:100%;width:100%;object-fit:cover;display:block;"></div>';
+      }
+      if (item.kind === 'video-legacy') {
+        return '<div class="carousel-slide"><div class="img-ph" style="height:100%;width:100%;font-size:11px;color:#999;">▶ 视频</div></div>';
+      }
+      return '<div class="carousel-slide"><div class="img-ph" style="height:100%;width:100%;font-size:11px;color:#999;">图片 ' + item.n + '</div></div>';
+    }
+
     banner.innerHTML =
       '<div class="carousel-track" id="' + trackId + '">' +
-        Array.from({length: count}, (_, i) =>
-          '<div class="carousel-slide"><div class="img-ph" style="height:100%;width:100%;font-size:11px;color:#999;">' +
-          (i < count - (hasVideo ? 1 : 0) ? '图片 ' + (i + 1) : '▶ 视频') +
-          '</div></div>'
-        ).join('') +
+        slideItems.map(makeSlide).join('') +
       '</div>' +
       '<div class="carousel-dots">' +
-        Array.from({length: count}, (_, i) =>
+        slideItems.map((_, i) =>
           '<div class="cdot' + (i === 0 ? ' active' : '') + '" onclick="switchSlide(\'' + trackId + '\',' + i + ',this)"></div>'
         ).join('') +
+      '</div>' +
+      '<div class="car-arrow car-prev' + (total <= 1 ? ' disabled' : '') + '" onclick="carMove(\'' + trackId + '\',-1)">' +
+        '<svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7l6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+      '</div>' +
+      '<div class="car-arrow car-next" onclick="carMove(\'' + trackId + '\',1)">' +
+        '<svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
       '</div>';
+
+    if (total > 1) updateCarArrows(banner, 0, total);
+
+    // 滑动支持
+    let sx = 0, st = 0;
+    const getX = e => e.touches ? e.touches[0].clientX : e.clientX;
+    function handleEnd(ex) {
+      const dx = ex - sx;
+      if (Math.abs(dx) < 28 || Date.now() - st > 500) return;
+      const dots = banner.querySelectorAll('.cdot');
+      const cur  = Array.from(dots).findIndex(d => d.classList.contains('active'));
+      const nxt  = Math.max(0, Math.min(total - 1, cur + (dx < 0 ? 1 : -1)));
+      if (nxt !== cur) switchSlide(trackId, nxt, dots[nxt]);
+    }
+    banner.addEventListener('touchstart', e => { sx = getX(e); st = Date.now(); }, { passive: true });
+    banner.addEventListener('touchend',   e => handleEnd(e.changedTouches[0].clientX));
+    banner.addEventListener('mousedown',  e => { sx = getX(e); st = Date.now(); });
+    banner.addEventListener('mouseup',    e => handleEnd(e.clientX));
   });
 }
 
 initCarousels();
+
+function dvPlay(vidId, ovrId) {
+  const v = document.getElementById(vidId);
+  const o = document.getElementById(ovrId);
+  if (!v) return;
+  if (o) o.style.display = 'none';
+  v.play().catch(() => { if (o) o.style.display = 'flex'; });
+}
+
+function dvFullscreen(vidId) {
+  const v = document.getElementById(vidId);
+  if (!v) return;
+  // iOS Safari: 仅视频元素全屏，进入系统原生播放器
+  if (v.webkitEnterFullscreen)        v.webkitEnterFullscreen();
+  else if (v.requestFullscreen)        v.requestFullscreen();
+  else if (v.webkitRequestFullscreen)  v.webkitRequestFullscreen();
+}
 </script>
 </body>
 </html>
