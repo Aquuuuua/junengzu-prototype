@@ -639,7 +639,7 @@ body {
         <div class="top-bar-title">具能租</div>
         <div class="top-bar-right">
           <div class="search-input-box">
-            <input type="text" placeholder="搜索场景/产品…">
+            <input type="text" placeholder="搜索场景/商品…">
             <span class="si-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#AAA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></span>
           </div>
           <div class="cs-btn" onclick="showModal()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1859BD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服</div>
@@ -686,7 +686,7 @@ body {
           </div>
         </div>
 
-        <!-- 瀑布流：混合 本体 / 场景 / 产品 / 活动 四种内容 -->
+        <!-- 瀑布流：混合 本体 / 场景 / 系统 / 服务 / 活动 五种内容 -->
         <div class="xhs-grid" style="padding-top:6px;">
           <!-- 左列 -->
           <div id="wfColLeft" class="xhs-col"></div>
@@ -3402,7 +3402,7 @@ const wfPool = [
   { type:'场景', color:'#2E7D32', title:'基地导览 · 机器人任务现场',            meta:'路线规划 · 无人干预',         mediaType:'image', img:'图片/人形机器人基地导览任务.jpg',        page:'page-scene-detail-3' },
   { type:'活动', color:'#C2185B', title:'银泰商场 · 机器人引路全程记录',        meta:'2026-06 · 杭州 · 商场实拍',  mediaType:'video',  portrait:true, src:'图片/20260622_西湖银泰商场导览.mp4', videoPage:'page-video-yintai-nav', page:'page-activity-detail-1' },
   { type:'活动', color:'#C2185B', title:'在西子廊桥看到这个，杭州人确实不一样', meta:'机器人表演 · 现场震撼',       mediaType:'image', img:'图片/西子廊桥表演2.jpg',                page:'page-activity-detail-2' },
-  { type:'产品', color:'#C75E00', title:'人形导览系统',                         meta:'适配人形机器人 · 可定制',    mediaType:'image', page:'page-product-detail-1' },
+  { type:'系统', color:'#C75E00', title:'人形导览系统',                         meta:'适配人形机器人 · 可定制',    mediaType:'image', page:'page-product-detail-1' },
   { type:'活动', color:'#C2185B', title:'基地导览 · 机器人独立执行全程',        meta:'自主导航 · 全程无干预',       mediaType:'video',  src:'图片/20260622_人形机器人基地导览.mp4',  videoPage:'page-video-base-nav',   page:'page-scene-detail-3' },
   { type:'活动', color:'#C2185B', title:'商场里遇到它，我当场停下来拍了一路',   meta:'银泰导览现场 · 实拍',         mediaType:'image', img:'图片/银泰导览活动.jpg',                  page:'page-activity-detail-1' },
   { type:'本体', color:'#1859BD', title:'近距离实测 · 基地人形导览机器人',      meta:'讲解准确率 98%',              mediaType:'image', img:'图片/基地人形导览-机器人图片.png',       page:'page-product-detail-4' },
@@ -3423,12 +3423,13 @@ const wfPool = [
   { type:'场景', color:'#2E7D32', title:'园区智能巡检场景',                     meta:'含 2 件商品 · 替代人工巡检',  mediaType:'image', page:'page-scene-detail-2' },
   { type:'本体', color:'#1859BD', title:'H1 人形机器人',                        meta:'身高 1.8m · 舞蹈/引导',       mediaType:'image', page:'page-product-detail-4' },
   { type:'场景', color:'#2E7D32', title:'演绎场景 · 舞台实况',                  meta:'品牌发布会 · 上海',           mediaType:'video',  videoPage:'page-video-scene-show',          page:'page-scene-detail-show' },
-  { type:'产品', color:'#C75E00', title:'自助巡检系统',                         meta:'适配四足机器人 · 7×24h',     mediaType:'image', page:'page-product-detail-3' },
+  { type:'系统', color:'#C75E00', title:'自助巡检系统',                         meta:'适配四足机器人 · 7×24h',     mediaType:'image', page:'page-product-detail-3' },
   { type:'本体', color:'#1859BD', title:'Go2 夜巡这段，有点科幻了',             meta:'园区实测 · 无人值守',         mediaType:'video',  videoPage:'page-video-go2',                 page:'page-product-detail-2' },
   { type:'本体', color:'#1859BD', title:'G1 人形机器人',                        meta:'轻量化 · 灵活作业',           mediaType:'image', page:'page-product-detail-g1' },
-  { type:'产品', color:'#C75E00', title:'表演控制系统',                         meta:'多机编队 · 音乐同步',         mediaType:'image', page:'page-product-detail-perf' },
-  { type:'产品', color:'#C75E00', title:'迎宾互动系统',                         meta:'NLP 对话 · 人脸识别',         mediaType:'image', page:'page-product-detail-greet' },
+  { type:'系统', color:'#C75E00', title:'表演控制系统',                         meta:'多机编队 · 音乐同步',         mediaType:'image', page:'page-product-detail-perf' },
+  { type:'系统', color:'#C75E00', title:'迎宾互动系统',                         meta:'NLP 对话 · 人脸识别',         mediaType:'image', page:'page-product-detail-greet' },
   { type:'本体', color:'#1859BD', title:'H1 · 展会互动高光',                    meta:'NFC 感应 · 访客互动',         mediaType:'image', page:'page-product-detail-4' },
+  { type:'服务', color:'#2E7D32', title:'机器人导览运维人员',                    meta:'持证上岗 · 广州/深圳/上海',   mediaType:'image', page:'page-product-detail-1' },
 ];
 const wfHeights = [128, 145, 118, 155, 135, 142, 122, 150, 130, 138, 125, 148];
 
