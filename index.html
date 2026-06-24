@@ -1725,10 +1725,6 @@ body {
       <div class="status-bar"><span>9:41</span><span>●●●</span></div>
       <div class="top-bar">
         <div class="top-bar-title">我的</div>
-        <div id="roleSwitchBtn" onclick="switchRole('ops')"
-          style="font-size:10px;color:#CCC;cursor:pointer;padding:4px 0 4px 8px;user-select:none;">
-          运营视角
-        </div>
       </div>
       <div class="scroll-area">
 
@@ -1737,10 +1733,10 @@ body {
 
           <div style="margin:0 12px 12px;background:#F7F8FA;border-radius:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;">
             <div>
-              <div style="font-size:13px;font-weight:700;color:#222;margin-bottom:3px;">你好，访客</div>
-              <div style="font-size:10px;color:#AAA;">登录后可保存意向清单和咨询记录</div>
+              <div id="mineUserName" style="font-size:13px;font-weight:700;color:#222;margin-bottom:3px;">你好，访客</div>
+              <div id="mineUserHint" style="font-size:10px;color:#AAA;">登录后可保存意向清单和咨询记录</div>
             </div>
-            <div style="background:#1859BD;color:#fff;font-size:11px;padding:7px 14px;border-radius:18px;cursor:pointer;white-space:nowrap;" onclick="showModal()">登录 / 注册</div>
+            <div id="loginBtn" style="background:#1859BD;color:#fff;font-size:11px;padding:7px 14px;border-radius:18px;cursor:pointer;white-space:nowrap;" onclick="showLoginSheet()">登录 / 注册</div>
           </div>
 
           <div class="sec-hd"><div class="sec-hd-t">我的服务</div></div>
@@ -1863,7 +1859,8 @@ body {
             </div>
           </div>
 
-          <div style="text-align:center;font-size:10px;color:#CCC;padding:20px;">具能租 · 运营后台 · V1.0</div>
+          <div onclick="logout()" style="margin:4px 12px 0;text-align:center;font-size:12px;color:#999;padding:14px;cursor:pointer;border-top:1px solid #F0F0F0;">退出登录</div>
+          <div style="text-align:center;font-size:10px;color:#CCC;padding:12px 20px 20px;">具能租 · 运营后台 · V1.0</div>
         </div>
 
       </div>
@@ -2160,32 +2157,27 @@ body {
       <div class="top-bar">
         <div class="top-bar-back" onclick="goBack()">‹</div>
         <div class="top-bar-page-title">数据看板</div>
-        <div style="font-size:10px;color:#AAA;">最近 7 天</div>
+        <div id="statsRangeBtn" onclick="toggleStatsRange()" style="display:flex;align-items:center;gap:3px;font-size:10px;color:#1859BD;background:#EEF3FF;padding:4px 9px;border-radius:12px;cursor:pointer;user-select:none;">
+          <span id="statsRangeLabel">近 7 天</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1859BD" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <!-- 天数下拉 -->
+        <div id="statsRangeMenu" style="display:none;position:absolute;top:52px;right:10px;background:#fff;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,0.14);z-index:100;min-width:88px;overflow:hidden;">
+          <div onclick="setStatsRange(this,'近 7 天')"  style="padding:10px 16px;font-size:11px;color:#222;cursor:pointer;border-bottom:1px solid #F3F3F3;" class="stats-range-opt stats-range-active">近 7 天</div>
+          <div onclick="setStatsRange(this,'近 14 天')" style="padding:10px 16px;font-size:11px;color:#222;cursor:pointer;border-bottom:1px solid #F3F3F3;" class="stats-range-opt">近 14 天</div>
+          <div onclick="setStatsRange(this,'近 30 天')" style="padding:10px 16px;font-size:11px;color:#222;cursor:pointer;" class="stats-range-opt">近 30 天</div>
+        </div>
       </div>
       <div class="scroll-area">
         <!-- 核心指标 -->
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:12px 12px 4px;">
-          <div style="background:#EEF3FF;border-radius:10px;padding:12px 8px;text-align:center;">
-            <div style="font-size:20px;font-weight:700;color:#1859BD;">1,284</div>
-            <div style="font-size:9px;color:#888;margin-top:3px;">页面访问</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 12px 8px;">
+          <div style="background:#EEF3FF;border-radius:10px;padding:14px 8px;text-align:center;">
+            <div style="font-size:24px;font-weight:700;color:#1859BD;">1,284</div>
+            <div style="font-size:9px;color:#888;margin-top:4px;">访问人次</div>
           </div>
-          <div style="background:#E2F5EA;border-radius:10px;padding:12px 8px;text-align:center;">
-            <div style="font-size:20px;font-weight:700;color:#1A7A3C;">347</div>
-            <div style="font-size:9px;color:#888;margin-top:3px;">商品点击</div>
-          </div>
-          <div style="background:#FFF0E0;border-radius:10px;padding:12px 8px;text-align:center;">
-            <div style="font-size:20px;font-weight:700;color:#C07A00;">38</div>
-            <div style="font-size:9px;color:#888;margin-top:3px;">咨询发起</div>
-          </div>
-        </div>
-        <div style="padding:0 12px 2px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          <div style="background:#F5EEFF;border-radius:10px;padding:10px 12px;text-align:center;">
-            <div style="font-size:18px;font-weight:700;color:#6B2D8B;">12</div>
-            <div style="font-size:9px;color:#888;margin-top:2px;">意向清单加入</div>
-          </div>
-          <div style="background:#F7F8FA;border-radius:10px;padding:10px 12px;text-align:center;">
-            <div style="font-size:18px;font-weight:700;color:#555;">2.96%</div>
-            <div style="font-size:9px;color:#888;margin-top:2px;">咨询转化率</div>
+          <div style="background:#FFF0E0;border-radius:10px;padding:14px 8px;text-align:center;">
+            <div style="font-size:24px;font-weight:700;color:#C07A00;">38</div>
+            <div style="font-size:9px;color:#888;margin-top:4px;">咨询人次</div>
           </div>
         </div>
 
@@ -2768,6 +2760,23 @@ body {
     </div>
 
     <!-- ════════════ 客服选择底部弹窗 ════════════ -->
+    <!-- ════════════ 登录弹窗 ════════════ -->
+    <div class="hotline-overlay" id="loginSheet" onclick="if(event.target===this)hideLoginSheet()">
+      <div class="hotline-sheet">
+        <div style="font-size:13px;font-weight:700;color:#222;text-align:center;margin-bottom:4px;">登录具能租</div>
+        <div style="font-size:10px;color:#999;text-align:center;margin-bottom:16px;">选择账号类型继续</div>
+        <div onclick="loginAs('user')" style="display:flex;align-items:center;gap:12px;padding:12px;background:#F9F9F9;border-radius:10px;margin-bottom:8px;cursor:pointer;">
+          <div style="width:36px;height:36px;background:#07C160;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+          <div><div style="font-size:12px;font-weight:600;color:#222;margin-bottom:2px;">微信一键登录</div><div style="font-size:10px;color:#999;">普通用户 · 浏览、收藏、咨询</div></div>
+        </div>
+        <div onclick="loginAs('ops')" style="display:flex;align-items:center;gap:12px;padding:12px;background:#F9F9F9;border-radius:10px;margin-bottom:14px;cursor:pointer;">
+          <div style="width:36px;height:36px;background:#1859BD;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zM3 5v10h18V5H3zm4 8H5v-2h2v2zm0-4H5V7h2v2zm4 4H9v-2h2v2zm0-4H9V7h2v2zm4 4h-2v-2h2v2zm0-4h-2V7h2v2zm4 4h-2v-2h2v2zm0-4h-2V7h2v2z"/></svg></div>
+          <div><div style="font-size:12px;font-weight:600;color:#222;margin-bottom:2px;">运营账号登录</div><div style="font-size:10px;color:#999;">平台管理权限 · 白名单账号专用</div></div>
+        </div>
+        <div onclick="hideLoginSheet()" style="text-align:center;color:#999;font-size:12px;cursor:pointer;padding:4px;">取消</div>
+      </div>
+    </div>
+
     <div class="hotline-overlay" id="csSheet" onclick="if(event.target===this)hideCSSheet()">
       <div class="hotline-sheet">
         <div id="csSheetHint" style="display:none;background:#F5F7FF;border-radius:8px;padding:8px 12px;margin-bottom:14px;align-items:center;gap:8px;">
@@ -3569,13 +3578,31 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2000);
 }
 
-function switchRole(role) {
-  const isUser = role === 'user';
-  document.getElementById('mine-user').style.display = isUser ? '' : 'none';
-  document.getElementById('mine-ops').style.display  = isUser ? 'none' : '';
-  const btn = document.getElementById('roleSwitchBtn');
-  btn.textContent = isUser ? '运营视角' : '用户视角';
-  btn.onclick = () => switchRole(isUser ? 'ops' : 'user');
+function showLoginSheet() {
+  document.getElementById('loginSheet').style.display = 'flex';
+}
+function hideLoginSheet() {
+  document.getElementById('loginSheet').style.display = 'none';
+}
+function loginAs(role) {
+  hideLoginSheet();
+  if (role === 'ops') {
+    document.getElementById('mine-user').style.display = 'none';
+    document.getElementById('mine-ops').style.display = '';
+  } else {
+    document.getElementById('mine-user').style.display = '';
+    document.getElementById('mine-ops').style.display = 'none';
+    document.getElementById('loginBtn').style.display = 'none';
+    document.getElementById('mineUserName').textContent = '你好，微信用户';
+    document.getElementById('mineUserHint').textContent = '意向清单和咨询记录已同步';
+  }
+}
+function logout() {
+  document.getElementById('mine-user').style.display = '';
+  document.getElementById('mine-ops').style.display = 'none';
+  document.getElementById('loginBtn').style.display = '';
+  document.getElementById('mineUserName').textContent = '你好，访客';
+  document.getElementById('mineUserHint').textContent = '登录后可保存意向清单和咨询记录';
 }
 
 function switchPmTab(el, status) {
@@ -3745,6 +3772,26 @@ function dvFullscreen(vidId) {
   else if (v.requestFullscreen)        v.requestFullscreen();
   else if (v.webkitRequestFullscreen)  v.webkitRequestFullscreen();
 }
+
+// ── 数据看板天数选择 ──
+function toggleStatsRange() {
+  const menu = document.getElementById('statsRangeMenu');
+  menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+}
+function setStatsRange(el, label) {
+  document.getElementById('statsRangeLabel').textContent = label;
+  document.getElementById('statsRangeMenu').style.display = 'none';
+  document.querySelectorAll('.stats-range-opt').forEach(o => o.style.fontWeight = '');
+  el.style.fontWeight = '700';
+}
+// 点击页面其他区域关闭菜单
+document.addEventListener('click', function(e) {
+  const btn  = document.getElementById('statsRangeBtn');
+  const menu = document.getElementById('statsRangeMenu');
+  if (menu && !menu.contains(e.target) && btn && !btn.contains(e.target)) {
+    menu.style.display = 'none';
+  }
+});
 </script>
 </body>
 </html>
