@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -16,7 +16,7 @@ body {
 }
 
 /* ── 顶部说明 ── */
-.doc-title { font-size: 18px; font-weight: 700; color: #1859BD; margin-bottom: 4px; text-align: center; }
+.doc-title { font-size: 18px; font-weight: 700; color: #3A7AC8; margin-bottom: 4px; text-align: center; }
 .doc-sub   { font-size: 12px; color: #999; margin-bottom: 24px; text-align: center; }
 
 /* ── 面包屑导航 ── */
@@ -25,7 +25,7 @@ body {
   display: flex; align-items: center; gap: 4px;
   min-height: 18px;
 }
-.breadcrumb span { color: #1859BD; cursor: pointer; }
+.breadcrumb span { color: #3A7AC8; cursor: pointer; }
 .breadcrumb span:hover { text-decoration: underline; }
 
 /* ── 手机外壳 ── */
@@ -80,13 +80,13 @@ body {
   padding: 8px 14px; background: #fff;
   border-bottom: 1px solid #EBEBEB; flex-shrink: 0;
 }
-.top-bar-title { font-size: 15px; font-weight: 700; color: #1859BD; }
+.top-bar-title { font-size: 15px; font-weight: 700; color: #3A7AC8; }
 .top-bar-page-title { font-size: 14px; font-weight: 600; color: #222; }
 .top-bar-back {
   font-size: 20px; color: #444; cursor: pointer; padding: 2px 6px 2px 0;
   user-select: none;
 }
-.top-bar-back:hover { color: #1859BD; }
+.top-bar-back:hover { color: #3A7AC8; }
 .icon-btn {
   width: 28px; height: 28px; border-radius: 50%;
   background: #F2F4F7; display: flex; align-items: center;
@@ -94,46 +94,60 @@ body {
   flex-shrink: 0;
 }
 .icon-btn:hover { background: #E8EEFF; }
-.top-bar-right { display: flex; align-items: center; gap: 6px; }
+.top-bar-right { display: flex; align-items: center; gap: 6px; min-width: 28px; }
 /* ── 悬浮操作按钮 ── */
 .float-action {
   position: absolute; right: 12px; z-index: 10;
-  width: 38px; height: 38px; border-radius: 50%;
-  background: #fff; border: 1.5px solid #C8D9FF;
-  box-shadow: 0 3px 10px rgba(24,89,189,0.18);
+  width: 36px; height: 36px; border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.14), 0 1px 4px rgba(0,0,0,0.08);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer;
 }
 .float-wl  { bottom: 64px; }
-.float-fcs { bottom: 110px; }
-.float-top { bottom: 156px; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
-.float-top.visible { opacity: 1; pointer-events: all; }
+.float-top { bottom: 110px; }
 
 /* ── 滚动内容区 ── */
 .scroll-area {
   flex: 1; overflow-y: auto; overflow-x: hidden;
+  padding-bottom: 56px;
 }
-.scroll-area::-webkit-scrollbar { width: 3px; }
-.scroll-area::-webkit-scrollbar-thumb { background: #DDD; border-radius: 2px; }
+.scroll-area::-webkit-scrollbar { width: 0; }
 
 /* ── 底部导航 ── */
+.page:has(.dual-cta) .bottom-nav {
+  position: relative; bottom: auto; left: auto; right: auto;
+}
 .bottom-nav {
-  display: flex; border-top: 1px solid #EBEBEB;
-  background: #fff; flex-shrink: 0;
+  display: flex;
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 -1px 0 rgba(0,0,0,0.08);
+  z-index: 20;
 }
 .bn-item {
   flex: 1; display: flex; flex-direction: column; align-items: center;
-  padding: 7px 0 8px; gap: 3px; font-size: 9px; color: #AAA;
+  padding: 7px 0 8px; gap: 0; font-size: 9px; color: #AAA;
   cursor: pointer; user-select: none; transition: color 0.15s;
 }
-.bn-item:hover { color: #1859BD; }
-.bn-item.active { color: #1859BD; }
+.bn-item:hover { color: #3A7AC8; }
+.bn-item.active { color: #3A7AC8; }
 .bn-icon-box {
   width: 20px; height: 20px; border-radius: 5px;
   background: #D0D3D9; transition: background 0.15s;
 }
 .bn-item.active .bn-icon-box,
-.bn-item:hover .bn-icon-box { background: #1859BD; }
+.bn-item:hover .bn-icon-box { background: #3A7AC8; }
+.bn-item svg { width: 20px; height: 20px; transition: color 0.15s; }
+.bn-icon-wrap {
+  padding: 2px 14px 0; border-radius: 14px;
+  transition: background 0.2s;
+}
+.bn-item.active .bn-icon-wrap {
+  background: rgba(58,122,200,0.13);
+}
 
 /* ── 图片占位 ── */
 .img-ph {
@@ -144,7 +158,7 @@ body {
 /* ── 通用组件 ── */
 .tag {
   display: inline-block; font-size: 9px; padding: 2px 7px;
-  border-radius: 10px; background: #EEF3FF; color: #1859BD;
+  border-radius: 10px; background: #EDF2F7; color: #3A7AC8;
 }
 .tag-gray { background: #EFEFEF; color: #888; }
 
@@ -162,7 +176,7 @@ body {
 }
 
 /* ── 活动横幅 ── */
-.banner-wrap { margin: 4px 12px 2px; }
+.banner-wrap { margin: 6px 8px 2px; }
 .banner-carousel { position: relative; overflow: hidden; border-radius: 10px; height: 96px; }
 .banner-slides { display: flex; height: 100%; transition: transform 0.45s ease; }
 .banner-slide { min-width: 100%; height: 100%; cursor: pointer; position: relative; overflow: hidden; }
@@ -226,7 +240,7 @@ body {
 }
 .sc-meta { font-size: 9.5px; color: #BBB; }
 .sc-cta  {
-  font-size: 10px; color: #1859BD; background: #EEF3FF;
+  font-size: 10px; color: #3A7AC8; background: #EDF2F7;
   padding: 4px 10px; border-radius: 12px;
   cursor: pointer;
 }
@@ -234,24 +248,24 @@ body {
 /* ── 浮动客服按钮 ── */
 .float-cs {
   position: absolute; bottom: 16px; right: 12px;
-  background: #1859BD; color: #fff; font-size: 10px;
+  background: #3A7AC8; color: #fff; font-size: 10px;
   padding: 7px 13px; border-radius: 20px;
   box-shadow: 0 3px 10px rgba(24,89,189,0.4);
   cursor: pointer; user-select: none; z-index: 5;
 }
-.float-cs:hover { background: #1245A8; }
+.float-cs:hover { background: #3968A0; }
 
 /* ── 顶栏联系客服按钮 ── */
 .cs-btn {
   display: flex; align-items: center; gap: 3px;
-  font-size: 10px; font-weight: 500; color: #1859BD;
-  background: #EEF3FF; padding: 4px 9px 4px 7px;
-  border-radius: 12px; border: 1px solid #C8D9FF;
+  font-size: 10px; font-weight: 500; color: #3A7AC8;
+  background: #EDF2F7; padding: 4px 9px 4px 7px;
+  border-radius: 12px; border: 1px solid #C4D2E5;
   cursor: pointer; white-space: nowrap; flex-shrink: 0;
   line-height: 1;
 }
 .cs-btn svg { flex-shrink: 0; }
-.cs-btn:hover { background: #DDE8FF; }
+.cs-btn:hover { background: #D4DFEE; }
 
 /* ── 顶栏搜索框 ── */
 .search-input-box {
@@ -268,7 +282,12 @@ body {
 
 
 /* ── 详情页横幅 ── */
-.detail-banner { height: 165px; position: relative; flex-shrink: 0; overflow: hidden; }
+.detail-banner { height: 190px; position: relative; flex-shrink: 0; overflow: hidden; }
+.detail-banner::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 48px;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.18));
+  pointer-events: none; z-index: 4;
+}
 .carousel-track { display: flex; height: 100%; transition: transform 0.28s ease; }
 .carousel-slide { flex-shrink: 0; width: 100%; height: 100%; position: relative; }
 .carousel-dots {
@@ -297,12 +316,13 @@ body {
   font-size: 9px; padding: 3px 8px; border-radius: 10px;
 }
 
-.detail-body { padding: 12px 14px; }
-.detail-title { font-size: 15px; font-weight: 700; color: #222; margin: 7px 0 6px; }
-.detail-desc  { font-size: 11px; color: #777; line-height: 1.8; margin-bottom: 12px; }
+.detail-body { padding: 14px 14px 8px; }
+.detail-title { font-size: 17px; font-weight: 800; color: #1A1A1A; margin: 8px 0 6px; letter-spacing: 0.01em; line-height: 1.3; }
+.detail-desc  { font-size: 11px; color: #888; line-height: 1.9; margin-bottom: 14px; }
 .detail-sec   {
-  font-size: 11.5px; font-weight: 700; color: #333;
-  margin-bottom: 8px; padding-bottom: 5px; border-bottom: 1px solid #EDEDED;
+  font-size: 11px; font-weight: 700; color: #3A7AC8;
+  margin: 14px 0 8px; padding-left: 8px;
+  border-left: 3px solid #3A7AC8;
 }
 
 /* ── 产品清单项 ── */
@@ -326,35 +346,37 @@ body {
 
 /* ── 主CTA ── */
 .main-cta {
-  background: #1859BD; color: #fff; text-align: center;
+  background: #3A7AC8; color: #fff; text-align: center;
   padding: 13px; font-size: 12.5px; font-weight: 600;
   border-radius: 10px; margin: 0 14px 14px;
   cursor: pointer; flex-shrink: 0; transition: background 0.15s;
 }
-.main-cta:hover { background: #1245A8; }
+.main-cta:hover { background: #3968A0; }
 
 .dual-cta {
-  display: flex; gap: 8px; padding: 0 14px 14px; flex-shrink: 0;
+  display: flex; gap: 10px; padding: 10px 14px 14px; flex-shrink: 0;
+  background: #fff; border-top: 1px solid #EEF2F9;
 }
 .cta-outline {
-  flex: 1; text-align: center; padding: 11px;
-  border: 1.5px solid #1859BD; border-radius: 10px;
-  font-size: 11.5px; color: #1859BD; font-weight: 600;
+  flex: 1; text-align: center; padding: 12px;
+  border: 1.5px solid #3A7AC8; border-radius: 12px;
+  font-size: 11.5px; color: #3A7AC8; font-weight: 600;
   cursor: pointer; transition: background 0.15s;
 }
-.cta-outline:hover { background: #EEF3FF; }
+.cta-outline:hover { background: #EDF2F7; }
 .cta-outline.wl-added {
   flex: 0 0 40px; padding: 8px 0; position: relative;
   display: flex; align-items: center; justify-content: center;
-  background: #EEF3FF;
+  background: #EDF2F7;
 }
 .cta-fill {
-  flex: 1; text-align: center; padding: 11px;
-  background: #1859BD; border-radius: 10px;
+  flex: 1; text-align: center; padding: 12px;
+  background: #2A8C84; border-radius: 12px;
   font-size: 11.5px; color: #fff; font-weight: 600;
   cursor: pointer; transition: background 0.15s;
+  box-shadow: 0 3px 10px rgba(42,140,132,0.25);
 }
-.cta-fill:hover { background: #1245A8; }
+.cta-fill:hover { background: #227970; }
 
 /* ── Tab 栏 ── */
 .tab-bar {
@@ -367,7 +389,7 @@ body {
   white-space: nowrap; border-bottom: 2px solid transparent;
   cursor: pointer; transition: color 0.15s; user-select: none;
 }
-.tab-item.active { color: #1859BD; border-bottom-color: #1859BD; font-weight: 700; }
+.tab-item.active { color: #3A7AC8; border-bottom-color: #3A7AC8; font-weight: 700; }
 .tab-item:hover:not(.active) { color: #555; }
 
 /* ── 产品网格 ── */
@@ -387,53 +409,65 @@ body {
 .pc-name { font-size: 11px; font-weight: 700; color: #222; margin-bottom: 5px; line-height: 1.4; }
 
 /* ── 规格表 ── */
-.spec-tbl { width: 100%; border-collapse: collapse; font-size: 10.5px; margin-bottom: 12px; }
-.spec-tbl td { padding: 7px 10px; border-bottom: 1px solid #F0F0F0; }
-.spec-tbl td:first-child { color: #999; background: #FAFAFA; width: 36%; }
+.spec-tbl { width: 100%; border-collapse: collapse; font-size: 10.5px; margin-bottom: 12px; border-radius: 8px; overflow: hidden; }
+.spec-tbl tr:nth-child(odd) td { background: #F8FAFE; }
+.spec-tbl tr:nth-child(even) td { background: #fff; }
+.spec-tbl td { padding: 8px 10px; border-bottom: 1px solid #EEF2F9; }
+.spec-tbl td:first-child { color: #7A9CC6; font-weight: 600; width: 36%; }
 
 /* ── 客服弹窗 ── */
 .modal-overlay {
   position: absolute; inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(10,25,60,0.30);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
   display: flex; align-items: flex-end;
   z-index: 50; opacity: 0; pointer-events: none;
-  transition: opacity 0.2s;
+  transition: opacity 0.22s;
 }
 .modal-overlay.show { opacity: 1; pointer-events: all; }
 .modal-sheet {
-  background: #fff; border-radius: 18px 18px 0 0;
+  background: rgba(240,247,255,0.96);
+  backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+  border-radius: 20px 20px 0 0;
   width: 100%; padding: 20px 20px 28px;
   transform: translateY(100%);
-  transition: transform 0.25s ease;
+  transition: transform 0.26s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 -4px 24px rgba(44,95,158,0.10);
+  border-top: 1px solid rgba(255,255,255,0.85);
 }
 .modal-overlay.show .modal-sheet { transform: translateY(0); }
 .modal-hd {
   display: flex; justify-content: space-between; align-items: center;
   margin-bottom: 16px;
 }
-.modal-title { font-size: 14px; font-weight: 700; color: #222; }
-.modal-close { font-size: 20px; color: #AAA; cursor: pointer; line-height: 1; }
-.modal-close:hover { color: #555; }
-.modal-body { font-size: 11px; color: #666; line-height: 1.8; margin-bottom: 18px; }
+.modal-title { font-size: 14px; font-weight: 700; color: #1A2A4A; }
+.modal-close { font-size: 20px; color: #8AA4C8; cursor: pointer; line-height: 1; }
+.modal-close:hover { color: #3A7AC8; }
+.modal-body { font-size: 11px; color: #5A7A9A; line-height: 1.8; margin-bottom: 18px; }
 .modal-btn {
-  background: #1859BD; color: #fff; text-align: center;
-  padding: 13px; border-radius: 10px; font-size: 13px; font-weight: 600;
-  cursor: pointer;
+  background: linear-gradient(135deg,#2C5F9E,#3A7AC8); color: #fff; text-align: center;
+  padding: 13px; border-radius: 14px; font-size: 13px; font-weight: 600;
+  cursor: pointer; box-shadow: 0 4px 14px rgba(44,95,158,0.25);
 }
 
 /* ── 左侧分类导航 ── */
 .left-cat {
-  padding: 14px 8px;
-  font-size: 11px; color: #888; text-align: center;
+  padding: 13px 5px 11px;
+  font-size: 11px; color: #9AAABB; text-align: center;
   line-height: 1.4; cursor: pointer;
   border-left: 3px solid transparent;
-  transition: all 0.15s; user-select: none;
-  word-break: keep-all;
+  border-right: 1px solid transparent;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+  user-select: none; word-break: keep-all;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
 }
-.left-cat:hover { color: #1859BD; background: #F0F4FF; }
+.left-cat svg { transition: stroke 0.18s; }
+.left-cat:hover { color: #3A7AC8; background: #EDF2FA; }
 .left-cat.active {
-  color: #1859BD; font-weight: 700;
-  background: #fff; border-left-color: #1859BD;
+  color: #3A7AC8; font-weight: 700;
+  background: #F2F5FB;
+  border-left-color: #3A7AC8;
+  border-right-color: #F2F5FB;
 }
 
 /* ── 子分类小标签（卡片内） ── */
@@ -446,14 +480,14 @@ body {
 
 /* ── 子分类 chip ── */
 .sub-chip {
-  display: inline-block; font-size: 10.5px; padding: 4px 12px;
-  border-radius: 14px; border: 1px solid #DEDEDE;
-  background: #fff; color: #666; cursor: pointer;
+  display: inline-block; font-size: 10px; font-weight: 500; padding: 4px 10px;
+  border-radius: 20px; border: 1px solid #D8E4F0;
+  background: #fff; color: #6A88A8; cursor: pointer;
   white-space: nowrap; flex-shrink: 0; transition: all 0.15s;
-  margin-right: 6px;
+  margin-right: 0;
 }
-.sub-chip.active { background: #1859BD; color: #fff; border-color: #1859BD; }
-.sub-chip:hover:not(.active) { border-color: #1859BD; color: #1859BD; }
+.sub-chip.active { background: rgba(58,122,200,0.12); color: #3A7AC8; border-color: rgba(58,122,200,0.25); font-weight: 600; }
+.sub-chip:hover:not(.active) { border-color: #3A7AC8; color: #3A7AC8; }
 
 /* ── 来源平台标签 ── */
 .source-tag {
@@ -475,7 +509,7 @@ body {
   margin-bottom: 12px; flex-shrink: 0;
 }
 .source-bar-left  { display: flex; align-items: center; gap: 8px; font-size: 10.5px; color: #555; }
-.source-bar-link  { font-size: 10px; color: #1859BD; cursor: pointer; }
+.source-bar-link  { font-size: 10px; color: #3A7AC8; cursor: pointer; }
 .source-bar-link:hover { text-decoration: underline; }
 
 /* ── 简单页（活动/我的）── */
@@ -486,6 +520,123 @@ body {
 }
 .simple-icon { font-size: 36px; }
 .simple-text { font-size: 12px; }
+
+/* ── 首页渐变背景 ── */
+#page-home {
+  background: linear-gradient(to bottom,
+    #3A7AC8 0px,
+    #6B9BC8 48px,
+    #B8D0E8 100px,
+    #E8F0F8 140px,
+    #F5F6F8 185px
+  );
+}
+#page-home .status-bar {
+  background: transparent;
+  color: rgba(255,255,255,0.88);
+}
+#page-home .top-bar {
+  background: transparent;
+  border-bottom: 1px solid rgba(255,255,255,0.22);
+  align-items: center;
+  padding-top: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
+  max-height: 60px;
+  overflow: hidden;
+  transition: max-height 0.28s ease, opacity 0.22s ease, padding 0.25s ease, border-color 0.22s ease;
+}
+#page-home.top-hidden .top-bar {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-bottom-color: transparent;
+}
+#page-home .top-bar-title { color: #fff; }
+#page-home .search-input-box {
+  background: rgba(255,255,255,0.22);
+  height: 28px; padding: 0;
+  border-radius: 14px; box-sizing: border-box;
+  width: 0; opacity: 0; overflow: hidden; pointer-events: none;
+  transition: width 0.28s cubic-bezier(0.4,0,0.2,1), opacity 0.22s ease, padding 0.28s cubic-bezier(0.4,0,0.2,1);
+}
+#page-home .search-input-box.expanded {
+  width: 120px; opacity: 1; pointer-events: all; padding: 0 8px;
+}
+#page-home .top-bar-right { gap: 0; }
+#homeSearchCircle {
+  transition: opacity 0.18s ease, transform 0.18s ease, max-width 0.28s ease;
+}
+#homeSearchCircle.collapsed {
+  opacity: 0; transform: scale(0.75); pointer-events: none;
+  max-width: 0; overflow: hidden;
+}
+#page-home .search-input-box input { color: #fff; }
+#page-home .search-input-box input::placeholder { color: rgba(255,255,255,0.60); }
+#page-home .search-input-box svg { stroke: rgba(255,255,255,0.60); }
+#page-home .cs-btn {
+  background: rgba(255,255,255,0.20);
+  border-color: rgba(255,255,255,0.35);
+  color: #fff;
+}
+#page-home .cs-btn svg { stroke: #fff; }
+
+/* ── 商品中心搜索动画 ── */
+#productSearchBox {
+  display: flex; align-items: center; gap: 4px;
+  height: 28px; border-radius: 14px; box-sizing: border-box;
+  background: rgba(255,255,255,0.75);
+  width: 0; opacity: 0; overflow: hidden; pointer-events: none; padding: 0;
+  transition: width 0.28s cubic-bezier(0.4,0,0.2,1), opacity 0.22s ease, padding 0.28s cubic-bezier(0.4,0,0.2,1);
+  flex-shrink: 0;
+}
+#productSearchBox.expanded { width: 140px; opacity: 1; pointer-events: all; padding: 0 8px; }
+#productSearchBox input { border:none; background:none; outline:none; font-size:10px; color:#333; width:100%; }
+#productSearchBox input::placeholder { color:#AAA; }
+#productSearchCircle { transition: opacity 0.18s ease, transform 0.18s ease, max-width 0.28s ease; }
+#productSearchCircle.collapsed { opacity:0; transform:scale(0.75); pointer-events:none; max-width:0; overflow:hidden; }
+#productCsCircle { transition: opacity 0.18s ease, max-width 0.28s ease; }
+#productCsCircle.collapsed { opacity:0; pointer-events:none; max-width:0; overflow:hidden; }
+
+/* ── 商品中心顶部蓝色风格 ── */
+#subCatBar::-webkit-scrollbar { display: none; }
+#productGrid::-webkit-scrollbar { display: none; }
+#subCatBarWrap::after {
+  content: '›';
+  position: absolute;
+  right: 0; top: 0; bottom: 1px;
+  width: 36px;
+  background: linear-gradient(to right, transparent, #fff 70%);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 6px;
+  font-size: 16px;
+  color: #AAAAAA;
+  line-height: 1;
+}
+#page-product { background: #F2F5FB; }
+#page-product .status-bar { background: transparent; color: #3A5A80; }
+#page-product .top-bar {
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(44,95,158,0.08);
+  position: relative; z-index: 1;
+  padding-top: 10px; padding-bottom: 14px;
+  padding-left: 8px; padding-right: 8px;
+}
+#page-product .top-bar-title { color: #1A2A4A; font-size: 17px; letter-spacing: 1px; }
+#page-product .search-input-box { background: #F0F4FA; border-color: transparent; }
+#page-product .search-input-box input { color: #333; }
+#page-product .search-input-box input::placeholder { color: #AAAAAA; }
+#page-product .search-input-box svg { stroke: #AAAAAA; }
+#page-product .cs-btn { background: rgba(220,243,241,0.90); border-color: rgba(42,140,132,0.25); color: #2A8C84; }
+#page-product .cs-btn svg { stroke: #2A8C84; }
+#page-home .scroll-area.masked {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0px, black 18px);
+  mask-image: linear-gradient(to bottom, transparent 0px, black 18px);
+}
 
 /* ── 底部标注 ── */
 .tips {
@@ -498,17 +649,36 @@ body {
 .tip-dot { width: 8px; height: 8px; border-radius: 50%; }
 /* ── 商品中心卡片 ── */
 .mc {
-  background: #fff; border-radius: 10px; overflow: hidden;
-  cursor: pointer; transition: box-shadow 0.15s, transform 0.1s;
-  display: flex; align-items: stretch; border: 1px solid #EBEBEB;
+  background: #fff; border-radius: 12px;
+  cursor: pointer; transition: box-shadow 0.15s, transform 0.12s;
+  display: flex; align-items: center; padding: 9px 10px; gap: 10px;
+  box-shadow: 0 1px 8px rgba(44,95,158,0.07), 0 0 0 0.5px rgba(44,95,158,0.06);
 }
-.mc:hover { box-shadow: 0 3px 10px rgba(0,0,0,0.1); transform: translateY(-1px); }
-.mc-img { width: 72px; height: 72px; flex-shrink: 0; }
-.mc-body { padding: 8px 10px; flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
-.mc-name { font-size: 12px; font-weight: 700; color: #1A1A1A; margin: 0; line-height: 1.3; }
-.mc-tags { display: flex; gap: 3px; flex-wrap: wrap; }
-.stag { font-size: 9px; padding: 1px 5px; border-radius: 6px; background: #F2F3F5; color: #888; }
-.mc-price { font-size: 10px; color: #D84C1A; font-weight: 600; }
+.mc:hover { box-shadow: 0 4px 18px rgba(44,95,158,0.13); transform: translateY(-1px); }
+.mc-img { width: 72px; height: 72px; flex-shrink: 0; border-radius: 9px; object-fit: cover; background: #ECF1F8; }
+.img-ph.mc-img { background: #E8EFF8; color: #B8CADE; font-size: 9px; }
+.mc-body { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 2px; }
+.mc-name { font-size: 13px; font-weight: 700; color: #1A2A3A; margin: 0; line-height: 1.3; order: 1; letter-spacing: 0.1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mc-desc { font-size: 10.5px; color: #8AAAC0; order: 2; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mc-tags { display: flex; gap: 3px; order: 4; margin-top: 3px; align-items: center; }
+.mc-cart { margin-left: auto; flex-shrink: 0; display: flex; align-items: center; cursor: pointer; opacity: 0.45; transition: opacity 0.15s; position: relative; }
+.mc-cart:hover { opacity: 0.82; }
+.mc-cart.in-cart { opacity: 1; }
+#cartToast {
+  position: absolute; top: 72px; left: 50%; transform: translateX(-50%);
+  background: rgba(30,30,30,0.82); color: #fff; font-size: 11px;
+  padding: 5px 14px; border-radius: 20px; z-index: 9999;
+  pointer-events: none; opacity: 0; transition: opacity 0.18s;
+  white-space: nowrap; backdrop-filter: blur(6px);
+}
+#cartToast.show { opacity: 1; }
+.cart-fly-dot {
+  position: fixed; z-index: 9999; pointer-events: none;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: #3A7AC8; opacity: 0.9;
+}
+.stag { font-size: 10px; padding: 2px 7px; border-radius: 6px; background: #EEF3FA; color: #6890B8; border: 1px solid #D4E4F2; }
+.mc-price { font-size: 11.5px; color: #3A7AC8; font-weight: 600; order: 3; }
 
 
 
@@ -517,18 +687,18 @@ body {
 .xhs-grid {
   display: flex;
   gap: 8px;
-  padding: 8px 10px 16px;
+  padding: 8px 8px 16px;
   align-items: flex-start;
 }
 .xhs-col {
-  flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0;
+  flex: 1; display: flex; flex-direction: column; gap: 5px; min-width: 0;
 }
 .xhs-card {
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
-  border: 1px solid #EBEBEB;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   transition: box-shadow 0.15s, transform 0.1s;
   display: flex;
   flex-direction: column;
@@ -542,27 +712,52 @@ body {
   flex-shrink: 0;
 }
 .xhs-src-badge {
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  font-size: 8px;
+  font-size: 9px;
   padding: 1px 6px;
-  border-radius: 8px;
+  border-radius: 4px;
   font-weight: 600;
+  letter-spacing: 0.3px;
 }
 .xhs-body { padding: 7px 9px 10px; flex: 1; }
 .xhs-title {
   font-size: 11px;
   font-weight: 600;
-  color: #222;
-  line-height: 1.5;
+  color: #333;
+  line-height: 1.65;
   margin-bottom: 5px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  letter-spacing: 0.01em;
 }
-.xhs-meta { font-size: 9px; color: #BBB; }
+.xhs-meta { font-size: 9px; color: #C0C0C0; letter-spacing: 0.01em; }
+.xhs-heart {
+  display: flex; align-items: center; gap: 2px;
+  font-size: 9px; color: #D0D0D0; cursor: pointer;
+  transition: color 0.15s; flex-shrink: 0; user-select: none;
+}
+.xhs-heart.liked { color: #C86070; }
+.xhs-heart.liked svg { fill: #C86070; stroke: #C86070; }
+
+/* ── 首页分类标签 ── */
+.hcat-tag {
+  flex-shrink: 0; padding: 1px 5px; border-radius: 20px;
+  font-size: 11px; font-weight: 500; cursor: pointer; user-select: none;
+  background: transparent; color: rgba(255,255,255,0.72);
+  border: none; transition: all 0.15s; white-space: nowrap;
+}
+.hcat-tag.hcat-active {
+  background: rgba(255,255,255,0.90); color: #3A7AC8; font-weight: 600;
+}
+#homeCatBar {
+  transition: max-height 0.25s ease, opacity 0.2s ease, padding 0.25s ease;
+  max-height: 40px; overflow: hidden;
+}
+#homeCatBar.hcat-hidden {
+  max-height: 0; opacity: 0; pointer-events: none;
+  padding-top: 0 !important; padding-bottom: 0 !important;
+}
 
 /* ── Toast 提示 ── */
 .toast {
@@ -575,19 +770,19 @@ body {
 .toast.show { opacity: 1; }
 /* ── 意向清单 ── */
 .wl-item{margin:8px 12px 0;background:#fff;border-radius:10px;border:1px solid #E8E8E8;padding:10px 10px 10px 8px;display:flex;align-items:center;gap:8px;transition:background 0.15s;}
-.wl-item.wl-selected{border-color:#1859BD;background:#F7FAFF;}
+.wl-item.wl-selected{border-color:#3A7AC8;background:#F7FAFF;}
 .wl-check{width:20px;height:20px;border-radius:50%;border:1.5px solid #CCC;flex-shrink:0;display:none;align-items:center;justify-content:center;cursor:pointer;font-size:11px;color:transparent;transition:all 0.15s;}
 #page-wishlist.wl-picking .wl-check{display:flex;}
-.wl-item.wl-selected .wl-check{background:#1859BD;border-color:#1859BD;color:#fff;}
-.wl-consult{font-size:9px;color:#1859BD;background:#EEF3FF;padding:4px 7px;border-radius:8px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.wl-item.wl-selected .wl-check{background:#3A7AC8;border-color:#3A7AC8;color:#fff;}
+.wl-consult{font-size:9px;color:#3A7AC8;background:#EDF2F7;padding:4px 7px;border-radius:8px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
 .wl-remove{font-size:16px;color:#DDD;cursor:pointer;padding:0 2px;flex-shrink:0;}
 .wl-bottom-bar{padding:8px 12px 10px;flex-shrink:0;border-top:1px solid #EBEBEB;background:#fff;display:flex;align-items:center;gap:8px;}
 .wl-sel-all{font-size:11px;color:#666;cursor:pointer;flex-shrink:0;display:flex;align-items:center;gap:4px;}
 .wl-sel-all-check{width:16px;height:16px;border-radius:4px;border:1.5px solid #CCC;display:flex;align-items:center;justify-content:center;font-size:9px;color:transparent;}
-.wl-sel-all.all-on .wl-sel-all-check{background:#1859BD;border-color:#1859BD;color:#fff;}
+.wl-sel-all.all-on .wl-sel-all-check{background:#3A7AC8;border-color:#3A7AC8;color:#fff;}
 .wl-count{font-size:11px;color:#999;flex:1;}
 .wl-count b{color:#222;}
-.wl-pack-btn{background:#1859BD;color:#fff;font-size:11px;font-weight:600;padding:8px 14px;border-radius:18px;cursor:pointer;flex-shrink:0;white-space:nowrap;}
+.wl-pack-btn{background:#3A7AC8;color:#fff;font-size:11px;font-weight:600;padding:8px 14px;border-radius:18px;cursor:pointer;flex-shrink:0;white-space:nowrap;}
 .wl-pack-btn.disabled{background:#CCC;cursor:default;}
 /* ── 客服入口 ── */
 .cs-entry-card{background:#fff;border-radius:12px;padding:14px;display:flex;align-items:center;gap:12px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:10px;}
@@ -595,30 +790,33 @@ body {
 .cs-entry-title{font-size:13px;font-weight:600;color:#222;margin-bottom:3px;}
 .cs-entry-desc{font-size:10px;color:#999;}
 /* ── 聊天 ── */
-.cs-msg-wrap{display:flex;align-items:flex-end;gap:6px;margin-bottom:10px;}
+.cs-msg-wrap{display:flex;align-items:flex-end;gap:6px;margin-bottom:12px;}
 .cs-msg-wrap.sent{flex-direction:row-reverse;}
-.cs-av{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;}
-.cs-bubble{max-width:68%;background:#fff;border-radius:12px 12px 12px 4px;padding:7px 10px;font-size:11px;line-height:1.55;color:#333;word-break:break-all;box-shadow:0 1px 2px rgba(0,0,0,0.06);}
-.cs-msg-wrap.sent .cs-bubble{background:#9BD56A;border-radius:12px 12px 4px 12px;color:#1a1a1a;}
-.cs-pcard{background:#fff;border-radius:10px;overflow:hidden;border:1px solid #E0E0E0;width:150px;cursor:pointer;}
-.cs-pcard-img{height:65px;background:#F0F0F0;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:11px;}
+.cs-av{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.10);}
+.cs-bubble{max-width:68%;background:rgba(255,255,255,0.72);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-radius:16px 16px 16px 4px;padding:9px 13px;font-size:11px;line-height:1.65;color:#1A2A4A;word-break:break-all;box-shadow:0 2px 24px rgba(44,95,158,0.08);border:1px solid rgba(255,255,255,0.85);}
+.cs-msg-wrap.sent .cs-bubble{background:linear-gradient(135deg,#3A7AC8,#2C5F9E);backdrop-filter:none;border:none;border-radius:16px 16px 4px 16px;color:#fff;box-shadow:0 3px 20px rgba(44,95,158,0.18);}
+.cs-pcard{background:rgba(255,255,255,0.80);backdrop-filter:blur(16px);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.9);width:150px;cursor:pointer;box-shadow:0 2px 16px rgba(44,95,158,0.08);}
+.cs-pcard-img{height:65px;background:#EEF4FC;display:flex;align-items:center;justify-content:center;color:#8AA4C8;font-size:11px;}
 .cs-pcard-body{padding:6px 8px;}
 .cs-pcard-name{font-size:11px;font-weight:600;color:#222;margin-bottom:2px;line-height:1.3;}
-.cs-pcard-sub{font-size:10px;color:#1859BD;}
+.cs-pcard-sub{font-size:10px;color:#3A7AC8;}
 .cs-sys-hint{text-align:center;font-size:10px;color:#BBB;margin:6px 0;}
-.cs-recent-strip{padding:7px 10px;background:#f8f8f8;border-top:1px solid #EBEBEB;flex-shrink:0;}
-.cs-recent-lbl{font-size:10px;color:#999;margin-bottom:5px;}
+.cs-recent-strip{padding:7px 10px;background:rgba(240,248,255,0.80);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(255,255,255,0.7);flex-shrink:0;}
+.cs-recent-lbl{font-size:10px;color:#8AA4C8;margin-bottom:5px;}
 .cs-recent-row{display:flex;gap:7px;overflow-x:auto;padding-bottom:2px;}
-.cs-recent-item{flex-shrink:0;display:flex;align-items:center;gap:5px;background:#fff;border:1px solid #E8E8E8;border-radius:8px;padding:4px 8px;}
-.cs-recent-thumb{width:24px;height:24px;background:#EEE;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;color:#CCC;}
-.cs-recent-name{font-size:10px;color:#333;max-width:54px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.cs-recent-send{font-size:9px;color:#1859BD;font-weight:600;cursor:pointer;padding-left:4px;flex-shrink:0;}
-.cs-input-bar{display:flex;align-items:center;gap:6px;padding:7px 10px 12px;background:#fff;border-top:1px solid #EBEBEB;flex-shrink:0;}
-.cs-input-bar input{flex:1;background:#F2F4F7;border:none;outline:none;border-radius:16px;padding:7px 12px;font-size:11px;}
-.cs-send-btn{background:#1859BD;color:#fff;border:none;outline:none;border-radius:16px;padding:7px 13px;font-size:11px;cursor:pointer;flex-shrink:0;}
+.cs-recent-item{flex-shrink:0;display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.75);border:1px solid rgba(255,255,255,0.9);border-radius:10px;padding:4px 8px;box-shadow:0 1px 8px rgba(44,95,158,0.06);}
+.cs-recent-thumb{width:24px;height:24px;background:#EEF4FC;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;color:#8AA4C8;}
+.cs-recent-name{font-size:10px;color:#1A2A4A;max-width:54px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.cs-recent-send{font-size:9px;color:#2A8C84;font-weight:600;cursor:pointer;padding-left:4px;flex-shrink:0;}
+.cs-input-bar{display:flex;align-items:center;gap:8px;padding:8px 12px 14px;background:rgba(240,248,255,0.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-top:1px solid rgba(255,255,255,0.7);flex-shrink:0;}
+.cs-input-bar input{flex:1;background:rgba(255,255,255,0.65);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.85);outline:none;border-radius:26px;padding:8px 14px;font-size:11px;color:#1A2A4A;}
+.cs-send-btn{background:linear-gradient(135deg,#35ADA4,#2A8C84);color:#fff;border:none;outline:none;border-radius:20px;padding:8px 16px;font-size:11px;cursor:pointer;flex-shrink:0;box-shadow:0 3px 16px rgba(42,140,132,0.22);}
 /* ── 热线浮层 ── */
-.hotline-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.45);z-index:200;display:none;align-items:flex-end;}
-.hotline-sheet{background:#fff;border-radius:16px 16px 0 0;padding:20px 18px 26px;width:100%;}
+.hotline-overlay{position:absolute;inset:0;background:rgba(10,25,60,0.30);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:200;display:none;align-items:flex-end;}
+.hotline-sheet{background:linear-gradient(to top left,rgba(200,224,246,0.97) 0%,rgba(232,243,252,0.97) 45%,rgba(248,252,255,0.97) 100%);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-radius:20px 20px 0 0;padding:6px 18px 30px;width:100%;box-shadow:0 -4px 24px rgba(44,95,158,0.10);border-top:1px solid rgba(255,255,255,0.85);}
+.hotline-sheet::before{content:'';display:block;width:36px;height:4px;background:rgba(44,95,158,0.18);border-radius:2px;margin:0 auto 14px;}
+@keyframes sheetSlideUp{from{transform:translateY(100%);opacity:0.5;}to{transform:translateY(0);opacity:1;}}
+.hotline-overlay[style*="flex"] .hotline-sheet{animation:sheetSlideUp 0.28s cubic-bezier(0.4,0,0.2,1) forwards;}
 </style>
 </head>
 <body>
@@ -636,19 +834,57 @@ body {
     <div class="page active" id="page-home">
       <div class="status-bar"><span>9:41</span><span>●●●</span></div>
       <div class="top-bar">
-        <div class="top-bar-title">具能租</div>
-        <div class="top-bar-right">
-          <div class="search-input-box">
-            <input type="text" placeholder="搜索场景/商品…">
-            <span class="si-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#AAA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></span>
+        <!-- 左侧：应用名 + 分隔线 + 品牌块 -->
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="top-bar-title" style="font-size:20px;line-height:1;letter-spacing:2px;color:#fff;">具能租</div>
+          <div style="width:1px;height:20px;background:rgba(255,255,255,0.30);flex-shrink:0;"></div>
+          <div style="display:flex;flex-direction:column;justify-content:center;gap:2px;">
+            <img src="图片/公司logo.png" style="height:9px;width:auto;display:block;">
+            <span style="font-size:8px;font-weight:700;color:rgba(255,255,255,0.90);white-space:nowrap;line-height:9px;display:block;font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;">大数云智</span>
           </div>
-          <div class="cs-btn" onclick="showModal()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1859BD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服</div>
+        </div>
+        <!-- 右侧：搜索圆圈 -->
+        <div class="top-bar-right">
+          <div id="homeSearchCircle" onclick="toggleHomeSearch()" style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.20);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+          </div>
+          <div id="homeSearchBox" class="search-input-box">
+            <input id="homeSearchInput" type="text" placeholder="搜索…" onkeydown="if(event.key==='Enter')doHomeSearch()">
+            <span onclick="collapseHomeSearch()" style="cursor:pointer;flex-shrink:0;display:flex;align-items:center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.60)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+            <span onclick="doHomeSearch()" style="cursor:pointer;flex-shrink:0;display:flex;align-items:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.80)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 分类筛选标签栏 -->
+      <div style="display:flex;align-items:center;gap:0;padding:6px 8px 2px;overflow:hidden;flex-shrink:0;" id="homeCatBar">
+        <!-- 标签列表 -->
+        <div id="catTags" style="display:flex;flex:1;justify-content:space-between;">
+          <div class="hcat-tag hcat-active" onclick="selectHomeCat(this,'')">全部</div>
+          <div class="hcat-tag" onclick="selectHomeCat(this,'活动')">活动</div>
+          <div class="hcat-tag" onclick="selectHomeCat(this,'场景')">场景</div>
+          <div class="hcat-tag" onclick="selectHomeCat(this,'本体')">本体</div>
+          <div class="hcat-tag" onclick="selectHomeCat(this,'产品')">产品</div>
+          <div class="hcat-tag" onclick="selectHomeCat(this,'服务')">服务</div>
+        </div>
+        <!-- 分隔线 -->
+        <div id="catDivider" style="width:1px;height:13px;background:rgba(255,255,255,0.28);flex-shrink:0;margin-left:4px;"></div>
+        <!-- 联系客服 -->
+        <div onclick="showModal()" style="display:flex;align-items:center;gap:3px;flex-shrink:0;cursor:pointer;margin-left:8px;background:rgba(220,243,241,0.80);border-radius:20px;padding:1px 6px;">
+          <span style="font-size:11px;color:#2A8C84;white-space:nowrap;font-weight:600;">客服</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2A8C84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;flex-shrink:0;"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <!-- 展开搜索输入（默认隐藏） -->
+        <div id="catSearchBox" style="display:none;flex:1;align-items:center;gap:6px;background:rgba(255,255,255,0.20);border:1px solid rgba(255,255,255,0.30);border-radius:20px;padding:3px 10px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.70)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+          <input id="catSearchInput" type="text" placeholder="搜索场景/商品…" style="flex:1;background:none;border:none;outline:none;font-size:11px;color:#fff;" onblur="collapseCatSearch()">
+          <span onclick="collapseCatSearch()" style="cursor:pointer;flex-shrink:0;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.70)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
         </div>
       </div>
 
       <div class="scroll-area">
         <!-- Banner 轮播：有重要活动时显示 -->
-        <div class="banner-wrap" style="position:relative;">
+        <div class="banner-wrap" id="homeBanner" style="position:relative;">
           <div class="banner-carousel">
             <div style="position:absolute;top:8px;left:8px;z-index:10;background:rgba(0,0,0,0.45);backdrop-filter:blur(4px);color:#fff;font-size:10px;font-weight:600;padding:3px 8px;border-radius:20px;display:flex;align-items:center;gap:3px;pointer-events:none;">
             <span style="font-size:10px;">🔥</span>近期热门活动
@@ -698,15 +934,11 @@ body {
 
       <!-- 悬浮回顶 -->
       <div class="float-action float-top" onclick="scrollToTop()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1859BD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-      </div>
-      <!-- 悬浮联系客服 -->
-      <div class="float-action float-fcs" onclick="showModal()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1859BD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 48 48"><path d="M0 0h48v48H0z" fill="none"/><path fill="none" stroke="#3A7AC8" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M24.008 14.1V42M12 26l12-12l12 12M12 6h24"/></svg>
       </div>
       <!-- 悬浮购物车 -->
       <div class="float-action float-wl" onclick="goTo('page-wishlist','我的 › 意向清单')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1859BD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-linejoin="round" stroke-width="2"><path d="M5 7h13.79a2 2 0 0 1 1.99 2.199l-.6 6A2 2 0 0 1 18.19 17H8.64a2 2 0 0 1-1.962-1.608z"/><path stroke-linecap="round" d="m5 7l-.81-3.243A1 1 0 0 0 3.22 3H2m6 18h2m6 0h2"/></svg>
       </div>
       <div class="bottom-nav"></div>
     </div>
@@ -766,7 +998,7 @@ body {
           <div class="detail-sec">真实案例</div>
           <div class="case-box" style="cursor:pointer;" onclick="goTo('page-activity-detail-1','场景详情 › 品牌活动 › 湖滨银泰')">
             📍 杭州湖滨银泰 · 品牌开幕活动<br>机器人表演 3 场次，引流超 2000 人次，现场询单率 18%<br>
-            <span style="color:#1859BD;font-size:10px;">查看活动详情 ›</span>
+            <span style="color:#3A7AC8;font-size:10px;">查看活动详情 ›</span>
           </div>
           <div class="detail-sec">适用行业与规模</div>
           <div style="font-size:10.5px;color:#666;line-height:1.8;margin-bottom:12px;">零售 / 商业地产 / 品牌营销；适合 300 人以上活动现场</div>
@@ -792,7 +1024,7 @@ body {
         <div class="bn-item active" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
         <div class="bn-item" onclick="switchTab('product')"><div class="bn-icon-box"></div>商品</div>
         <div class="bn-item" onclick="switchTab('activity')"><div class="bn-icon-box"></div>活动</div>
-        <div class="bn-item" onclick="switchTab('mine')"><div class="bn-icon-box"></div>我的</div>
+        <div class="bn-item" onclick="switchTab('mine')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M12 13c2.396 0 4.575.694 6.178 1.671c.8.49 1.484 1.065 1.978 1.69c.486.616.844 1.352.844 2.139c0 .845-.411 1.511-1.003 1.986c-.56.45-1.299.748-2.084.956c-1.578.417-3.684.558-5.913.558s-4.335-.14-5.913-.558c-.785-.208-1.524-.506-2.084-.956C3.41 20.01 3 19.345 3 18.5c0-.787.358-1.523.844-2.139c.494-.625 1.177-1.2 1.978-1.69C7.425 13.694 9.605 13 12 13"/><path fill="currentColor" d="M12 2c3.849 0 6.255 4.167 4.33 7.5A5 5 0 0 1 12 12c-3.849 0-6.255-4.167-4.33-7.5A5 5 0 0 1 12 2" opacity=".3"/></svg>我的</div>
       </div>
     </div>
 
@@ -840,7 +1072,7 @@ body {
           <div class="detail-sec">真实案例</div>
           <div class="case-box" style="cursor:pointer;" onclick="goTo('page-activity-detail-2','场景详情 › 园区巡检 › 展演案例')">
             📍 某工业园区 · 夜间自主巡检<br>替代 3 名夜间保安，运营成本降低 60%，巡检覆盖率提升至 100%<br>
-            <span style="color:#1859BD;font-size:10px;">查看活动案例 ›</span>
+            <span style="color:#3A7AC8;font-size:10px;">查看活动案例 ›</span>
           </div>
           <div class="detail-sec">适用行业与规模</div>
           <div style="font-size:10.5px;color:#666;line-height:1.8;margin-bottom:12px;">工业园区 / 仓储物流 / 校园安防；适合 5000 ㎡ 以上连续区域</div>
@@ -865,7 +1097,7 @@ body {
         <div class="bn-item active" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
         <div class="bn-item" onclick="switchTab('product')"><div class="bn-icon-box"></div>商品</div>
         <div class="bn-item" onclick="switchTab('activity')"><div class="bn-icon-box"></div>活动</div>
-        <div class="bn-item" onclick="switchTab('mine')"><div class="bn-icon-box"></div>我的</div>
+        <div class="bn-item" onclick="switchTab('mine')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M12 13c2.396 0 4.575.694 6.178 1.671c.8.49 1.484 1.065 1.978 1.69c.486.616.844 1.352.844 2.139c0 .845-.411 1.511-1.003 1.986c-.56.45-1.299.748-2.084.956c-1.578.417-3.684.558-5.913.558s-4.335-.14-5.913-.558c-.785-.208-1.524-.506-2.084-.956C3.41 20.01 3 19.345 3 18.5c0-.787.358-1.523.844-2.139c.494-.625 1.177-1.2 1.978-1.69C7.425 13.694 9.605 13 12 13"/><path fill="currentColor" d="M12 2c3.849 0 6.255 4.167 4.33 7.5A5 5 0 0 1 12 12c-3.849 0-6.255-4.167-4.33-7.5A5 5 0 0 1 12 2" opacity=".3"/></svg>我的</div>
       </div>
     </div>
 
@@ -903,14 +1135,14 @@ body {
           <div class="detail-sec">真实案例</div>
           <div class="case-box" style="cursor:pointer;" onclick="goTo('page-activity-detail-1','场景详情 › 人形导览 › 湖滨银泰')">
             📍 某科技园区展厅 · 2024 年落地<br>2 台人形导览机器人，日均接待 300+ 访客，满意度 92%<br>
-            <span style="color:#1859BD;font-size:10px;">查看活动案例 ›</span>
+            <span style="color:#3A7AC8;font-size:10px;">查看活动案例 ›</span>
           </div>
           <div class="detail-sec">适用行业与规模</div>
           <div style="font-size:10.5px;color:#666;line-height:1.8;margin-bottom:12px;">景区 / 博物馆 / 企业展厅；日均接待 100+ 访客的固定场所</div>
           <div class="detail-sec">场地要求</div>
           <div style="font-size:10.5px;color:#666;line-height:1.8;margin-bottom:12px;">地面平整 · 导览路线净宽 ≥ 1.2 m · 220V 充电区域</div>
           <div class="detail-sec">整包报价</div>
-          <div class="case-box">起步价 ¥xxx,xxx 起（含设备 + 系统 + 内容配置）<br><span style="color:#AAA;">不含：差旅住宿 / 内容定制超出基础范围部分</span></div>
+          <div class="case-box">起步价 ¥68,000 起（含设备 + 系统 + 内容配置）<br><span style="color:#AAA;">不含：差旅住宿 / 内容定制超出基础范围部分</span></div>
           <div class="detail-sec">执行时间线</div>
           <table class="spec-tbl" style="margin-bottom:14px;">
             <tr><td>D-7</td><td>内容确认（话术 / 路线 / 语言）</td></tr>
@@ -928,106 +1160,136 @@ body {
         <div class="bn-item active" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
         <div class="bn-item" onclick="switchTab('product')"><div class="bn-icon-box"></div>商品</div>
         <div class="bn-item" onclick="switchTab('activity')"><div class="bn-icon-box"></div>活动</div>
-        <div class="bn-item" onclick="switchTab('mine')"><div class="bn-icon-box"></div>我的</div>
+        <div class="bn-item" onclick="switchTab('mine')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M12 13c2.396 0 4.575.694 6.178 1.671c.8.49 1.484 1.065 1.978 1.69c.486.616.844 1.352.844 2.139c0 .845-.411 1.511-1.003 1.986c-.56.45-1.299.748-2.084.956c-1.578.417-3.684.558-5.913.558s-4.335-.14-5.913-.558c-.785-.208-1.524-.506-2.084-.956C3.41 20.01 3 19.345 3 18.5c0-.787.358-1.523.844-2.139c.494-.625 1.177-1.2 1.978-1.69C7.425 13.694 9.605 13 12 13"/><path fill="currentColor" d="M12 2c3.849 0 6.255 4.167 4.33 7.5A5 5 0 0 1 12 12c-3.849 0-6.255-4.167-4.33-7.5A5 5 0 0 1 12 2" opacity=".3"/></svg>我的</div>
       </div>
     </div>
 
     <!-- ════════════ PAGE: 商品中心 ════════════ -->
     <div class="page" id="page-product" style="display:flex;flex-direction:column;">
       <div class="status-bar"><span>9:41</span><span>●●●</span></div>
-      <div class="top-bar">
-        <div class="top-bar-title">商品中心</div>
-        <div class="top-bar-right">
-          <div class="search-input-box">
-            <span class="si-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#AAA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></span>
-            <input type="text" placeholder="搜索商品…">
-          </div>
-          <div class="cs-btn" onclick="showModal()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1859BD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服</div>
-        </div>
-      </div>
 
       <div style="flex:1;display:flex;overflow:hidden;min-height:0;">
 
-        <!-- 左侧分类 -->
-        <div style="width:68px;background:#F5F6F8;border-right:1px solid #E8E8E8;overflow-y:auto;flex-shrink:0;">
-          <div class="left-cat active" onclick="switchCat(this,'全部')">全部</div>
+        <!-- 左侧分类（顶到底） -->
+        <div style="width:72px;background:#fff;border-right:1px solid #EEF2F8;overflow-y:auto;flex-shrink:0;">
+          <!-- sidebar logo 块 -->
+          <div style="height:42px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-bottom:1px solid #EAEEf5;flex-shrink:0;">
+            <img src="图片/公司logo.png" style="height:13px;width:auto;display:block;">
+            <span style="font-size:7.5px;font-weight:700;color:#3A7AC8;letter-spacing:0.8px;font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;">大数云智</span>
+          </div>
+          <div class="left-cat active" onclick="switchCat(this,'全部')">所有商品</div>
           <div class="left-cat" onclick="switchCat(this,'场景方案')">场景方案</div>
-          <div class="left-cat" onclick="switchCat(this,'软件系统')">软件系统</div>
+          <div class="left-cat" onclick="switchCat(this,'软件产品')">软件产品</div>
           <div class="left-cat" onclick="switchCat(this,'硬件本体')">硬件本体</div>
           <div class="left-cat" onclick="switchCat(this,'技术服务')">技术服务</div>
         </div>
 
         <!-- 右侧内容 -->
-        <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0;background:#F5F6F8;">
+        <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0;background:#F2F5FB;">
+
+          <!-- 右侧顶部标题行 -->
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px 6px;background:#F2F5FB;flex-shrink:0;border-bottom:1px solid #EAEEf5;">
+            <div id="productCenterTitle" style="font-size:15px;font-weight:700;color:#1A2A4A;letter-spacing:0.5px;max-width:120px;overflow:hidden;white-space:nowrap;transition:max-width 0.25s ease,opacity 0.2s ease;flex-shrink:0;">商品中心</div>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <div id="productCsCircle" onclick="showModal()" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(58,122,200,0.10);flex-shrink:0;transition:opacity 0.18s,max-width 0.28s;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              </div>
+              <div id="productSearchBox">
+                <input id="productSearchInput" type="text" placeholder="搜索商品…" onkeydown="if(event.key==='Enter')filterProductsBySearch(this.value)">
+                <span onclick="collapseProductSearch()" style="cursor:pointer;display:flex;align-items:center;flex-shrink:0;padding:0 2px;color:#999;font-size:14px;line-height:1;">×</span>
+                <span onclick="filterProductsBySearch(document.getElementById('productSearchInput').value)" style="cursor:pointer;display:flex;align-items:center;flex-shrink:0;padding:0 2px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+                </span>
+              </div>
+              <div id="productSearchCircle" onclick="toggleProductSearch()" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(58,122,200,0.10);transition:opacity 0.18s,max-width 0.28s;flex-shrink:0;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+              </div>
+            </div>
+          </div>
 
           <!-- 二级分类 chips -->
-          <div id="subCatBar" style="display:none;padding:6px 8px;background:#fff;border-bottom:1px solid #EBEBEB;overflow-x:auto;white-space:nowrap;flex-shrink:0;gap:5px;"></div>
+          <div id="subCatBarWrap" style="display:none;position:relative;flex-shrink:0;">
+            <div id="subCatBar" style="padding:6px 8px 6px;background:#F2F5FB;overflow-x:auto;white-space:nowrap;display:flex;gap:5px;scrollbar-width:none;-ms-overflow-style:none;"></div>
+          </div>
+
+          <!-- 搜索结果提示 -->
+          <div id="productSearchTip" style="display:none;padding:6px 10px;background:#F0F5FF;border-bottom:1px solid #D8E4F5;font-size:10px;color:#3A7AC8;display:none;align-items:center;justify-content:space-between;flex-shrink:0;">
+            <span id="productSearchTipText"></span>
+            <span onclick="clearProductSearch()" style="cursor:pointer;color:#888;font-size:13px;line-height:1;">×</span>
+          </div>
 
           <!-- 商品列表 -->
-          <div style="flex:1;overflow-y:auto;padding:7px;" id="productGrid">
-            <div style="display:flex;flex-direction:column;gap:6px;" id="productGridInner">
+          <div style="flex:1;overflow-y:auto;padding:8px;background:#F2F5FB;scrollbar-width:none;-ms-overflow-style:none;" id="productGrid">
+            <div style="display:flex;flex-direction:column;gap:10px;" id="productGridInner">
 
               <!-- 场景方案 -->
               <div class="mc" data-cat="场景方案" data-sub="巡检" onclick="goTo('page-scene-detail-2','商品中心 › 巡检场景方案')">
-                <div class="img-ph mc-img">图</div>
+                <img class="mc-img" src="图片/人形机器人基地导览任务.jpg" style="object-fit:cover;">
                 <div class="mc-body">
                   <div class="mc-name">巡检场景方案</div>
-                  <div class="mc-price">整包 ¥xxx 起</div>
+                  <div class="mc-desc">AI视觉巡逻 · 自主路径规划</div>
+                  <div class="mc-price">整包 ¥5,800 起</div>
                   <div class="mc-tags"><span class="stag">园区</span><span class="stag">楼宇</span></div>
                 </div>
               </div>
 
               <div class="mc" data-cat="场景方案" data-sub="导览" onclick="goTo('page-scene-detail-3','商品中心 › 导览场景方案')">
-                <div class="img-ph mc-img">图</div>
+                <img class="mc-img" src="图片/人形机器人基地导览.jpg" style="object-fit:cover;">
                 <div class="mc-body">
                   <div class="mc-name">导览场景方案</div>
-                  <div class="mc-price">整包 ¥xxx 起</div>
+                  <div class="mc-desc">多语言讲解 · 路线引领带队</div>
+                  <div class="mc-price">整包 ¥6,800 起</div>
                   <div class="mc-tags"><span class="stag">景区</span><span class="stag">展馆</span></div>
                 </div>
               </div>
 
               <div class="mc" data-cat="场景方案" data-sub="演绎" onclick="goTo('page-scene-detail-show','商品中心 › 演绎场景方案')">
-                <div class="img-ph mc-img">图</div>
+                <img class="mc-img" src="图片/西子廊桥表演.jpg" style="object-fit:cover;">
                 <div class="mc-body">
                   <div class="mc-name">演绎场景方案</div>
-                  <div class="mc-price">整包 ¥xxx 起</div>
+                  <div class="mc-desc">编舞表演 · 品牌活动展示</div>
+                  <div class="mc-price">整包 ¥9,800 起</div>
                   <div class="mc-tags"><span class="stag">发布会</span><span class="stag">演出</span></div>
                 </div>
               </div>
 
               <div class="mc" data-cat="场景方案" data-sub="售卖" onclick="goTo('page-scene-detail-sell','商品中心 › 售卖场景方案')">
-                <div class="img-ph mc-img">图</div>
+                <img class="mc-img" src="图片/银泰导览活动.jpg" style="object-fit:cover;">
                 <div class="mc-body">
                   <div class="mc-name">售卖场景方案</div>
-                  <div class="mc-price">整包 ¥xxx 起</div>
+                  <div class="mc-desc">自助推荐 · 移动收银结算</div>
+                  <div class="mc-price">整包 ¥4,800 起</div>
                   <div class="mc-tags"><span class="stag">零售</span><span class="stag">展厅</span></div>
                 </div>
               </div>
 
-              <!-- 软件系统 -->
-              <div class="mc" data-cat="软件系统" data-sub="导览" onclick="goTo('page-product-detail-1','商品中心 › 人形导览系统')">
-                <div class="img-ph mc-img">图</div>
+              <!-- 软件产品 -->
+              <div class="mc" data-cat="软件产品" data-sub="导览" onclick="goTo('page-product-detail-1','商品中心 › 人形导览系统')">
+                <img class="mc-img" src="图片/基地人形导览-机器人图片.png" style="object-fit:cover;">
                 <div class="mc-body">
                   <div class="mc-name">人形导览系统</div>
-                  <div class="mc-price">租/售 ¥xxx起 · 含机器人 ¥xxx起</div>
+                  <div class="mc-desc">语音交互 · 自然问答带路</div>
+                  <div class="mc-price">租/售 ¥1,280 起</div>
                   <div class="mc-tags"><span class="stag">景区</span><span class="stag">展厅</span></div>
                 </div>
               </div>
 
-              <div class="mc" data-cat="软件系统" data-sub="巡检" onclick="goTo('page-product-detail-3','商品中心 › 自助巡检系统')">
+              <div class="mc" data-cat="软件产品" data-sub="巡检" onclick="goTo('page-product-detail-3','商品中心 › 自助巡检系统')">
                 <div class="img-ph mc-img">图</div>
                 <div class="mc-body">
                   <div class="mc-name">自助巡检系统</div>
-                  <div class="mc-price">租/售 ¥xxx起 · 含机器人 ¥xxx起</div>
+                  <div class="mc-desc">异常识别 · 自动预警上报</div>
+                  <div class="mc-price">租/售 ¥980 起</div>
                   <div class="mc-tags"><span class="stag">园区</span><span class="stag">仓储</span></div>
                 </div>
               </div>
 
-              <div class="mc" data-cat="软件系统" data-sub="表演" onclick="showModal()">
+              <div class="mc" data-cat="软件产品" data-sub="表演" onclick="showModal()">
                 <div class="img-ph mc-img">图</div>
                 <div class="mc-body">
                   <div class="mc-name">群控舞蹈系统</div>
-                  <div class="mc-price">租/售 ¥xxx起 · 含机器人 ¥xxx起</div>
+                  <div class="mc-desc">多机协同 · 编排同步表演</div>
+                  <div class="mc-price">租/售 ¥2,480 起</div>
                   <div class="mc-tags"><span class="stag">活动</span><span class="stag">演出</span></div>
                 </div>
               </div>
@@ -1037,7 +1299,8 @@ body {
                 <div class="img-ph mc-img">图</div>
                 <div class="mc-body">
                   <div class="mc-name">Go2 四足机器人</div>
-                  <div class="mc-price">租 ¥xxx/天 · 售 ¥xxx万</div>
+                  <div class="mc-desc">全地形行走 · 稳定载荷续航</div>
+                  <div class="mc-price">租/售 ¥680 起</div>
                   <div class="mc-tags"><span class="stag">巡检</span><span class="stag">表演</span></div>
                 </div>
               </div>
@@ -1046,16 +1309,18 @@ body {
                 <div class="img-ph mc-img">图</div>
                 <div class="mc-body">
                   <div class="mc-name">B2 四足机器人</div>
-                  <div class="mc-price">租 ¥xxx/天 · 售 ¥xxx万</div>
+                  <div class="mc-desc">工业级防护 · 高负载场景</div>
+                  <div class="mc-price">租/售 ¥1,280 起</div>
                   <div class="mc-tags"><span class="stag">工业巡检</span></div>
                 </div>
               </div>
 
               <div class="mc" data-cat="硬件本体" data-sub="人形机器人" onclick="goTo('page-product-detail-4','商品中心 › H1 人形机器人')">
-                <div class="img-ph mc-img">图</div>
+                <img class="mc-img" src="图片/frames/frame_base_01.jpg" style="object-fit:cover;">
                 <div class="mc-body">
                   <div class="mc-name">H1 人形机器人</div>
-                  <div class="mc-price">租 ¥xxx/天 · 售 ¥xxx万</div>
+                  <div class="mc-desc">双足行走 · 上肢协作操作</div>
+                  <div class="mc-price">租/售 ¥1,580 起</div>
                   <div class="mc-tags"><span class="stag">表演</span><span class="stag">导览</span></div>
                 </div>
               </div>
@@ -1064,7 +1329,8 @@ body {
                 <div class="img-ph mc-img">图</div>
                 <div class="mc-body">
                   <div class="mc-name">G1 人形机器人</div>
-                  <div class="mc-price">租 ¥xxx/天 · 售 ¥xxx万</div>
+                  <div class="mc-desc">全身关节 · 高拟人化动作</div>
+                  <div class="mc-price">租/售 ¥2,280 起</div>
                   <div class="mc-tags"><span class="stag">互动</span><span class="stag">实训</span></div>
                 </div>
               </div>
@@ -1074,7 +1340,8 @@ body {
                 <div class="img-ph mc-img">图</div>
                 <div class="mc-body">
                   <div class="mc-name">运行保障专员</div>
-                  <div class="mc-price">¥xxx / 人·天</div>
+                  <div class="mc-desc">现场陪同 · 实时故障处置</div>
+                  <div class="mc-price">¥680 / 人·天</div>
                   <div class="mc-tags"><span class="stag">活动/展会</span><span class="stag">按天计费</span></div>
                 </div>
               </div>
@@ -1083,7 +1350,8 @@ body {
                 <div class="img-ph mc-img">图</div>
                 <div class="mc-body">
                   <div class="mc-name">技术运维服务</div>
-                  <div class="mc-price">¥xxx / 月起</div>
+                  <div class="mc-desc">定期保养 · 快速响应维修</div>
+                  <div class="mc-price">¥880 / 月起</div>
                   <div class="mc-tags"><span class="stag">定期维保</span><span class="stag">故障响应</span></div>
                 </div>
               </div>
@@ -1094,23 +1362,15 @@ body {
       </div>
 
 
-      <!-- 悬浮回顶 -->
-      <div class="float-action float-top" onclick="scrollToTop()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1859BD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-      </div>
-      <!-- 悬浮联系客服 -->
-      <div class="float-action float-fcs" onclick="showModal()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1859BD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-      </div>
       <!-- 悬浮购物车 -->
-      <div class="float-action float-wl" onclick="goTo('page-wishlist','我的 › 意向清单')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1859BD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <div id="productCartBtn" class="float-action float-wl" onclick="goTo('page-wishlist','我的 › 意向清单')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-linejoin="round" stroke-width="2"><path d="M5 7h13.79a2 2 0 0 1 1.99 2.199l-.6 6A2 2 0 0 1 18.19 17H8.64a2 2 0 0 1-1.962-1.608z"/><path stroke-linecap="round" d="m5 7l-.81-3.243A1 1 0 0 0 3.22 3H2m6 18h2m6 0h2"/></svg>
       </div>
       <div class="bottom-nav">
         <div class="bn-item" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
         <div class="bn-item active" onclick="switchTab('product')"><div class="bn-icon-box"></div>商品</div>
         <div class="bn-item" onclick="switchTab('activity')"><div class="bn-icon-box"></div>活动</div>
-        <div class="bn-item" onclick="switchTab('mine')"><div class="bn-icon-box"></div>我的</div>
+        <div class="bn-item" onclick="switchTab('mine')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M12 13c2.396 0 4.575.694 6.178 1.671c.8.49 1.484 1.065 1.978 1.69c.486.616.844 1.352.844 2.139c0 .845-.411 1.511-1.003 1.986c-.56.45-1.299.748-2.084.956c-1.578.417-3.684.558-5.913.558s-4.335-.14-5.913-.558c-.785-.208-1.524-.506-2.084-.956C3.41 20.01 3 19.345 3 18.5c0-.787.358-1.523.844-2.139c.494-.625 1.177-1.2 1.978-1.69C7.425 13.694 9.605 13 12 13"/><path fill="currentColor" d="M12 2c3.849 0 6.255 4.167 4.33 7.5A5 5 0 0 1 12 12c-3.849 0-6.255-4.167-4.33-7.5A5 5 0 0 1 12 2" opacity=".3"/></svg>我的</div>
       </div>
     </div>
 
@@ -1127,7 +1387,7 @@ body {
           <div class="img-ph" style="height:100%;width:100%;">产品图片（可左右滑动）</div>
         </div>
         <div class="detail-body">
-          <span class="tag">软件系统</span>
+          <span class="tag">软件产品</span>
           <div class="detail-title">人形导览系统</div>
           <div class="detail-desc">基于人形机器人开发的标准化导览应用，支持自主行走、语音讲解、互动问答，装机即用，无需二次开发。</div>
           <div class="detail-sec">核心功能</div>
@@ -1141,8 +1401,8 @@ body {
           <table class="spec-tbl">
             <tr><td>适配机型</td><td>H1 / G1（宇树科技人形系列）</td></tr>
             <tr><td>支持内容定制</td><td>话术 / 语言 / 路线均可，约 3 个工作日</td></tr>
-            <tr><td>软件单独价格</td><td>¥xxx/月（租）· ¥xxx（买断）</td></tr>
-            <tr><td>含机器人整包</td><td>¥xxx 起（含指定机型，需注明）</td></tr>
+            <tr><td>软件单独价格</td><td>¥1,280/月（租）· ¥12,800（买断）</td></tr>
+            <tr><td>含机器人整包</td><td>¥6,800 起（含指定机型，需注明）</td></tr>
             <tr><td>部署交付周期</td><td>签约后约 5 个工作日可正常使用</td></tr>
           </table>
           <div class="detail-sec">适用场景</div>
@@ -1153,7 +1413,7 @@ body {
           <div class="detail-sec">案例展示</div>
           <div class="case-box" style="cursor:pointer;" onclick="goTo('page-activity-detail-1','产品详情 › 人形导览系统 › 湖滨银泰')">
             📍 某科技园区展厅 · 2024 年落地，2 台人形导览机器人，日均接待 300+ 访客<br>
-            <span style="color:#1859BD;font-size:10px;">查看活动案例 ›</span>
+            <span style="color:#3A7AC8;font-size:10px;">查看活动案例 ›</span>
           </div>
         </div>
       </div>
@@ -1165,7 +1425,7 @@ body {
         <div class="bn-item" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
         <div class="bn-item active" onclick="switchTab('product')"><div class="bn-icon-box"></div>商品</div>
         <div class="bn-item" onclick="switchTab('activity')"><div class="bn-icon-box"></div>活动</div>
-        <div class="bn-item" onclick="switchTab('mine')"><div class="bn-icon-box"></div>我的</div>
+        <div class="bn-item" onclick="switchTab('mine')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M12 13c2.396 0 4.575.694 6.178 1.671c.8.49 1.484 1.065 1.978 1.69c.486.616.844 1.352.844 2.139c0 .845-.411 1.511-1.003 1.986c-.56.45-1.299.748-2.084.956c-1.578.417-3.684.558-5.913.558s-4.335-.14-5.913-.558c-.785-.208-1.524-.506-2.084-.956C3.41 20.01 3 19.345 3 18.5c0-.787.358-1.523.844-2.139c.494-.625 1.177-1.2 1.978-1.69C7.425 13.694 9.605 13 12 13"/><path fill="currentColor" d="M12 2c3.849 0 6.255 4.167 4.33 7.5A5 5 0 0 1 12 12c-3.849 0-6.255-4.167-4.33-7.5A5 5 0 0 1 12 2" opacity=".3"/></svg>我的</div>
       </div>
     </div>
 
@@ -1193,7 +1453,7 @@ body {
             <tr><td>续航时长</td><td>约 2 小时</td></tr>
             <tr><td>防护等级</td><td>IP67</td></tr>
             <tr><td>可搭载模块</td><td>激光雷达 / 深度相机 / 机械臂 / 扬声器</td></tr>
-            <tr><td>租 / 售价格</td><td>¥xxx/天（租）· ¥xxx 万（售）</td></tr>
+            <tr><td>租 / 售价格</td><td>¥680/天（租）· ¥8.8万（售）</td></tr>
           </table>
           <div class="detail-sec">适用场景</div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
@@ -1203,7 +1463,7 @@ body {
           <div class="detail-sec">案例展示</div>
           <div class="case-box" style="cursor:pointer;" onclick="goTo('page-activity-detail-2','产品详情 › Go2 › 展演案例')">
             📍 深圳具身智能产业博览会，Go2 四足机器人园区巡检场景展演<br>
-            <span style="color:#1859BD;font-size:10px;">查看活动案例 ›</span>
+            <span style="color:#3A7AC8;font-size:10px;">查看活动案例 ›</span>
           </div>
         </div>
       </div>
@@ -1215,7 +1475,7 @@ body {
         <div class="bn-item" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
         <div class="bn-item active" onclick="switchTab('product')"><div class="bn-icon-box"></div>商品</div>
         <div class="bn-item" onclick="switchTab('activity')"><div class="bn-icon-box"></div>活动</div>
-        <div class="bn-item" onclick="switchTab('mine')"><div class="bn-icon-box"></div>我的</div>
+        <div class="bn-item" onclick="switchTab('mine')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M12 13c2.396 0 4.575.694 6.178 1.671c.8.49 1.484 1.065 1.978 1.69c.486.616.844 1.352.844 2.139c0 .845-.411 1.511-1.003 1.986c-.56.45-1.299.748-2.084.956c-1.578.417-3.684.558-5.913.558s-4.335-.14-5.913-.558c-.785-.208-1.524-.506-2.084-.956C3.41 20.01 3 19.345 3 18.5c0-.787.358-1.523.844-2.139c.494-.625 1.177-1.2 1.978-1.69C7.425 13.694 9.605 13 12 13"/><path fill="currentColor" d="M12 2c3.849 0 6.255 4.167 4.33 7.5A5 5 0 0 1 12 12c-3.849 0-6.255-4.167-4.33-7.5A5 5 0 0 1 12 2" opacity=".3"/></svg>我的</div>
       </div>
     </div>
 
@@ -1230,7 +1490,7 @@ body {
       <div class="scroll-area">
         <div class="detail-banner"><div class="img-ph" style="height:100%;width:100%;">产品图片</div></div>
         <div class="detail-body">
-          <span class="tag">软件系统</span>
+          <span class="tag">软件产品</span>
           <div class="detail-title">自助巡检系统</div>
           <div class="detail-desc">基于四足机器人的自主巡检应用，支持预设路线巡逻、实时视频回传、异常检测报警，可对接园区管理平台。</div>
           <div class="detail-sec">核心功能</div>
@@ -1244,8 +1504,8 @@ body {
           <table class="spec-tbl">
             <tr><td>适配机型</td><td>Go2 / B2（宇树科技四足系列）</td></tr>
             <tr><td>支持内容定制</td><td>巡逻路线 / 报警规则可定制，约 5 个工作日</td></tr>
-            <tr><td>软件单独价格</td><td>¥xxx/月（租）· ¥xxx（买断）</td></tr>
-            <tr><td>含机器人整包</td><td>¥xxx 起（含 Go2 本体，需注明）</td></tr>
+            <tr><td>软件单独价格</td><td>¥980/月（租）· ¥9,800（买断）</td></tr>
+            <tr><td>含机器人整包</td><td>¥5,800 起（含 Go2 本体，需注明）</td></tr>
             <tr><td>部署交付周期</td><td>签约后约 7 个工作日完成场地适配</td></tr>
           </table>
           <div class="detail-sec">适用场景</div>
@@ -1256,7 +1516,7 @@ body {
           <div class="detail-sec">案例展示</div>
           <div class="case-box" style="cursor:pointer;" onclick="goTo('page-activity-detail-2','产品详情 › 自助巡检系统 › 展演案例')">
             📍 某工业园区夜间自主巡检，替代 3 名保安，运营成本降低 60%<br>
-            <span style="color:#1859BD;font-size:10px;">查看活动案例 ›</span>
+            <span style="color:#3A7AC8;font-size:10px;">查看活动案例 ›</span>
           </div>
         </div>
       </div>
@@ -1268,7 +1528,7 @@ body {
         <div class="bn-item" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
         <div class="bn-item active" onclick="switchTab('product')"><div class="bn-icon-box"></div>商品</div>
         <div class="bn-item" onclick="switchTab('activity')"><div class="bn-icon-box"></div>活动</div>
-        <div class="bn-item" onclick="switchTab('mine')"><div class="bn-icon-box"></div>我的</div>
+        <div class="bn-item" onclick="switchTab('mine')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M12 13c2.396 0 4.575.694 6.178 1.671c.8.49 1.484 1.065 1.978 1.69c.486.616.844 1.352.844 2.139c0 .845-.411 1.511-1.003 1.986c-.56.45-1.299.748-2.084.956c-1.578.417-3.684.558-5.913.558s-4.335-.14-5.913-.558c-.785-.208-1.524-.506-2.084-.956C3.41 20.01 3 19.345 3 18.5c0-.787.358-1.523.844-2.139c.494-.625 1.177-1.2 1.978-1.69C7.425 13.694 9.605 13 12 13"/><path fill="currentColor" d="M12 2c3.849 0 6.255 4.167 4.33 7.5A5 5 0 0 1 12 12c-3.849 0-6.255-4.167-4.33-7.5A5 5 0 0 1 12 2" opacity=".3"/></svg>我的</div>
       </div>
     </div>
 
@@ -1294,7 +1554,7 @@ body {
             <tr><td>续航时长</td><td>约 1.5 小时</td></tr>
             <tr><td>防护等级</td><td>IP54</td></tr>
             <tr><td>可搭载模块</td><td>导览系统 / 舞蹈系统 / 迎宾系统</td></tr>
-            <tr><td>租 / 售价格</td><td>¥xxx/天（租）· ¥xxx 万（售）</td></tr>
+            <tr><td>租 / 售价格</td><td>¥680/天（租）· ¥8.8万（售）</td></tr>
           </table>
           <div class="detail-sec">适用场景</div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
@@ -1304,7 +1564,7 @@ body {
           <div class="detail-sec">案例展示</div>
           <div class="case-box" style="cursor:pointer;" onclick="goTo('page-activity-detail-1','产品详情 › H1 › 湖滨银泰')">
             📍 杭州湖滨银泰品牌开幕活动，H1 人形机器人舞蹈表演 3 场次，引流 2000+ 人次<br>
-            <span style="color:#1859BD;font-size:10px;">查看活动案例 ›</span>
+            <span style="color:#3A7AC8;font-size:10px;">查看活动案例 ›</span>
           </div>
         </div>
       </div>
@@ -1316,7 +1576,7 @@ body {
         <div class="bn-item" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
         <div class="bn-item active" onclick="switchTab('product')"><div class="bn-icon-box"></div>商品</div>
         <div class="bn-item" onclick="switchTab('activity')"><div class="bn-icon-box"></div>活动</div>
-        <div class="bn-item" onclick="switchTab('mine')"><div class="bn-icon-box"></div>我的</div>
+        <div class="bn-item" onclick="switchTab('mine')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M12 13c2.396 0 4.575.694 6.178 1.671c.8.49 1.484 1.065 1.978 1.69c.486.616.844 1.352.844 2.139c0 .845-.411 1.511-1.003 1.986c-.56.45-1.299.748-2.084.956c-1.578.417-3.684.558-5.913.558s-4.335-.14-5.913-.558c-.785-.208-1.524-.506-2.084-.956C3.41 20.01 3 19.345 3 18.5c0-.787.358-1.523.844-2.139c.494-.625 1.177-1.2 1.978-1.69C7.425 13.694 9.605 13 12 13"/><path fill="currentColor" d="M12 2c3.849 0 6.255 4.167 4.33 7.5A5 5 0 0 1 12 12c-3.849 0-6.255-4.167-4.33-7.5A5 5 0 0 1 12 2" opacity=".3"/></svg>我的</div>
       </div>
     </div>
 
@@ -1418,7 +1678,7 @@ body {
         <div class="bn-item" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
         <div class="bn-item" onclick="switchTab('product')"><div class="bn-icon-box"></div>商品</div>
         <div class="bn-item active" onclick="switchTab('activity')"><div class="bn-icon-box"></div>活动</div>
-        <div class="bn-item" onclick="switchTab('mine')"><div class="bn-icon-box"></div>我的</div>
+        <div class="bn-item" onclick="switchTab('mine')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M12 13c2.396 0 4.575.694 6.178 1.671c.8.49 1.484 1.065 1.978 1.69c.486.616.844 1.352.844 2.139c0 .845-.411 1.511-1.003 1.986c-.56.45-1.299.748-2.084.956c-1.578.417-3.684.558-5.913.558s-4.335-.14-5.913-.558c-.785-.208-1.524-.506-2.084-.956C3.41 20.01 3 19.345 3 18.5c0-.787.358-1.523.844-2.139c.494-.625 1.177-1.2 1.978-1.69C7.425 13.694 9.605 13 12 13"/><path fill="currentColor" d="M12 2c3.849 0 6.255 4.167 4.33 7.5A5 5 0 0 1 12 12c-3.849 0-6.255-4.167-4.33-7.5A5 5 0 0 1 12 2" opacity=".3"/></svg>我的</div>
       </div>
     </div>
 
@@ -1470,15 +1730,15 @@ body {
           <div class="detail-sec">活动数据</div>
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;">
             <div style="background:#F7F8FA;border-radius:8px;padding:10px;text-align:center;">
-              <div style="font-size:16px;font-weight:700;color:#1859BD;">2000+</div>
+              <div style="font-size:16px;font-weight:700;color:#3A7AC8;">2000+</div>
               <div style="font-size:9px;color:#AAA;margin-top:2px;">引流人次</div>
             </div>
             <div style="background:#F7F8FA;border-radius:8px;padding:10px;text-align:center;">
-              <div style="font-size:16px;font-weight:700;color:#1859BD;">35</div>
+              <div style="font-size:16px;font-weight:700;color:#3A7AC8;">35</div>
               <div style="font-size:9px;color:#AAA;margin-top:2px;">意向咨询</div>
             </div>
             <div style="background:#F7F8FA;border-radius:8px;padding:10px;text-align:center;">
-              <div style="font-size:16px;font-weight:700;color:#1859BD;">10w+</div>
+              <div style="font-size:16px;font-weight:700;color:#3A7AC8;">10w+</div>
               <div style="font-size:9px;color:#AAA;margin-top:2px;">品牌曝光</div>
             </div>
           </div>
@@ -1492,7 +1752,7 @@ body {
         <div class="bn-item" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
         <div class="bn-item" onclick="switchTab('product')"><div class="bn-icon-box"></div>商品</div>
         <div class="bn-item active" onclick="switchTab('activity')"><div class="bn-icon-box"></div>活动</div>
-        <div class="bn-item" onclick="switchTab('mine')"><div class="bn-icon-box"></div>我的</div>
+        <div class="bn-item" onclick="switchTab('mine')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M12 13c2.396 0 4.575.694 6.178 1.671c.8.49 1.484 1.065 1.978 1.69c.486.616.844 1.352.844 2.139c0 .845-.411 1.511-1.003 1.986c-.56.45-1.299.748-2.084.956c-1.578.417-3.684.558-5.913.558s-4.335-.14-5.913-.558c-.785-.208-1.524-.506-2.084-.956C3.41 20.01 3 19.345 3 18.5c0-.787.358-1.523.844-2.139c.494-.625 1.177-1.2 1.978-1.69C7.425 13.694 9.605 13 12 13"/><path fill="currentColor" d="M12 2c3.849 0 6.255 4.167 4.33 7.5A5 5 0 0 1 12 12c-3.849 0-6.255-4.167-4.33-7.5A5 5 0 0 1 12 2" opacity=".3"/></svg>我的</div>
       </div>
     </div>
 
@@ -1544,15 +1804,15 @@ body {
           <div class="detail-sec">展演数据</div>
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;">
             <div style="background:#F7F8FA;border-radius:8px;padding:10px;text-align:center;">
-              <div style="font-size:16px;font-weight:700;color:#1859BD;">5000+</div>
+              <div style="font-size:16px;font-weight:700;color:#3A7AC8;">5000+</div>
               <div style="font-size:9px;color:#AAA;margin-top:2px;">现场驻足</div>
             </div>
             <div style="background:#F7F8FA;border-radius:8px;padding:10px;text-align:center;">
-              <div style="font-size:16px;font-weight:700;color:#1859BD;">20w+</div>
+              <div style="font-size:16px;font-weight:700;color:#3A7AC8;">20w+</div>
               <div style="font-size:9px;color:#AAA;margin-top:2px;">视频播放</div>
             </div>
             <div style="background:#F7F8FA;border-radius:8px;padding:10px;text-align:center;">
-              <div style="font-size:16px;font-weight:700;color:#1859BD;">热门</div>
+              <div style="font-size:16px;font-weight:700;color:#3A7AC8;">热门</div>
               <div style="font-size:9px;color:#AAA;margin-top:2px;">同城榜上榜</div>
             </div>
           </div>
@@ -1563,7 +1823,7 @@ body {
         <div class="bn-item" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
         <div class="bn-item" onclick="switchTab('product')"><div class="bn-icon-box"></div>商品</div>
         <div class="bn-item active" onclick="switchTab('activity')"><div class="bn-icon-box"></div>活动</div>
-        <div class="bn-item" onclick="switchTab('mine')"><div class="bn-icon-box"></div>我的</div>
+        <div class="bn-item" onclick="switchTab('mine')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M12 13c2.396 0 4.575.694 6.178 1.671c.8.49 1.484 1.065 1.978 1.69c.486.616.844 1.352.844 2.139c0 .845-.411 1.511-1.003 1.986c-.56.45-1.299.748-2.084.956c-1.578.417-3.684.558-5.913.558s-4.335-.14-5.913-.558c-.785-.208-1.524-.506-2.084-.956C3.41 20.01 3 19.345 3 18.5c0-.787.358-1.523.844-2.139c.494-.625 1.177-1.2 1.978-1.69C7.425 13.694 9.605 13 12 13"/><path fill="currentColor" d="M12 2c3.849 0 6.255 4.167 4.33 7.5A5 5 0 0 1 12 12c-3.849 0-6.255-4.167-4.33-7.5A5 5 0 0 1 12 2" opacity=".3"/></svg>我的</div>
       </div>
     </div>
 
@@ -1619,7 +1879,7 @@ body {
         <div class="bn-item" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
         <div class="bn-item" onclick="switchTab('product')"><div class="bn-icon-box"></div>商品</div>
         <div class="bn-item active" onclick="switchTab('activity')"><div class="bn-icon-box"></div>活动</div>
-        <div class="bn-item" onclick="switchTab('mine')"><div class="bn-icon-box"></div>我的</div>
+        <div class="bn-item" onclick="switchTab('mine')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M12 13c2.396 0 4.575.694 6.178 1.671c.8.49 1.484 1.065 1.978 1.69c.486.616.844 1.352.844 2.139c0 .845-.411 1.511-1.003 1.986c-.56.45-1.299.748-2.084.956c-1.578.417-3.684.558-5.913.558s-4.335-.14-5.913-.558c-.785-.208-1.524-.506-2.084-.956C3.41 20.01 3 19.345 3 18.5c0-.787.358-1.523.844-2.139c.494-.625 1.177-1.2 1.978-1.69C7.425 13.694 9.605 13 12 13"/><path fill="currentColor" d="M12 2c3.849 0 6.255 4.167 4.33 7.5A5 5 0 0 1 12 12c-3.849 0-6.255-4.167-4.33-7.5A5 5 0 0 1 12 2" opacity=".3"/></svg>我的</div>
       </div>
     </div>
 
@@ -1646,7 +1906,7 @@ body {
             <tr><td>服务内容</td><td>设备布展调试 · 现场全程操控 · 异常快速处置 · 活动结束撤场</td></tr>
             <tr><td>不含内容</td><td>设备运输费 · 差旅住宿（跨城另议）</td></tr>
             <tr><td>计费方式</td><td>按人·天，最短 1 天（含布展日）</td></tr>
-            <tr><td>服务价格</td><td>¥xxx / 人·天（含税）</td></tr>
+            <tr><td>服务价格</td><td>¥680 / 人·天（含税）</td></tr>
             <tr><td>可服务城市</td><td>杭州 / 上海 / 北京（跨城需提前 3 天确认）</td></tr>
           </table>
           <div class="detail-sec">适用场景</div>
@@ -1657,7 +1917,7 @@ body {
           <div class="detail-sec">案例展示</div>
           <div class="case-box" style="cursor:pointer;" onclick="goTo('page-activity-detail-1','商品详情 › 运行保障 › 湖滨银泰')">
             📍 杭州湖滨银泰品牌开幕 · 2 名运行保障专员全程驻守，3 场次活动零故障<br>
-            <span style="color:#1859BD;font-size:10px;">查看活动案例 ›</span>
+            <span style="color:#3A7AC8;font-size:10px;">查看活动案例 ›</span>
           </div>
         </div>
       </div>
@@ -1687,12 +1947,12 @@ body {
           <div class="detail-sec">服务规格</div>
           <table class="spec-tbl">
             <tr><td>人员资质</td><td>具能租认证运维工程师，具备硬件维修 + 系统调试双项认证</td></tr>
-            <tr><td>可维护机型</td><td>Go2 / B2 / H1 / G1 及配套软件系统</td></tr>
+            <tr><td>可维护机型</td><td>Go2 / B2 / H1 / G1 及配套软件产品</td></tr>
             <tr><td>服务内容</td><td>定期上门巡检 · 固件 / 软件升级 · 硬件检修 · 故障远程诊断 + 现场响应</td></tr>
             <tr><td>响应时效</td><td>远程诊断 ≤ 2h · 现场响应（杭州/上海/北京）≤ 24h</td></tr>
             <tr><td>不含内容</td><td>硬件零件更换成本（零件单独报价）</td></tr>
             <tr><td>计费方式</td><td>按月包或按次，月包含 2 次上门巡检</td></tr>
-            <tr><td>服务价格</td><td>¥xxx / 月起（按次 ¥xxx / 次）</td></tr>
+            <tr><td>服务价格</td><td>¥880 / 月起（按次 ¥480 / 次）</td></tr>
           </table>
           <div class="detail-sec">适用场景</div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
@@ -1721,146 +1981,167 @@ body {
     </div>
 
     <!-- ════════════ PAGE: 我的 ════════════ -->
-    <div class="page" id="page-mine">
-      <div class="status-bar"><span>9:41</span><span>●●●</span></div>
-      <div class="top-bar">
-        <div class="top-bar-title">我的</div>
-      </div>
-      <div class="scroll-area">
+    <div class="page" id="page-mine" style="background:#F2F5FB;">
+      <div class="status-bar" style="background:transparent;color:#3A5A80;"><span>9:41</span><span>●●●</span></div>
+
+      <div class="scroll-area" style="padding-top:0;">
 
         <!-- ── 用户视角 ── -->
         <div id="mine-user">
 
-          <div style="margin:0 12px 12px;background:#F7F8FA;border-radius:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;">
-            <div>
-              <div id="mineUserName" style="font-size:13px;font-weight:700;color:#222;margin-bottom:3px;">你好，访客</div>
-              <div id="mineUserHint" style="font-size:10px;color:#AAA;">登录后可保存意向清单和咨询记录</div>
-            </div>
-            <div id="loginBtn" style="background:#1859BD;color:#fff;font-size:11px;padding:7px 14px;border-radius:18px;cursor:pointer;white-space:nowrap;" onclick="showLoginSheet()">登录 / 注册</div>
+          <!-- 顶部标题栏 -->
+          <div style="padding:2px 14px 12px;">
+            <div style="font-size:19px;font-weight:800;color:#1A2A4A;letter-spacing:0.2px;">我的</div>
           </div>
 
-          <div class="sec-hd"><div class="sec-hd-t">我的服务</div></div>
-          <div style="margin:0 12px;background:#fff;border-radius:10px;border:1px solid #E8E8E8;overflow:hidden;">
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #F3F3F3;cursor:pointer;" onclick="goTo('page-wishlist','我的 › 意向清单')">
-              <div style="display:flex;align-items:center;gap:12px;">
-                <div class="img-ph" style="width:36px;height:36px;border-radius:8px;font-size:16px;background:#EEF3FF;color:#1859BD;">♡</div>
-                <div>
-                  <div style="font-size:12.5px;font-weight:600;color:#222;">我的收藏</div>
-                  <div style="font-size:10px;color:#AAA;margin-top:2px;">已添加 2 件商品</div>
-                </div>
+          <!-- 用户信息卡 -->
+          <div style="margin:0 12px 14px;background:linear-gradient(135deg,#3A7AC8,#2C5F9E);border-radius:16px;padding:14px 16px 16px;box-shadow:0 4px 16px rgba(44,95,158,0.30);">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.28);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.80)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
               </div>
-              <div style="font-size:18px;color:#CCC;">›</div>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;" onclick="goTo('page-cs-entry','我的 › 咨询记录')">
-              <div style="display:flex;align-items:center;gap:12px;">
-                <div class="img-ph" style="width:36px;height:36px;border-radius:8px;font-size:16px;background:#FFF0E0;color:#C07A00;">💬</div>
-                <div>
-                  <div style="font-size:12.5px;font-weight:600;color:#222;">咨询记录</div>
-                  <div style="font-size:10px;color:#AAA;margin-top:2px;">查看历史沟通记录</div>
-                </div>
+              <div style="flex:1;min-width:0;">
+                <div id="mineUserName" style="font-size:16px;font-weight:700;color:#fff;margin-bottom:3px;">你好，访客</div>
+                <div id="mineUserHint" style="font-size:10.5px;color:rgba(255,255,255,0.58);">登录解锁更多功能</div>
               </div>
-              <div style="font-size:18px;color:#CCC;">›</div>
+              <div id="loginBtn" onclick="showLoginSheet()" style="background:rgba(255,255,255,0.16);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.35);color:#fff;font-size:11.5px;font-weight:600;padding:7px 14px;border-radius:22px;cursor:pointer;white-space:nowrap;">登录/注册</div>
             </div>
           </div>
 
-          <div class="sec-hd" style="margin-top:8px;"><div class="sec-hd-t">联系我们</div></div>
-          <div style="margin:0 12px;background:#fff;border-radius:10px;border:1px solid #E8E8E8;overflow:hidden;">
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #F3F3F3;cursor:pointer;" onclick="goTo('page-cs-entry','我的 › 联系客服')">
-              <div style="display:flex;align-items:center;gap:12px;">
-                <div class="img-ph" style="width:36px;height:36px;border-radius:8px;font-size:16px;background:#E2F5EA;color:#1A7A3C;">📞</div>
-                <div>
-                  <div style="font-size:12.5px;font-weight:600;color:#222;">联系客服</div>
-                  <div style="font-size:10px;color:#AAA;margin-top:2px;">热线 / 在线客服均可</div>
+          <!-- 功能列表区 -->
+          <div style="padding:0 0 16px;">
+            <div style="margin:0 12px 12px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 6px rgba(44,95,158,0.07);">
+              <div style="padding:8px 14px 6px;font-size:12px;font-weight:700;color:#1A2A4A;border-bottom:1px solid #F0F4FA;">我的服务</div>
+              <div style="display:flex;align-items:center;padding:9px 14px;border-bottom:1px solid #F0F4FA;cursor:pointer;" onclick="goTo('page-wishlist','我的 › 意向清单')">
+                <div style="width:32px;height:32px;border-radius:7px;background:#EDF2FA;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-right:10px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
                 </div>
-              </div>
-              <div style="font-size:18px;color:#CCC;">›</div>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;">
-              <div style="display:flex;align-items:center;gap:12px;">
-                <div class="img-ph" style="width:36px;height:36px;border-radius:8px;font-size:16px;background:#F5EEFF;color:#6B2D8B;">📋</div>
-                <div>
-                  <div style="font-size:12.5px;font-weight:600;color:#222;">关于具能租</div>
-                  <div style="font-size:10px;color:#AAA;margin-top:2px;">产品介绍 · 合作咨询</div>
+                <div style="flex:1;">
+                  <div style="font-size:12.5px;font-weight:600;color:#111827;">我的收藏</div>
+                  <div style="font-size:10px;color:#9EB4CC;margin-top:1px;">已添加 2 件商品</div>
                 </div>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C8D8E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
               </div>
-              <div style="font-size:18px;color:#CCC;">›</div>
+              <div style="display:flex;align-items:center;padding:9px 14px;cursor:pointer;" onclick="goTo('page-cs-history','我的 › 咨询记录')">
+                <div style="width:32px;height:32px;border-radius:7px;background:#EDF2FA;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-right:10px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:12.5px;font-weight:600;color:#111827;">咨询记录</div>
+                  <div style="font-size:10px;color:#9EB4CC;margin-top:1px;">查看历史沟通记录</div>
+                </div>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C8D8E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
             </div>
-          </div>
 
-          <div style="text-align:center;font-size:10px;color:#CCC;padding:20px;">具能租 · 大数云智出品 · V1.0</div>
+            <div style="margin:0 12px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 6px rgba(44,95,158,0.07);">
+              <div style="padding:8px 14px 6px;font-size:12px;font-weight:700;color:#1A2A4A;border-bottom:1px solid #F0F4FA;">联系我们</div>
+              <div style="display:flex;align-items:center;padding:9px 14px;border-bottom:1px solid #F0F4FA;cursor:pointer;" onclick="showModal()">
+                <div style="width:32px;height:32px;border-radius:7px;background:#EDF2FA;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-right:10px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16z"/></svg>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:12.5px;font-weight:600;color:#111827;">联系客服</div>
+                </div>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C8D8E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+              <div style="display:flex;align-items:center;padding:9px 14px;cursor:pointer;">
+                <div style="width:32px;height:32px;border-radius:7px;background:#EDF2FA;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-right:10px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:12.5px;font-weight:600;color:#111827;">关于平台</div>
+                </div>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C8D8E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+            </div>
+
+            <div style="text-align:center;font-size:9.5px;color:#B0C4D8;padding:24px 20px;letter-spacing:0.5px;">具能租 · 大数云智出品 · V1.0</div>
+          </div>
         </div>
 
         <!-- ── 运营视角 ── -->
         <div id="mine-ops" style="display:none;">
 
-          <div style="margin:0 12px 12px;background:#EEF3FF;border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;">
-            <div class="img-ph" style="width:42px;height:42px;border-radius:10px;font-size:20px;background:#1859BD;color:#fff;flex-shrink:0;">🏢</div>
-            <div>
-              <div style="font-size:13px;font-weight:700;color:#1859BD;margin-bottom:2px;">大数云智 · 运营账号</div>
-              <div style="font-size:10px;color:#7A9CC8;">平台管理权限已开启</div>
+          <!-- 顶部标题栏 -->
+          <div style="padding:2px 14px 12px;">
+            <div style="font-size:19px;font-weight:800;color:#1A2A4A;letter-spacing:0.2px;">我的</div>
+          </div>
+
+          <!-- 运营头部卡（与用户卡同规格） -->
+          <div style="margin:0 12px 14px;background:linear-gradient(135deg,#3A7AC8,#2C5F9E);border-radius:16px;padding:14px 16px 16px;box-shadow:0 4px 16px rgba(44,95,158,0.30);">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,0.18);border:1.5px solid rgba(255,255,255,0.28);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px;">🏢</div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:3px;">大数云智 · 运营账号</div>
+                <div style="font-size:10.5px;color:rgba(255,255,255,0.62);">平台管理权限已开启</div>
+              </div>
             </div>
           </div>
 
-          <div class="sec-hd"><div class="sec-hd-t">平台管理</div></div>
-          <div style="margin:0 12px 10px;background:#fff;border-radius:10px;border:1px solid #E8E8E8;overflow:hidden;">
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid #F3F3F3;cursor:pointer;" onclick="goTo('page-platform-products','运营 › 商品管理')">
-              <div style="display:flex;align-items:center;gap:12px;">
-                <div class="img-ph" style="width:36px;height:36px;border-radius:8px;font-size:16px;background:#EEF3FF;color:#1859BD;">📦</div>
-                <div>
-                  <div style="font-size:12.5px;font-weight:600;color:#222;">商品管理</div>
-                  <div style="font-size:10px;color:#AAA;margin-top:2px;">上架 / 下架 / 编辑产品与场景</div>
+          <!-- 功能列表区（与用户区同规格） -->
+          <div style="padding:0 0 16px;">
+            <div style="margin:0 12px 12px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 6px rgba(44,95,158,0.07);">
+              <div style="padding:8px 14px 6px;font-size:12px;font-weight:700;color:#1A2A4A;border-bottom:1px solid #F0F4FA;">平台管理</div>
+              <div style="display:flex;align-items:center;padding:9px 14px;border-bottom:1px solid #F0F4FA;cursor:pointer;" onclick="goTo('page-platform-products','运营 › 商品管理')">
+                <div style="width:32px;height:32px;border-radius:7px;background:#EDF2FA;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-right:10px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
                 </div>
-              </div>
-              <div style="font-size:18px;color:#CCC;">›</div>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid #F3F3F3;cursor:pointer;" onclick="goTo('page-platform-publish','运营 › 活动发布')">
-              <div style="display:flex;align-items:center;gap:12px;">
-                <div class="img-ph" style="width:36px;height:36px;border-radius:8px;font-size:16px;background:#E2F5EA;color:#1A7A3C;">📢</div>
-                <div>
-                  <div style="font-size:12.5px;font-weight:600;color:#222;">活动发布</div>
-                  <div style="font-size:10px;color:#AAA;margin-top:2px;">发布站内活动或关联站外链接</div>
+                <div style="flex:1;">
+                  <div style="font-size:12.5px;font-weight:600;color:#111827;">商品管理</div>
+                  <div style="font-size:10px;color:#9EB4CC;margin-top:1px;">上架 / 下架 / 编辑产品与场景</div>
                 </div>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C8D8E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
               </div>
-              <div style="font-size:18px;color:#CCC;">›</div>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;cursor:pointer;" onclick="goTo('page-platform-stats','运营 › 数据看板')">
-              <div style="display:flex;align-items:center;gap:12px;">
-                <div class="img-ph" style="width:36px;height:36px;border-radius:8px;font-size:16px;background:#FFF0E0;color:#C07A00;">📊</div>
-                <div>
-                  <div style="font-size:12.5px;font-weight:600;color:#222;">数据看板</div>
-                  <div style="font-size:10px;color:#AAA;margin-top:2px;">访问 / 点击 / 咨询基础统计</div>
+              <div style="display:flex;align-items:center;padding:9px 14px;border-bottom:1px solid #F0F4FA;cursor:pointer;" onclick="goTo('page-platform-publish','运营 › 活动发布')">
+                <div style="width:32px;height:32px;border-radius:7px;background:#EDF2FA;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-right:10px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
                 </div>
+                <div style="flex:1;">
+                  <div style="font-size:12.5px;font-weight:600;color:#111827;">活动发布</div>
+                  <div style="font-size:10px;color:#9EB4CC;margin-top:1px;">发布站内活动或关联站外链接</div>
+                </div>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C8D8E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
               </div>
-              <div style="font-size:18px;color:#CCC;">›</div>
+              <div style="display:flex;align-items:center;padding:9px 14px;cursor:pointer;" onclick="goTo('page-platform-stats','运营 › 数据看板')">
+                <div style="width:32px;height:32px;border-radius:7px;background:#EDF2FA;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-right:10px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:12.5px;font-weight:600;color:#111827;">数据看板</div>
+                  <div style="font-size:10px;color:#9EB4CC;margin-top:1px;">访问 / 点击 / 咨询基础统计</div>
+                </div>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C8D8E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
             </div>
-          </div>
 
-          <div class="sec-hd" style="margin-top:4px;"><div class="sec-hd-t">联系我们</div></div>
-          <div style="margin:0 12px;background:#fff;border-radius:10px;border:1px solid #E8E8E8;overflow:hidden;">
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #F3F3F3;cursor:pointer;" onclick="showModal()">
-              <div style="display:flex;align-items:center;gap:12px;">
-                <div class="img-ph" style="width:36px;height:36px;border-radius:8px;font-size:16px;background:#E2F5EA;color:#1A7A3C;">📞</div>
-                <div>
-                  <div style="font-size:12.5px;font-weight:600;color:#222;">技术支持</div>
-                  <div style="font-size:10px;color:#AAA;margin-top:2px;">平台问题反馈 · 运营支持</div>
+            <div style="margin:0 12px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 6px rgba(44,95,158,0.07);">
+              <div style="padding:8px 14px 6px;font-size:12px;font-weight:700;color:#1A2A4A;border-bottom:1px solid #F0F4FA;">联系我们</div>
+              <div style="display:flex;align-items:center;padding:9px 14px;border-bottom:1px solid #F0F4FA;cursor:pointer;" onclick="showModal()">
+                <div style="width:32px;height:32px;border-radius:7px;background:#EDF2FA;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-right:10px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16z"/></svg>
                 </div>
-              </div>
-              <div style="font-size:18px;color:#CCC;">›</div>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;">
-              <div style="display:flex;align-items:center;gap:12px;">
-                <div class="img-ph" style="width:36px;height:36px;border-radius:8px;font-size:16px;background:#F5EEFF;color:#6B2D8B;">📋</div>
-                <div>
-                  <div style="font-size:12.5px;font-weight:600;color:#222;">上架规范文档</div>
-                  <div style="font-size:10px;color:#AAA;margin-top:2px;">查看商品信息填写规范</div>
+                <div style="flex:1;">
+                  <div style="font-size:12.5px;font-weight:600;color:#111827;">技术支持</div>
+                  <div style="font-size:10px;color:#9EB4CC;margin-top:1px;">平台问题反馈 · 运营支持</div>
                 </div>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C8D8E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
               </div>
-              <div style="font-size:18px;color:#CCC;">›</div>
+              <div style="display:flex;align-items:center;padding:9px 14px;cursor:pointer;">
+                <div style="width:32px;height:32px;border-radius:7px;background:#EDF2FA;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-right:10px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:12.5px;font-weight:600;color:#111827;">上架规范文档</div>
+                  <div style="font-size:10px;color:#9EB4CC;margin-top:1px;">查看商品信息填写规范</div>
+                </div>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C8D8E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
             </div>
-          </div>
 
-          <div onclick="logout()" style="margin:4px 12px 0;text-align:center;font-size:12px;color:#999;padding:14px;cursor:pointer;border-top:1px solid #F0F0F0;">退出登录</div>
-          <div style="text-align:center;font-size:10px;color:#CCC;padding:12px 20px 20px;">具能租 · 运营后台 · V1.0</div>
+            <div onclick="logout()" style="text-align:center;font-size:11px;color:#B8CADE;padding:16px 0 4px;cursor:pointer;letter-spacing:0.3px;">退出登录</div>
+            <div style="text-align:center;font-size:9.5px;color:#B0C4D8;padding:20px 20px;letter-spacing:0.5px;">具能租 · 运营后台 · V1.0</div>
+          </div>
         </div>
 
       </div>
@@ -1869,7 +2150,7 @@ body {
         <div class="bn-item" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
         <div class="bn-item" onclick="switchTab('product')"><div class="bn-icon-box"></div>商品</div>
         <div class="bn-item" onclick="switchTab('activity')"><div class="bn-icon-box"></div>活动</div>
-        <div class="bn-item active" onclick="switchTab('mine')"><div class="bn-icon-box"></div>我的</div>
+        <div class="bn-item active" onclick="switchTab('mine')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M12 13c2.396 0 4.575.694 6.178 1.671c.8.49 1.484 1.065 1.978 1.69c.486.616.844 1.352.844 2.139c0 .845-.411 1.511-1.003 1.986c-.56.45-1.299.748-2.084.956c-1.578.417-3.684.558-5.913.558s-4.335-.14-5.913-.558c-.785-.208-1.524-.506-2.084-.956C3.41 20.01 3 19.345 3 18.5c0-.787.358-1.523.844-2.139c.494-.625 1.177-1.2 1.978-1.69C7.425 13.694 9.605 13 12 13"/><path fill="currentColor" d="M12 2c3.849 0 6.255 4.167 4.33 7.5A5 5 0 0 1 12 12c-3.849 0-6.255-4.167-4.33-7.5A5 5 0 0 1 12 2" opacity=".3"/></svg>我的</div>
       </div>
     </div>
 
@@ -1892,7 +2173,7 @@ body {
           <div class="img-ph" style="width:50px;height:50px;border-radius:8px;flex-shrink:0;font-size:9px;">图</div>
           <div style="flex:1;min-width:0;">
             <div style="font-size:12px;font-weight:700;color:#222;margin-bottom:3px;">人形导览系统</div>
-            <span class="tag" style="font-size:9px;">软件系统</span>
+            <span class="tag" style="font-size:9px;">软件产品</span>
             <div style="font-size:10px;color:#AAA;margin-top:3px;">已加入意向清单</div>
           </div>
           <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
@@ -1932,7 +2213,7 @@ body {
         </div>
 
         <div style="margin:8px 12px;font-size:10.5px;color:#AAA;padding:4px 0 16px;">
-          继续浏览 → <span style="color:#1859BD;cursor:pointer;" onclick="switchTab('product')">商品中心</span> 或 <span style="color:#1859BD;cursor:pointer;" onclick="switchTab('home')">首页</span>
+          继续浏览 → <span style="color:#3A7AC8;cursor:pointer;" onclick="switchTab('product')">商品中心</span> 或 <span style="color:#3A7AC8;cursor:pointer;" onclick="switchTab('home')">首页</span>
         </div>
       </div>
 
@@ -1950,7 +2231,7 @@ body {
         <div class="wl-count" style="flex:1;">已选 <b id="wlCount">0</b> 件</div>
         <div class="wl-pack-btn disabled" id="wlPackBtn" onclick="confirmWlSend()">确认发送</div>
       </div>
-      <div class="bottom-nav"></div>
+      <div style="height:0;flex-shrink:0;"></div>
     </div>
 
     <!-- ════════════ PAGE: 商品管理（平台） ════════════ -->
@@ -1959,7 +2240,7 @@ body {
       <div class="top-bar">
         <div class="top-bar-back" onclick="goBack()">‹</div>
         <div class="top-bar-page-title">商品管理</div>
-        <div style="font-size:11px;background:#1859BD;color:#fff;padding:5px 12px;border-radius:14px;cursor:pointer;">＋ 新增</div>
+        <div style="font-size:11px;background:#3A7AC8;color:#fff;padding:5px 12px;border-radius:14px;cursor:pointer;">＋ 新增</div>
       </div>
       <!-- 状态 Tab -->
       <div class="tab-bar" id="pmTabBar">
@@ -2007,14 +2288,14 @@ body {
           </div>
         </div>
 
-        <!-- 软件系统 -->
-        <div style="margin:12px 12px 0;font-size:10px;color:#AAA;font-weight:700;letter-spacing:.5px;">软件系统</div>
+        <!-- 软件产品 -->
+        <div style="margin:12px 12px 0;font-size:10px;color:#AAA;font-weight:700;letter-spacing:.5px;">软件产品</div>
 
         <div class="pm-row" data-status="on" style="margin:6px 12px;background:#fff;border-radius:10px;border:1px solid #E8E8E8;padding:12px;display:flex;align-items:center;gap:10px;">
           <div class="img-ph" style="width:44px;height:44px;border-radius:7px;flex-shrink:0;font-size:9px;">图</div>
           <div style="flex:1;min-width:0;">
             <div style="font-size:12px;font-weight:700;color:#222;">人形导览系统</div>
-            <div style="font-size:9.5px;color:#AAA;margin-top:2px;">软件系统 · 已上架</div>
+            <div style="font-size:9.5px;color:#AAA;margin-top:2px;">软件产品 · 已上架</div>
           </div>
           <div style="display:flex;gap:6px;flex-shrink:0;">
             <div style="font-size:10px;border:1px solid #DDD;padding:5px 10px;border-radius:8px;color:#555;cursor:pointer;">编辑</div>
@@ -2026,7 +2307,7 @@ body {
           <div class="img-ph" style="width:44px;height:44px;border-radius:7px;flex-shrink:0;font-size:9px;">图</div>
           <div style="flex:1;min-width:0;">
             <div style="font-size:12px;font-weight:700;color:#222;">自助巡检系统</div>
-            <div style="font-size:9.5px;color:#AAA;margin-top:2px;">软件系统 · 已上架</div>
+            <div style="font-size:9.5px;color:#AAA;margin-top:2px;">软件产品 · 已上架</div>
           </div>
           <div style="display:flex;gap:6px;flex-shrink:0;">
             <div style="font-size:10px;border:1px solid #DDD;padding:5px 10px;border-radius:8px;color:#555;cursor:pointer;">编辑</div>
@@ -2054,7 +2335,7 @@ body {
         <div class="bn-item" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
         <div class="bn-item" onclick="switchTab('product')"><div class="bn-icon-box"></div>商品</div>
         <div class="bn-item" onclick="switchTab('activity')"><div class="bn-icon-box"></div>活动</div>
-        <div class="bn-item active" onclick="switchTab('mine')"><div class="bn-icon-box"></div>我的</div>
+        <div class="bn-item active" onclick="switchTab('mine')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M12 13c2.396 0 4.575.694 6.178 1.671c.8.49 1.484 1.065 1.978 1.69c.486.616.844 1.352.844 2.139c0 .845-.411 1.511-1.003 1.986c-.56.45-1.299.748-2.084.956c-1.578.417-3.684.558-5.913.558s-4.335-.14-5.913-.558c-.785-.208-1.524-.506-2.084-.956C3.41 20.01 3 19.345 3 18.5c0-.787.358-1.523.844-2.139c.494-.625 1.177-1.2 1.978-1.69C7.425 13.694 9.605 13 12 13"/><path fill="currentColor" d="M12 2c3.849 0 6.255 4.167 4.33 7.5A5 5 0 0 1 12 12c-3.849 0-6.255-4.167-4.33-7.5A5 5 0 0 1 12 2" opacity=".3"/></svg>我的</div>
       </div>
     </div>
 
@@ -2064,7 +2345,7 @@ body {
       <div class="top-bar">
         <div class="top-bar-back" onclick="goBack()">‹</div>
         <div class="top-bar-page-title">活动发布</div>
-        <div style="font-size:11px;background:#1859BD;color:#fff;padding:5px 12px;border-radius:14px;cursor:pointer;" onclick="showToast('新建活动（开发中）')">＋ 新建</div>
+        <div style="font-size:11px;background:#3A7AC8;color:#fff;padding:5px 12px;border-radius:14px;cursor:pointer;" onclick="showToast('新建活动（开发中）')">＋ 新建</div>
       </div>
       <div class="tab-bar" id="pubTabBar">
         <div class="tab-item active" onclick="switchPubTab(this,'inner')">站内活动</div>
@@ -2114,7 +2395,7 @@ body {
                 <span class="source-tag source-xiaohong">小红书</span>
                 <span style="font-size:9.5px;color:#AAA;">场景种草</span>
               </div>
-              <div style="font-size:10px;color:#1859BD;cursor:pointer;">https://xiaohongshu.com/xxxxx</div>
+              <div style="font-size:10px;color:#3A7AC8;cursor:pointer;">https://xiaohongshu.com/xxxxx</div>
             </div>
             <span style="font-size:9px;background:#E2F5EA;color:#1A7A3C;padding:2px 8px;border-radius:8px;flex-shrink:0;margin-left:8px;">展示中</span>
           </div>
@@ -2132,7 +2413,7 @@ body {
                 <span class="source-tag source-gongzhong">公众号</span>
                 <span style="font-size:9.5px;color:#AAA;">场景种草</span>
               </div>
-              <div style="font-size:10px;color:#1859BD;cursor:pointer;">https://mp.weixin.qq.com/xxxxx</div>
+              <div style="font-size:10px;color:#3A7AC8;cursor:pointer;">https://mp.weixin.qq.com/xxxxx</div>
             </div>
             <span style="font-size:9px;background:#E2F5EA;color:#1A7A3C;padding:2px 8px;border-radius:8px;flex-shrink:0;margin-left:8px;">展示中</span>
           </div>
@@ -2147,7 +2428,7 @@ body {
         <div class="bn-item" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
         <div class="bn-item" onclick="switchTab('product')"><div class="bn-icon-box"></div>商品</div>
         <div class="bn-item" onclick="switchTab('activity')"><div class="bn-icon-box"></div>活动</div>
-        <div class="bn-item active" onclick="switchTab('mine')"><div class="bn-icon-box"></div>我的</div>
+        <div class="bn-item active" onclick="switchTab('mine')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M12 13c2.396 0 4.575.694 6.178 1.671c.8.49 1.484 1.065 1.978 1.69c.486.616.844 1.352.844 2.139c0 .845-.411 1.511-1.003 1.986c-.56.45-1.299.748-2.084.956c-1.578.417-3.684.558-5.913.558s-4.335-.14-5.913-.558c-.785-.208-1.524-.506-2.084-.956C3.41 20.01 3 19.345 3 18.5c0-.787.358-1.523.844-2.139c.494-.625 1.177-1.2 1.978-1.69C7.425 13.694 9.605 13 12 13"/><path fill="currentColor" d="M12 2c3.849 0 6.255 4.167 4.33 7.5A5 5 0 0 1 12 12c-3.849 0-6.255-4.167-4.33-7.5A5 5 0 0 1 12 2" opacity=".3"/></svg>我的</div>
       </div>
     </div>
 
@@ -2157,9 +2438,9 @@ body {
       <div class="top-bar">
         <div class="top-bar-back" onclick="goBack()">‹</div>
         <div class="top-bar-page-title">数据看板</div>
-        <div id="statsRangeBtn" onclick="toggleStatsRange()" style="display:flex;align-items:center;gap:3px;font-size:10px;color:#1859BD;background:#EEF3FF;padding:4px 9px;border-radius:12px;cursor:pointer;user-select:none;">
+        <div id="statsRangeBtn" onclick="toggleStatsRange()" style="display:flex;align-items:center;gap:3px;font-size:10px;color:#3A7AC8;background:#EDF2F7;padding:4px 9px;border-radius:12px;cursor:pointer;user-select:none;">
           <span id="statsRangeLabel">近 7 天</span>
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1859BD" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <!-- 天数下拉 -->
         <div id="statsRangeMenu" style="display:none;position:absolute;top:52px;right:10px;background:#fff;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,0.14);z-index:100;min-width:88px;overflow:hidden;">
@@ -2171,8 +2452,8 @@ body {
       <div class="scroll-area">
         <!-- 核心指标 -->
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 12px 8px;">
-          <div style="background:#EEF3FF;border-radius:10px;padding:14px 8px;text-align:center;">
-            <div style="font-size:24px;font-weight:700;color:#1859BD;">1,284</div>
+          <div style="background:#EDF2F7;border-radius:10px;padding:14px 8px;text-align:center;">
+            <div style="font-size:24px;font-weight:700;color:#3A7AC8;">1,284</div>
             <div style="font-size:9px;color:#888;margin-top:4px;">访问人次</div>
           </div>
           <div style="background:#FFF0E0;border-radius:10px;padding:14px 8px;text-align:center;">
@@ -2185,7 +2466,7 @@ body {
         <div class="sec-hd" style="margin-top:8px;"><div class="sec-hd-t">商品点击排行</div></div>
         <div style="margin:0 12px;background:#fff;border-radius:10px;border:1px solid #E8E8E8;overflow:hidden;">
           <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #F3F3F3;">
-            <div style="font-size:13px;font-weight:700;color:#1859BD;width:18px;">1</div>
+            <div style="font-size:13px;font-weight:700;color:#3A7AC8;width:18px;">1</div>
             <div style="flex:1;font-size:11.5px;color:#222;">品牌活动引流场景</div>
             <div style="font-size:11px;color:#888;">128 次</div>
           </div>
@@ -2237,7 +2518,7 @@ body {
         <div class="bn-item" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
         <div class="bn-item" onclick="switchTab('product')"><div class="bn-icon-box"></div>商品</div>
         <div class="bn-item" onclick="switchTab('activity')"><div class="bn-icon-box"></div>活动</div>
-        <div class="bn-item active" onclick="switchTab('mine')"><div class="bn-icon-box"></div>我的</div>
+        <div class="bn-item active" onclick="switchTab('mine')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M12 13c2.396 0 4.575.694 6.178 1.671c.8.49 1.484 1.065 1.978 1.69c.486.616.844 1.352.844 2.139c0 .845-.411 1.511-1.003 1.986c-.56.45-1.299.748-2.084.956c-1.578.417-3.684.558-5.913.558s-4.335-.14-5.913-.558c-.785-.208-1.524-.506-2.084-.956C3.41 20.01 3 19.345 3 18.5c0-.787.358-1.523.844-2.139c.494-.625 1.177-1.2 1.978-1.69C7.425 13.694 9.605 13 12 13"/><path fill="currentColor" d="M12 2c3.849 0 6.255 4.167 4.33 7.5A5 5 0 0 1 12 12c-3.849 0-6.255-4.167-4.33-7.5A5 5 0 0 1 12 2" opacity=".3"/></svg>我的</div>
       </div>
     </div>
 
@@ -2321,7 +2602,7 @@ body {
       <div class="status-bar"><span>9:41</span><span>●●●</span></div>
       <div class="top-bar">
         <div class="top-bar-back" onclick="goBack()">‹</div>
-        <div class="top-bar-page-title">软件系统</div>
+        <div class="top-bar-page-title">软件产品</div>
         <div class="icon-btn">⋯</div>
       </div>
       <div class="scroll-area">
@@ -2330,7 +2611,7 @@ body {
           <div class="video-badge">▶ 播放演示</div>
         </div>
         <div class="detail-body">
-          <span class="tag">软件系统</span>
+          <span class="tag">软件产品</span>
           <div class="detail-title">表演控制系统</div>
           <div class="detail-desc">多机编队协同控制系统，与音乐、灯光精准同步，适用于开幕式、品牌活动、演出场景。</div>
           <div class="detail-sec">核心功能</div>
@@ -2354,7 +2635,7 @@ body {
       <div class="status-bar"><span>9:41</span><span>●●●</span></div>
       <div class="top-bar">
         <div class="top-bar-back" onclick="goBack()">‹</div>
-        <div class="top-bar-page-title">软件系统</div>
+        <div class="top-bar-page-title">软件产品</div>
         <div class="icon-btn">⋯</div>
       </div>
       <div class="scroll-area">
@@ -2363,7 +2644,7 @@ body {
           <div class="video-badge">▶ 播放演示</div>
         </div>
         <div class="detail-body">
-          <span class="tag">软件系统</span>
+          <span class="tag">软件产品</span>
           <div class="detail-title">迎宾互动系统</div>
           <div class="detail-desc">集人脸识别、NLP 对话、路线引导于一体，部署于人形机器人，适用于展厅、前台、接待场景。</div>
           <div class="detail-sec">核心功能</div>
@@ -2400,7 +2681,7 @@ body {
           <div class="detail-desc">四足机器人 + 送餐系统 + 运维人员，打造餐厅/食堂的智能送餐与互动体验，吸引客流，提升品牌曝光。</div>
           <div class="detail-sec">场景包含商品</div>
           <div class="prd-item" onclick="goTo('page-product-detail-2','场景详情 › 餐饮服务 › 四足机器人')"><div class="img-ph prd-thumb">图</div><div><div class="prd-name">四足机器人 Go2</div><div class="prd-qty">×1 台 · 硬件本体</div></div><div class="prd-arrow">›</div></div>
-          <div class="prd-item" onclick="showModal()"><div class="img-ph prd-thumb">图</div><div><div class="prd-name">送餐导航系统</div><div class="prd-qty">×1 套 · 软件系统</div></div><div class="prd-arrow">›</div></div>
+          <div class="prd-item" onclick="showModal()"><div class="img-ph prd-thumb">图</div><div><div class="prd-name">送餐导航系统</div><div class="prd-qty">×1 套 · 软件产品</div></div><div class="prd-arrow">›</div></div>
           <div class="prd-item" onclick="showModal()"><div class="img-ph prd-thumb">图</div><div><div class="prd-name">现场运维人员</div><div class="prd-qty">×1 人 · 技术服务</div></div><div class="prd-arrow">›</div></div>
           <div style="height:12px;"></div>
           <div class="detail-sec">适用行业与规模</div>
@@ -2442,7 +2723,7 @@ body {
 
           <div class="detail-sec">场景包含商品</div>
           <div class="prd-item" onclick="goTo('page-product-detail-4','演绎场景 › H1 人形机器人')"><div class="img-ph prd-thumb">图</div><div><div class="prd-name">H1 人形机器人</div><div class="prd-qty">×2–4 台 · 硬件本体</div></div><div class="prd-arrow">›</div></div>
-          <div class="prd-item" onclick="goTo('page-product-detail-perf','演绎场景 › 表演控制系统')"><div class="img-ph prd-thumb">图</div><div><div class="prd-name">表演控制系统</div><div class="prd-qty">×1 套 · 软件系统</div></div><div class="prd-arrow">›</div></div>
+          <div class="prd-item" onclick="goTo('page-product-detail-perf','演绎场景 › 表演控制系统')"><div class="img-ph prd-thumb">图</div><div><div class="prd-name">表演控制系统</div><div class="prd-qty">×1 套 · 软件产品</div></div><div class="prd-arrow">›</div></div>
           <div class="prd-item" onclick="goTo('page-product-detail-5','演绎场景 › 现场运维人员')"><div class="img-ph prd-thumb">图</div><div><div class="prd-name">现场运维人员</div><div class="prd-qty">×1–2 人 · 技术服务</div></div><div class="prd-arrow">›</div></div>
 
           <div style="height:12px;"></div>
@@ -2463,7 +2744,7 @@ body {
           <div class="detail-sec">真实案例</div>
           <div class="case-box" style="cursor:pointer;" onclick="goTo('page-activity-detail-1','演绎场景 › 湖滨银泰开幕活动')">
             📍 杭州湖滨银泰 · 品牌开幕活动<br>4 台机器人编队表演 3 场，引流超 2000 人次，全场满意度 96%<br>
-            <span style="color:#1859BD;font-size:10px;">查看活动详情 ›</span>
+            <span style="color:#3A7AC8;font-size:10px;">查看活动详情 ›</span>
           </div>
         </div>
       </div>
@@ -2493,7 +2774,7 @@ body {
 
           <div class="detail-sec">场景包含商品</div>
           <div class="prd-item" onclick="goTo('page-product-detail-4','售卖场景 › H1 人形机器人')"><div class="img-ph prd-thumb">图</div><div><div class="prd-name">H1 人形机器人</div><div class="prd-qty">×1 台 · 硬件本体</div></div><div class="prd-arrow">›</div></div>
-          <div class="prd-item" onclick="goTo('page-product-detail-greet','售卖场景 › 迎宾互动系统')"><div class="img-ph prd-thumb">图</div><div><div class="prd-name">迎宾互动系统</div><div class="prd-qty">×1 套 · 软件系统</div></div><div class="prd-arrow">›</div></div>
+          <div class="prd-item" onclick="goTo('page-product-detail-greet','售卖场景 › 迎宾互动系统')"><div class="img-ph prd-thumb">图</div><div><div class="prd-name">迎宾互动系统</div><div class="prd-qty">×1 套 · 软件产品</div></div><div class="prd-arrow">›</div></div>
           <div class="prd-item" onclick="goTo('page-product-detail-5','售卖场景 › 现场运维人员')"><div class="img-ph prd-thumb">图</div><div><div class="prd-name">现场运维人员</div><div class="prd-qty">×1 人 · 技术服务</div></div><div class="prd-arrow">›</div></div>
 
           <div style="height:12px;"></div>
@@ -2542,7 +2823,7 @@ body {
         <div style="display:flex;align-items:flex-end;gap:10px;">
           <div style="flex:1;min-width:0;">
             <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
-              <div style="width:22px;height:22px;background:#1859BD;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;">租</div>
+              <div style="width:22px;height:22px;background:#3A7AC8;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;">租</div>
               <span style="color:rgba(255,255,255,0.75);font-size:10px;">具能租</span>
             </div>
             <div style="color:#fff;font-size:13px;font-weight:600;line-height:1.4;margin-bottom:3px;">H1 编队演出 · 完整实录</div>
@@ -2567,7 +2848,7 @@ body {
         <div style="display:flex;align-items:flex-end;gap:10px;">
           <div style="flex:1;min-width:0;">
             <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
-              <div style="width:22px;height:22px;background:#1859BD;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;">租</div>
+              <div style="width:22px;height:22px;background:#3A7AC8;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;">租</div>
               <span style="color:rgba(255,255,255,0.75);font-size:10px;">具能租</span>
             </div>
             <div style="color:#fff;font-size:13px;font-weight:600;line-height:1.4;margin-bottom:3px;">Go2 夜间自主巡检实拍</div>
@@ -2642,7 +2923,7 @@ body {
         <div style="display:flex;align-items:flex-end;gap:10px;">
           <div style="flex:1;min-width:0;">
             <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
-              <div style="width:22px;height:22px;background:#1859BD;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;">租</div>
+              <div style="width:22px;height:22px;background:#3A7AC8;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;">租</div>
               <span style="color:rgba(255,255,255,0.75);font-size:10px;">具能租</span>
             </div>
             <div style="color:#fff;font-size:13px;font-weight:600;line-height:1.4;margin-bottom:3px;">西湖银泰 · 人形机器人导览实录</div>
@@ -2667,7 +2948,7 @@ body {
         <div style="display:flex;align-items:flex-end;gap:10px;">
           <div style="flex:1;min-width:0;">
             <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
-              <div style="width:22px;height:22px;background:#1859BD;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;">租</div>
+              <div style="width:22px;height:22px;background:#3A7AC8;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;">租</div>
               <span style="color:rgba(255,255,255,0.75);font-size:10px;">具能租</span>
             </div>
             <div style="color:#fff;font-size:13px;font-weight:600;line-height:1.4;margin-bottom:3px;">西子廊桥 · 机器人展演完整实录</div>
@@ -2692,7 +2973,7 @@ body {
         <div style="display:flex;align-items:flex-end;gap:10px;">
           <div style="flex:1;min-width:0;">
             <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
-              <div style="width:22px;height:22px;background:#1859BD;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;">租</div>
+              <div style="width:22px;height:22px;background:#3A7AC8;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;">租</div>
               <span style="color:rgba(255,255,255,0.75);font-size:10px;">具能租</span>
             </div>
             <div style="color:#fff;font-size:13px;font-weight:600;line-height:1.4;margin-bottom:3px;">人形机器人 · 基地导览完整实录</div>
@@ -2763,53 +3044,64 @@ body {
     <!-- ════════════ 登录弹窗 ════════════ -->
     <div class="hotline-overlay" id="loginSheet" onclick="if(event.target===this)hideLoginSheet()">
       <div class="hotline-sheet">
-        <div style="font-size:13px;font-weight:700;color:#222;text-align:center;margin-bottom:4px;">登录具能租</div>
-        <div style="font-size:10px;color:#999;text-align:center;margin-bottom:16px;">选择账号类型继续</div>
-        <div onclick="loginAs('user')" style="display:flex;align-items:center;gap:12px;padding:12px;background:#F9F9F9;border-radius:10px;margin-bottom:8px;cursor:pointer;">
-          <div style="width:36px;height:36px;background:#07C160;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
-          <div><div style="font-size:12px;font-weight:600;color:#222;margin-bottom:2px;">微信一键登录</div><div style="font-size:10px;color:#999;">普通用户 · 浏览、收藏、咨询</div></div>
+        <div style="font-size:13px;font-weight:700;color:#1A2A4A;text-align:center;margin-bottom:3px;">登录具能租</div>
+        <div style="font-size:10px;color:#8AA4C8;text-align:center;margin-bottom:18px;">选择账号类型继续</div>
+        <div onclick="loginAs('user')" style="display:flex;align-items:center;gap:12px;padding:13px 14px;background:rgba(255,255,255,0.55);border:1px solid rgba(44,95,158,0.12);border-radius:14px;margin-bottom:8px;cursor:pointer;">
+          <div style="width:38px;height:38px;background:#07C160;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+          <div style="flex:1;"><div style="font-size:12.5px;font-weight:600;color:#1A2A4A;margin-bottom:2px;">微信一键登录</div><div style="font-size:10px;color:#8AA4C8;">普通用户 · 浏览、收藏、咨询</div></div>
+          <div style="color:#C8D5E8;font-size:16px;font-weight:300;">›</div>
         </div>
-        <div onclick="loginAs('ops')" style="display:flex;align-items:center;gap:12px;padding:12px;background:#F9F9F9;border-radius:10px;margin-bottom:14px;cursor:pointer;">
-          <div style="width:36px;height:36px;background:#1859BD;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zM3 5v10h18V5H3zm4 8H5v-2h2v2zm0-4H5V7h2v2zm4 4H9v-2h2v2zm0-4H9V7h2v2zm4 4h-2v-2h2v2zm0-4h-2V7h2v2zm4 4h-2v-2h2v2zm0-4h-2V7h2v2z"/></svg></div>
-          <div><div style="font-size:12px;font-weight:600;color:#222;margin-bottom:2px;">运营账号登录</div><div style="font-size:10px;color:#999;">平台管理权限 · 白名单账号专用</div></div>
+        <div onclick="loginAs('ops')" style="display:flex;align-items:center;gap:12px;padding:13px 14px;background:rgba(255,255,255,0.55);border:1px solid rgba(44,95,158,0.12);border-radius:14px;margin-bottom:18px;cursor:pointer;">
+          <div style="width:38px;height:38px;background:linear-gradient(135deg,#2C5F9E,#3A7AC8);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zM3 5v10h18V5H3zm4 8H5v-2h2v2zm0-4H5V7h2v2zm4 4H9v-2h2v2zm0-4H9V7h2v2zm4 4h-2v-2h2v2zm0-4h-2V7h2v2zm4 4h-2v-2h2v2zm0-4h-2V7h2v2z"/></svg></div>
+          <div style="flex:1;"><div style="font-size:12.5px;font-weight:600;color:#1A2A4A;margin-bottom:2px;">运营账号登录</div><div style="font-size:10px;color:#8AA4C8;">平台管理权限 · 白名单账号专用</div></div>
+          <div style="color:#C8D5E8;font-size:16px;font-weight:300;">›</div>
         </div>
-        <div onclick="hideLoginSheet()" style="text-align:center;color:#999;font-size:12px;cursor:pointer;padding:4px;">取消</div>
+        <div onclick="hideLoginSheet()" style="text-align:center;color:#AAB8CC;font-size:12.5px;cursor:pointer;padding:6px;font-weight:500;">取消</div>
       </div>
     </div>
 
     <div class="hotline-overlay" id="csSheet" onclick="if(event.target===this)hideCSSheet()">
       <div class="hotline-sheet">
-        <div id="csSheetHint" style="display:none;background:#F5F7FF;border-radius:8px;padding:8px 12px;margin-bottom:14px;align-items:center;gap:8px;">
-          <div style="width:28px;height:28px;background:#E8EFFE;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:#1859BD;">商品</div>
+        <div id="csSheetHint" style="display:none;background:rgba(44,95,158,0.07);border:1px solid rgba(44,95,158,0.12);border-radius:12px;padding:10px 12px;margin-bottom:16px;align-items:center;gap:10px;">
+          <div style="width:30px;height:30px;background:rgba(44,95,158,0.12);border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
           <div style="flex:1;min-width:0;">
-            <div style="font-size:9px;color:#999;margin-bottom:1px;">当前商品 · 发起咨询后将自动发送</div>
-            <div id="csSheetProductName" style="font-size:11px;font-weight:600;color:#1859BD;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></div>
+            <div style="font-size:9px;color:#7A9CC6;margin-bottom:2px;">当前商品 · 咨询时将自动发送</div>
+            <div id="csSheetProductName" style="font-size:11.5px;font-weight:600;color:#3A7AC8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></div>
           </div>
         </div>
-        <div style="font-size:12px;color:#999;margin-bottom:12px;text-align:center;">选择联系方式</div>
-        <div onclick="hideCSSheet();callHotline()" style="display:flex;align-items:center;gap:12px;padding:12px;background:#F9F9F9;border-radius:10px;margin-bottom:8px;cursor:pointer;">
-          <div style="width:36px;height:36px;background:#FFF3E0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">📞</div>
-          <div><div style="font-size:12px;font-weight:600;color:#222;margin-bottom:2px;">热线联系</div><div style="font-size:10px;color:#999;">工作日 9:00 – 18:00</div></div>
+        <div style="font-size:13px;font-weight:700;color:#1A2A4A;text-align:center;padding-top:14px;margin-bottom:3px;">联系客服</div>
+        <div style="font-size:10px;color:#8AA4C8;text-align:center;margin-bottom:18px;">选择以下方式与我们取得联系</div>
+        <div onclick="hideCSSheet();callHotline()" style="display:flex;align-items:center;gap:12px;padding:13px 14px;background:rgba(255,255,255,0.55);border:1px solid rgba(44,95,158,0.12);border-radius:14px;margin-bottom:8px;cursor:pointer;">
+          <div style="width:38px;height:38px;background:rgba(42,140,132,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2A8C84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14z"/></svg>
+          </div>
+          <div style="flex:1;"><div style="font-size:12.5px;font-weight:600;color:#1A2A4A;margin-bottom:2px;">热线联系</div><div style="font-size:10px;color:#8AA4C8;">工作日 9:00 – 18:00</div></div>
+          <div style="color:#C8D5E8;font-size:16px;font-weight:300;">›</div>
         </div>
-        <div onclick="hideCSSheet();openOnlineCS()" style="display:flex;align-items:center;gap:12px;padding:12px;background:#F9F9F9;border-radius:10px;margin-bottom:14px;cursor:pointer;">
-          <div style="width:36px;height:36px;background:#E8EFFE;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">💬</div>
-          <div><div style="font-size:12px;font-weight:600;color:#222;margin-bottom:2px;">在线客服</div><div style="font-size:10px;color:#999;">通常 3 分钟内响应</div></div>
+        <div onclick="hideCSSheet();openOnlineCS()" style="display:flex;align-items:center;gap:12px;padding:13px 14px;background:rgba(255,255,255,0.55);border:1px solid rgba(44,95,158,0.12);border-radius:14px;margin-bottom:18px;cursor:pointer;">
+          <div style="width:38px;height:38px;background:rgba(42,140,132,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2A8C84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <div style="flex:1;"><div style="font-size:12.5px;font-weight:600;color:#1A2A4A;margin-bottom:2px;">在线客服</div><div style="font-size:10px;color:#8AA4C8;">通常 3 分钟内响应</div></div>
+          <div style="color:#C8D5E8;font-size:16px;font-weight:300;">›</div>
         </div>
-        <div onclick="hideCSSheet()" style="text-align:center;color:#999;font-size:12px;cursor:pointer;padding:4px;">取消</div>
+        <div onclick="hideCSSheet()" style="text-align:center;color:#AAB8CC;font-size:12.5px;cursor:pointer;padding:6px;font-weight:500;">取消</div>
       </div>
     </div>
 
     <!-- ════════════ 企业微信二维码弹窗 ════════════ -->
-    <div id="qrOverlay" onclick="if(event.target===this)hideQRCode()" style="position:absolute;inset:0;background:rgba(0,0,0,0.5);z-index:200;display:none;align-items:center;justify-content:center;">
-      <div style="background:#fff;border-radius:16px;padding:20px 20px 16px;width:220px;text-align:center;position:relative;">
-        <div onclick="hideQRCode()" style="position:absolute;top:10px;right:14px;font-size:16px;color:#BBB;cursor:pointer;">×</div>
-        <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:3px;">添加企业微信客服</div>
-        <div style="font-size:10px;color:#999;margin-bottom:14px;">扫码后可直接沟通，方便随时跟进</div>
+    <div id="qrOverlay" onclick="if(event.target===this)hideQRCode()" style="position:absolute;inset:0;background:rgba(10,25,60,0.30);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:200;display:none;align-items:center;justify-content:center;">
+      <div style="background:rgba(240,247,255,0.97);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-radius:20px;padding:20px 20px 16px;width:220px;text-align:center;position:relative;box-shadow:0 8px 32px rgba(44,95,158,0.18);border:1px solid rgba(255,255,255,0.85);">
+        <div onclick="hideQRCode()" style="position:absolute;top:10px;right:14px;font-size:18px;color:#8AA4C8;cursor:pointer;line-height:1;">×</div>
+        <div style="font-size:13px;font-weight:700;color:#1A2A4A;margin-bottom:3px;">添加企业微信客服</div>
+        <div style="font-size:10px;color:#8AA4C8;margin-bottom:14px;">扫码后可直接沟通，方便随时跟进</div>
         <!-- 二维码占位 -->
-        <div style="width:128px;height:128px;margin:0 auto 12px;border:2px solid #222;padding:9px;box-sizing:border-box;">
+        <div style="width:128px;height:128px;margin:0 auto 12px;border:2px solid #3A7AC8;padding:9px;box-sizing:border-box;border-radius:6px;background:#fff;">
           <div style="width:100%;height:100%;background:repeating-conic-gradient(#2c2c2c 0% 25%,#fff 0% 50%) 0 0/8px 8px;"></div>
         </div>
-        <div style="font-size:10px;color:#AAA;margin-bottom:14px;">长按识别 · 或截图后扫码</div>
+        <div style="font-size:10px;color:#8AA4C8;margin-bottom:14px;">长按识别 · 或截图后扫码</div>
         <div style="display:flex;align-items:center;justify-content:center;gap:5px;font-size:10px;color:#07C160;font-weight:600;">
           <span style="width:14px;height:14px;background:#07C160;border-radius:3px;display:inline-block;"></span> 企业微信 · 具能租
         </div>
@@ -2819,15 +3111,66 @@ body {
     <!-- ════════════ 热线浮层 ════════════ -->
     <div class="hotline-overlay" id="hotlineOverlay" onclick="if(event.target===this)hideHotline()">
       <div class="hotline-sheet">
-        <div style="text-align:center;font-size:13px;font-weight:600;color:#222;margin-bottom:4px;">具能租客服热线</div>
-        <div style="text-align:center;font-size:11px;color:#999;margin-bottom:14px;">工作日 9:00 – 18:00</div>
-        <div style="text-align:center;font-size:24px;font-weight:700;color:#1859BD;letter-spacing:1px;margin-bottom:18px;">400-xxx-xxxx</div>
-        <div onclick="showToast('正在拨打…');hideHotline();" style="background:#1859BD;color:#fff;text-align:center;padding:12px;border-radius:22px;font-size:13px;font-weight:600;margin-bottom:10px;cursor:pointer;">📞 拨打电话</div>
-        <div onclick="hideHotline()" style="text-align:center;color:#999;font-size:12px;cursor:pointer;padding:4px;">取消</div>
+        <div style="text-align:center;font-size:13px;font-weight:700;color:#1A2A4A;margin-bottom:3px;">具能租客服热线</div>
+        <div style="text-align:center;font-size:10px;color:#8AA4C8;margin-bottom:20px;">工作日 9:00 – 18:00</div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(44,95,158,0.07);border:1px solid rgba(44,95,158,0.12);border-radius:14px;padding:14px 18px;margin-bottom:20px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14z"/></svg>
+          <span style="font-size:22px;font-weight:700;color:#3A7AC8;letter-spacing:2px;">400-xxx-xxxx</span>
+        </div>
+        <div onclick="showToast('正在拨打…');hideHotline();" style="background:linear-gradient(135deg,#72C9C2,#95D9D4);color:#fff;text-align:center;padding:13px;border-radius:22px;font-size:13px;font-weight:600;margin-bottom:10px;cursor:pointer;box-shadow:0 4px 14px rgba(42,140,132,0.18);">拨打电话</div>
+        <div onclick="hideHotline()" style="text-align:center;color:#AAB8CC;font-size:12.5px;cursor:pointer;padding:6px;font-weight:500;">取消</div>
       </div>
     </div>
 
     <!-- ════════════ PAGE: 客服入口 ════════════ -->
+    <!-- ════════════ PAGE: 咨询记录 ════════════ -->
+    <div class="page" id="page-cs-history" style="background:#F2F5FB;">
+      <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+      <div class="top-bar">
+        <div class="top-bar-back" onclick="goBack()">‹</div>
+        <div class="top-bar-page-title">咨询记录</div>
+      </div>
+      <div class="scroll-area">
+
+        <!-- 记录卡片 1 -->
+        <div style="margin:10px 12px 0;background:rgba(255,255,255,0.80);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:14px;border:1px solid rgba(255,255,255,0.90);padding:14px 16px;box-shadow:0 2px 12px rgba(44,95,158,0.06);" onclick="goTo('page-cs-chat','咨询记录 › 对话详情')">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div style="width:36px;height:36px;border-radius:10px;background:rgba(42,140,132,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2A8C84" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:12.5px;font-weight:600;color:#1A2A4A;margin-bottom:2px;">演绎场景方案咨询</div>
+              <div style="font-size:10px;color:#8AA4C8;">2026-06-28 · 在线客服</div>
+            </div>
+            <div style="font-size:10px;font-weight:600;color:#2A8C84;background:rgba(42,140,132,0.10);padding:3px 8px;border-radius:20px;flex-shrink:0;">已回复</div>
+          </div>
+          <div style="font-size:11px;color:#5A7A9A;line-height:1.6;background:rgba(58,122,200,0.04);border-radius:8px;padding:8px 10px;">
+            客服小具：好的，H1 人形机器人演绎场景支持定制编排，通常需提前 7 天沟通脚本…
+          </div>
+        </div>
+
+        <!-- 记录卡片 2 -->
+        <div style="margin:10px 12px 0;background:rgba(255,255,255,0.80);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:14px;border:1px solid rgba(255,255,255,0.90);padding:14px 16px;box-shadow:0 2px 12px rgba(44,95,158,0.06);" onclick="goTo('page-cs-chat','咨询记录 › 对话详情')">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div style="width:36px;height:36px;border-radius:10px;background:rgba(58,122,200,0.10);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16z"/></svg>
+            </div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:12.5px;font-weight:600;color:#1A2A4A;margin-bottom:2px;">四足机器人租赁报价</div>
+              <div style="font-size:10px;color:#8AA4C8;">2026-06-20 · 热线联系</div>
+            </div>
+            <div style="font-size:10px;font-weight:600;color:#8AA4C8;background:rgba(44,95,158,0.07);padding:3px 8px;border-radius:20px;flex-shrink:0;">已完成</div>
+          </div>
+          <div style="font-size:11px;color:#5A7A9A;line-height:1.6;background:rgba(58,122,200,0.04);border-radius:8px;padding:8px 10px;">
+            已与客服确认 Go2 机器人 3 台、租期 2 天的报价方案，等待合同确认中…
+          </div>
+        </div>
+
+        <div style="text-align:center;font-size:10px;color:#B0C4D8;padding:24px 20px;">— 仅显示最近 30 天记录 —</div>
+      </div>
+      <div class="bottom-nav"></div>
+    </div>
+
     <div class="page" id="page-cs-entry">
       <div class="status-bar"><span>9:41</span><span>●●●</span></div>
       <div class="top-bar">
@@ -2860,20 +3203,22 @@ body {
     </div>
 
     <!-- ════════════ PAGE: 在线客服聊天 ════════════ -->
-    <div class="page" id="page-cs-chat" style="background:#F2F2F7;">
-      <div class="status-bar"><span>9:41</span><span>●●●</span></div>
-      <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:#fff;border-bottom:1px solid #EBEBEB;flex-shrink:0;">
-        <div onclick="goBack()" style="font-size:20px;color:#333;width:28px;cursor:pointer;flex-shrink:0;">‹</div>
-        <div style="width:32px;height:32px;background:#1859BD;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;flex-shrink:0;">客</div>
+    <div class="page" id="page-cs-chat" style="background:linear-gradient(to bottom,#F0F6FC,#E6F0FB 40%,#EDF5FF);">
+      <div class="status-bar" style="background:transparent;"><span>9:41</span><span>●●●</span></div>
+      <div style="display:flex;align-items:center;gap:8px;padding:8px 12px 10px;background:rgba(224,238,252,0.75);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.7);position:relative;z-index:1;flex-shrink:0;">
+        <div onclick="goBack()" style="font-size:20px;color:#3A6FAA;width:28px;cursor:pointer;flex-shrink:0;">‹</div>
+        <div style="width:32px;height:32px;background:#2A8C84;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 1px 4px rgba(42,140,132,0.3);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
         <div style="flex:1;">
-          <div style="font-size:12px;font-weight:600;color:#222;">具能租客服</div>
-          <div style="font-size:10px;color:#2E7D32;">● 在线</div>
+          <div style="font-size:12px;font-weight:700;color:#1A2A4A;">具能租客服</div>
+          <div style="font-size:10px;color:#2A8C84;display:flex;align-items:center;gap:3px;"><span style="width:6px;height:6px;background:#2A8C84;border-radius:50%;display:inline-block;"></span>在线</div>
         </div>
         <div onclick="showQRCode()" style="flex-shrink:0;display:flex;align-items:center;gap:3px;font-size:10px;font-weight:600;color:#fff;background:#07C160;padding:5px 9px;border-radius:12px;cursor:pointer;white-space:nowrap;box-shadow:0 1px 4px rgba(7,193,96,0.3);">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="9" cy="10" r="4.5"/><circle cx="17" cy="14" r="3.5"/><line x1="12.5" y1="8.5" x2="14.5" y2="11"/></svg>企业微信
         </div>
       </div>
-      <div id="csChatMessages" style="flex:1;overflow-y:auto;padding:12px 12px 6px;"></div>
+      <div id="csChatMessages" style="flex:1;overflow-y:auto;padding:12px 12px 6px;scrollbar-width:none;-ms-overflow-style:none;"></div>
       <div id="csRecentStrip" class="cs-recent-strip" style="display:none;">
         <div class="cs-recent-lbl">最近浏览 · 点击发送给客服</div>
         <div id="csRecentList" class="cs-recent-row"></div>
@@ -2914,7 +3259,7 @@ function showPage(pageId, restoreScroll) {
   if (target) target.classList.add('active');
   const sa = target ? target.querySelector('.scroll-area') : null;
   if (sa) sa.scrollTop = restoreScroll || 0;
-  if (pageId === 'page-wishlist') updateWlBar();
+  if (pageId === 'page-wishlist') { exitWlPickMode(); updateWlBar(); }
 }
 
 const csRecentViewed = [];
@@ -3001,6 +3346,7 @@ function switchTab(tab) {
   showPage(pageId);
   updateCrumb();
   setActiveNav(tab);
+  document.querySelectorAll('.float-top').forEach(btn => btn.classList.remove('visible'));
 }
 
 function setActiveNav(tab) {
@@ -3035,7 +3381,7 @@ function crumbBack(steps) {
 // 子分类配置
 const subCats = {
   '硬件本体':    ['全部', '四足机器人', '人形机器人'],
-  '软件系统':    ['全部', '导览', '巡检', '表演'],
+  '软件产品':    ['全部', '导览', '巡检', '表演'],
   '技术服务':    ['全部', '运行保障', '技术运维'],
   '场景方案': ['全部', '巡检', '导览', '演绎', '售卖'],
 };
@@ -3050,17 +3396,34 @@ function switchCat(el, cat) {
   currentSub = '全部';
 
   const bar = document.getElementById('subCatBar');
+  const wrap = document.getElementById('subCatBarWrap');
   if (cat === '全部') {
-    bar.style.display = 'none';
+    wrap.style.display = 'none';
     bar.innerHTML = '';
   } else {
-    bar.style.display = 'flex';
+    wrap.style.display = 'block';
     bar.innerHTML = (subCats[cat] || []).map((s, i) =>
       `<span class="sub-chip${i===0?' active':''}" onclick="switchSub(this,'${s}')">${s}</span>`
     ).join('');
   }
   filterProducts();
 }
+
+// 鼠标拖动横向滚动
+(function() {
+  const bar = document.getElementById('subCatBar');
+  let isDown = false, startX, scrollLeft;
+  bar.addEventListener('mousedown', e => {
+    isDown = true; startX = e.pageX - bar.offsetLeft; scrollLeft = bar.scrollLeft;
+    bar.style.cursor = 'grabbing';
+  });
+  document.addEventListener('mouseup', () => { isDown = false; bar.style.cursor = ''; });
+  bar.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    bar.scrollLeft = scrollLeft - (e.pageX - bar.offsetLeft - startX);
+  });
+})();
 
 function switchSub(el, sub) {
   document.querySelectorAll('#subCatBar .sub-chip').forEach(c => c.classList.remove('active'));
@@ -3138,7 +3501,7 @@ function buildCsChat() {
   const welcome = document.createElement('div');
   welcome.className = 'cs-msg-wrap';
   welcome.innerHTML =
-    '<div class="cs-av" style="background:#1859BD;">客</div>' +
+    '<div class="cs-av" style="background:#2A8C84;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>' +
     '<div class="cs-bubble">您好！欢迎咨询具能租，我是在线客服小具 😊' +
     (pkg ? '<br>已收到您的意向清单，稍候为您整体报价。' : window.csContext ? '<br>已收到您分享的商品，稍候为您详细介绍。' : '<br>请问有什么可以帮到您？') +
     '</div>';
@@ -3166,8 +3529,8 @@ function csMakeProductCard(pageId, title, sent) {
   wrap.className = 'cs-msg-wrap' + (sent ? ' sent' : '');
   wrap.innerHTML =
     (sent
-      ? '<div class="cs-av" style="background:#9BD56A;color:#333;">我</div>'
-      : '<div class="cs-av" style="background:#1859BD;">客</div>') +
+      ? '<div class="cs-av" style="background:#9DB8D4;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>'
+      : '<div class="cs-av" style="background:#2A8C84;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>') +
     '<div class="cs-pcard" onclick="goTo(\'' + pageId + '\',\'在线客服 › ' + title + '\')">' +
       '<div class="cs-pcard-img">产品图片</div>' +
       '<div class="cs-pcard-body">' +
@@ -3235,7 +3598,7 @@ function toggleWishlistDetail(el) {
   } else {
     el.classList.add('wl-added');
     el.innerHTML =
-      '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1859BD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>' +
+      '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>' +
       '<div style="position:absolute;top:-3px;right:-3px;width:13px;height:13px;background:#07C160;border-radius:50%;border:1.5px solid #fff;display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff;font-weight:700;">✓</div>';
     showToast('已加入意向清单');
   }
@@ -3252,16 +3615,16 @@ function csMakeWishlistBundle(items) {
   wrap.className = 'cs-msg-wrap sent';
   const rows = items.map(i =>
     '<div style="display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid #F0F0F0;">' +
-      '<div style="width:22px;height:22px;background:#EEF3FF;border-radius:4px;flex-shrink:0;"></div>' +
+      '<div style="width:22px;height:22px;background:#EDF2F7;border-radius:4px;flex-shrink:0;"></div>' +
       '<span style="font-size:11px;color:#222;">' + i.title + '</span>' +
     '</div>'
   ).join('');
   wrap.innerHTML =
-    '<div class="cs-av" style="background:#9BD56A;color:#333;">我</div>' +
-    '<div style="max-width:180px;background:#9BD56A;border-radius:12px 12px 4px 12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.1);">' +
+    '<div class="cs-av" style="background:#9DB8D4;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>' +
+    '<div style="max-width:180px;background:#3A7AC8;border-radius:14px 14px 4px 14px;overflow:hidden;box-shadow:0 2px 8px rgba(44,95,158,0.22);">' +
       '<div style="padding:6px 10px 2px;font-size:10px;font-weight:700;color:#1a4a1a;">意向清单 · ' + items.length + ' 件</div>' +
       '<div style="padding:0 10px 6px;">' + rows + '</div>' +
-      '<div style="padding:4px 10px 7px;font-size:9px;color:#2a5a2a;">请为我整体报价</div>' +
+      '<div style="padding:4px 10px 7px;font-size:9px;color:rgba(255,255,255,0.7);">请为我整体报价</div>' +
     '</div>';
   return wrap;
 }
@@ -3330,9 +3693,9 @@ function filterCsPicker(query) {
   list.innerHTML = filtered.slice(0, 10).map(r =>
     '<div onclick="pickProduct(\'' + r.pageId + '\',\'' + r.title.replace(/'/g, '') + '\')" ' +
     'style="display:flex;align-items:center;gap:8px;padding:8px 10px;background:#F8F8F8;border-radius:8px;cursor:pointer;">' +
-      '<div style="width:32px;height:32px;background:#E8EFFE;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:#1859BD;">图</div>' +
+      '<div style="width:32px;height:32px;background:#E8EFFE;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:#3A7AC8;">图</div>' +
       '<span style="flex:1;font-size:11px;font-weight:500;color:#222;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + r.title + '</span>' +
-      '<span style="font-size:10px;color:#1859BD;font-weight:600;flex-shrink:0;">发送</span>' +
+      '<span style="font-size:10px;color:#3A7AC8;font-weight:600;flex-shrink:0;">发送</span>' +
     '</div>'
   ).join('');
 }
@@ -3349,14 +3712,14 @@ function csSendMessage() {
   const msgs = document.getElementById('csChatMessages');
   const wrap = document.createElement('div');
   wrap.className = 'cs-msg-wrap sent';
-  wrap.innerHTML = '<div class="cs-av" style="background:#9BD56A;color:#333;">我</div><div class="cs-bubble">' + text + '</div>';
+  wrap.innerHTML = '<div class="cs-av" style="background:#9DB8D4;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div class="cs-bubble">' + text + '</div>';
   msgs.appendChild(wrap);
   input.value = '';
   msgs.scrollTop = msgs.scrollHeight;
   setTimeout(() => {
     const reply = document.createElement('div');
     reply.className = 'cs-msg-wrap';
-    reply.innerHTML = '<div class="cs-av" style="background:#1859BD;">客</div><div class="cs-bubble">好的，已收到您的问题，正在为您处理，稍候回复 🙏</div>';
+    reply.innerHTML = '<div class="cs-av" style="background:#2A8C84;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="cs-bubble">好的，已收到您的问题，正在为您处理，稍候回复 🙏</div>';
     msgs.appendChild(reply);
     msgs.scrollTop = msgs.scrollHeight;
   }, 1200);
@@ -3364,12 +3727,123 @@ function csSendMessage() {
 
 updateCrumb();
 
+let _homeCatLastST = 0;
+function initHomeCatScroll() {
+  const scrollEl = document.querySelector('#page-home .scroll-area');
+  const bar = document.getElementById('homeCatBar');
+  if (!scrollEl || !bar) return;
+  scrollEl.addEventListener('scroll', function() {
+    const st = scrollEl.scrollTop;
+    st > 0 ? scrollEl.classList.add('masked') : scrollEl.classList.remove('masked');
+    _homeCatLastST = st;
+  }, { passive: true });
+}
+document.addEventListener('DOMContentLoaded', initHomeCatScroll);
+
+let wfCurrentCat = '';
+
+function applyHomeFilter() {
+  const q = (document.getElementById('homeSearchInput')?.value || '').trim().toLowerCase();
+  document.querySelectorAll('#page-home .xhs-grid .xhs-card').forEach(card => {
+    const title = (card.querySelector('.xhs-title')?.textContent || '').toLowerCase();
+    const meta  = (card.querySelector('.xhs-meta')?.textContent  || '').toLowerCase();
+    const matchCat    = !wfCurrentCat || card.dataset.cat === wfCurrentCat;
+    const matchSearch = !q || title.includes(q) || meta.includes(q);
+    card.style.display = (matchCat && matchSearch) ? '' : 'none';
+  });
+  const banner = document.getElementById('homeBanner');
+  if (banner) banner.style.display = (!wfCurrentCat || wfCurrentCat === '活动') ? '' : 'none';
+}
+
+function selectHomeCat(el, cat) {
+  document.querySelectorAll('#homeCatBar .hcat-tag').forEach(t => t.classList.remove('hcat-active'));
+  el.classList.add('hcat-active');
+  wfCurrentCat = cat;
+  applyHomeFilter();
+}
+
+function doHomeSearch() {
+  applyHomeFilter();
+}
+
+function toggleProductSearch() {
+  document.getElementById('productSearchCircle').classList.add('collapsed');
+  document.getElementById('productSearchBox').classList.add('expanded');
+  const t = document.getElementById('productCenterTitle');
+  if (t) { t.style.maxWidth = '0'; t.style.opacity = '0'; }
+  setTimeout(() => document.getElementById('productSearchInput').focus(), 280);
+}
+function collapseProductSearch() {
+  document.getElementById('productSearchCircle').classList.remove('collapsed');
+  document.getElementById('productSearchBox').classList.remove('expanded');
+  const t = document.getElementById('productCenterTitle');
+  if (t) { t.style.maxWidth = '120px'; t.style.opacity = '1'; }
+  document.getElementById('productSearchInput').value = '';
+  document.getElementById('productSearchTip').style.display = 'none';
+  filterProductsBySearch('');
+}
+function filterProductsBySearch(query) {
+  const q = query.trim().toLowerCase();
+  if (q === '') { filterProducts(); return; }
+  // 切回全部，保持左边和搜索结果一致
+  document.querySelectorAll('.left-cat').forEach(t => t.classList.remove('active'));
+  document.querySelector('.left-cat').classList.add('active');
+  currentCat = '全部'; currentSub = '全部';
+  document.getElementById('subCatBarWrap').style.display = 'none';
+  document.getElementById('subCatBar').innerHTML = '';
+  // 按名称过滤
+  document.querySelectorAll('#productGridInner .mc').forEach(card => {
+    const name = (card.querySelector('.mc-name')?.textContent || '').toLowerCase();
+    card.style.display = name.includes(q) ? 'flex' : 'none';
+  });
+  // 显示搜索提示
+  const tip = document.getElementById('productSearchTip');
+  document.getElementById('productSearchTipText').textContent = '"' + query.trim() + '" 的检索结果';
+  tip.style.display = 'flex';
+}
+function clearProductSearch() {
+  document.getElementById('productSearchTip').style.display = 'none';
+  collapseProductSearch();
+}
+
+function toggleHomeSearch() {
+  document.getElementById('homeSearchCircle').classList.add('collapsed');
+  document.getElementById('homeSearchBox').classList.add('expanded');
+  setTimeout(() => document.getElementById('homeSearchInput').focus(), 280);
+}
+function collapseHomeSearch() {
+  document.getElementById('homeSearchCircle').classList.remove('collapsed');
+  document.getElementById('homeSearchBox').classList.remove('expanded');
+  document.getElementById('homeSearchInput').value = '';
+  applyHomeFilter();
+}
+
+function toggleHeart(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const liked = el.classList.toggle('liked');
+  const count = el.querySelector('span');
+  if (count) count.textContent = liked
+    ? parseInt(count.textContent) + 1
+    : Math.max(0, parseInt(count.textContent) - 1);
+  showToast(liked ? '已收藏' : '已取消收藏');
+}
+
 // 统一注入新底部导航（首页 / 商品 / 我的）到所有页面
 document.querySelectorAll('.bottom-nav').forEach(nav => {
   nav.innerHTML = `
-    <div class="bn-item bn-home" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
-    <div class="bn-item bn-product" onclick="switchTab('product')"><div class="bn-icon-box"></div>商品</div>
-    <div class="bn-item bn-mine" onclick="switchTab('mine')"><div class="bn-icon-box"></div>我的</div>
+    <div class="bn-item bn-home" onclick="switchTab('home')">
+      <div class="bn-icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1"/></svg></div>
+      首页
+    </div>
+    <div class="bn-item bn-product" onclick="switchTab('product')">
+      <div class="bn-icon-wrap"><svg width="20" height="20" viewBox="0 0 1024 1024"><path d="M0 0h1024v1024H0z" fill="none"/><path fill="currentColor" d="M832 312H696v-16c0-101.6-82.4-184-184-184s-184 82.4-184 184v16H192c-17.7 0-32 14.3-32 32v536c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V344c0-17.7-14.3-32-32-32m-208 0H400v-16c0-61.9 50.1-112 112-112s112 50.1 112 112z"/></svg></div>
+      商品
+    </div>
+    <div class="bn-item bn-mine" onclick="switchTab('mine')">
+      <div class="bn-icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="currentColor" d="M12 2a5 5 0 1 0 0 10a5 5 0 1 0 0-10M4 22h16c.55 0 1-.45 1-1v-1c0-3.86-3.14-7-7-7h-4c-3.86 0-7 3.14-7 7v1c0 .55.45 1 1 1"/></svg></div>
+      我的
+    </div>
   `;
 });
 setActiveNav('home');
@@ -3391,45 +3865,45 @@ setActiveNav('home');
 
 // 瀑布流无限加载
 const wfPool = [
-  { type:'活动', color:'#C2185B', title:'西湖银泰 · 人形机器人正式上岗',       meta:'2026-06 · 杭州',              mediaType:'image', img:'图片/银泰导览.jpg',                      page:'page-activity-detail-1' },
-  { type:'场景', color:'#2E7D32', title:'人形机器人 · 基地导览全程执行',        meta:'自主导航 · 真实部署',         mediaType:'image', img:'图片/人形机器人基地导览.jpg',            page:'page-scene-detail-3' },
-  { type:'活动', color:'#C2185B', title:'西子廊桥 · 人形机器人展演现场',        meta:'2026-06 · 杭州',              mediaType:'image', img:'图片/西子廊桥表演.jpg',                 page:'page-activity-detail-2' },
-  { type:'场景', color:'#2E7D32', title:'品牌活动引流场景',                     meta:'含 4 件商品 · 展会/开幕',    mediaType:'image', page:'page-scene-detail-1' },
-  { type:'活动', color:'#C2185B', title:'机器人跳舞比我好看，直接破防了',       meta:'廊桥展演 · 实拍片段',         mediaType:'image', img:'图片/frames/frame_xizi_01.jpg',         page:'page-activity-detail-2' },
-  { type:'场景', color:'#2E7D32', title:'基地的机器人导览，讲得比人清楚',       meta:'基地导览实拍 · 2026-06',      mediaType:'image', img:'图片/frames/frame_base_01.jpg',         page:'page-scene-detail-3' },
-  { type:'活动', color:'#C2185B', title:'廊桥展演 · 人形机器人惊艳全场',        meta:'2026-06 · 杭州 · 演出实况',  mediaType:'video',  src:'图片/20260622_西子廊桥展演.mp4',        videoPage:'page-video-xizi',       page:'page-activity-detail-2' },
-  { type:'活动', color:'#C2185B', title:'这机器人比导购还好用，不是开玩笑',     meta:'银泰导览实拍 · 2026-06',      mediaType:'image', img:'图片/frames/frame_yintai_01.jpg',       page:'page-activity-detail-1' },
-  { type:'场景', color:'#2E7D32', title:'基地导览 · 机器人任务现场',            meta:'路线规划 · 无人干预',         mediaType:'image', img:'图片/人形机器人基地导览任务.jpg',        page:'page-scene-detail-3' },
-  { type:'活动', color:'#C2185B', title:'银泰商场 · 机器人引路全程记录',        meta:'2026-06 · 杭州 · 商场实拍',  mediaType:'video',  portrait:true, src:'图片/20260622_西湖银泰商场导览.mp4', videoPage:'page-video-yintai-nav', page:'page-activity-detail-1' },
-  { type:'活动', color:'#C2185B', title:'在西子廊桥看到这个，杭州人确实不一样', meta:'机器人表演 · 现场震撼',       mediaType:'image', img:'图片/西子廊桥表演2.jpg',                page:'page-activity-detail-2' },
-  { type:'系统', color:'#C75E00', title:'人形导览系统',                         meta:'适配人形机器人 · 可定制',    mediaType:'image', page:'page-product-detail-1' },
-  { type:'活动', color:'#C2185B', title:'基地导览 · 机器人独立执行全程',        meta:'自主导航 · 全程无干预',       mediaType:'video',  src:'图片/20260622_人形机器人基地导览.mp4',  videoPage:'page-video-base-nav',   page:'page-scene-detail-3' },
-  { type:'活动', color:'#C2185B', title:'商场里遇到它，我当场停下来拍了一路',   meta:'银泰导览现场 · 实拍',         mediaType:'image', img:'图片/银泰导览活动.jpg',                  page:'page-activity-detail-1' },
-  { type:'本体', color:'#1859BD', title:'近距离实测 · 基地人形导览机器人',      meta:'讲解准确率 98%',              mediaType:'image', img:'图片/基地人形导览-机器人图片.png',       page:'page-product-detail-4' },
-  { type:'本体', color:'#1859BD', title:'H1 跳舞能比专业舞者，你信吗',          meta:'4 台编队 · 音乐同步',         mediaType:'video',  videoPage:'page-video-h1',                  page:'page-product-detail-4' },
-  { type:'活动', color:'#C2185B', title:'西子廊桥展演 · 舞蹈编队精准同步',      meta:'多机协同 · 无人干预',         mediaType:'image', img:'图片/frames/frame_xizi_02.jpg',         page:'page-activity-detail-2' },
-  { type:'场景', color:'#2E7D32', title:'全自主执行，没人管，这才叫未来',       meta:'基地导览 · 无人值守',         mediaType:'image', img:'图片/人形机器人-基地导览任务.jpg',      page:'page-scene-detail-3' },
-  { type:'活动', color:'#C2185B', title:'银泰商场 · 智能迎宾全程实拍',          meta:'H1 人形机器人 · 自主导览',    mediaType:'image', img:'图片/人形机器人西湖银泰导览活动.jpg',     page:'page-activity-detail-1' },
-  { type:'活动', color:'#C2185B', title:'具身智能到底啥感觉，看这条就懂了',     meta:'西湖银泰 · 导览完整版',       mediaType:'video',  portrait:true, src:'图片/20260622_西湖银泰商场导览.mp4', videoPage:'page-video-yintai-nav', page:'page-activity-detail-1' },
-  { type:'活动', color:'#C2185B', title:'银泰机器人当班 · 路引比 GPS 还准',     meta:'商场智能导览 · 全程自主',     mediaType:'image', img:'图片/frames/frame_yintai_02.jpg',       page:'page-activity-detail-1' },
-  { type:'场景', color:'#2E7D32', title:'人形导览 · 基地任务全程零人工干预',    meta:'自主导航 · 智能规划',         mediaType:'image', img:'图片/frames/frame_base_02.jpg',         page:'page-scene-detail-3' },
-  { type:'活动', color:'#C2185B', title:'廊桥展演现场 · 观众围得里三层外三层',  meta:'人气爆棚 · 真实记录',         mediaType:'image', img:'图片/frames/frame_xizi_03.jpg',         page:'page-activity-detail-2' },
-  { type:'场景', color:'#2E7D32', title:'在基地看到它那一刻，我知道未来来了',   meta:'H1 人形机器人 · 基地实测',    mediaType:'image', img:'图片/frames/frame_base_03.jpg',         page:'page-scene-detail-3' },
-  { type:'活动', color:'#C2185B', title:'人形机器人亮相西子廊桥',               meta:'展演活动 · 全程实况',         mediaType:'image', img:'图片/人形机器人西子廊桥展演活动.jpg',     page:'page-activity-detail-2' },
-  { type:'活动', color:'#C2185B', title:'我爸妈第一次见机器人引路，整不会了',   meta:'银泰现场反应 · 真实记录',     mediaType:'image', img:'图片/frames/frame_yintai_03.jpg',       page:'page-activity-detail-1' },
-  { type:'场景', color:'#2E7D32', title:'人形导览场景 · 基地真实部署',          meta:'讲解准确率 98% · 日均 50 组', mediaType:'video',  src:'图片/20260622_人形机器人基地导览.mp4',  videoPage:'page-video-base-nav',   page:'page-scene-detail-3' },
-  { type:'活动', color:'#C2185B', title:'西子廊桥 · 舞蹈同步零失误',            meta:'多机编队 · 现场震撼',         mediaType:'video',  src:'图片/20260622_西子廊桥展演.mp4',        videoPage:'page-video-xizi',       page:'page-activity-detail-2' },
-  { type:'本体', color:'#1859BD', title:'四足机器人 Go2',                       meta:'负重 8kg · IP67 防护',        mediaType:'image', page:'page-product-detail-2' },
-  { type:'场景', color:'#2E7D32', title:'园区智能巡检场景',                     meta:'含 2 件商品 · 替代人工巡检',  mediaType:'image', page:'page-scene-detail-2' },
-  { type:'本体', color:'#1859BD', title:'H1 人形机器人',                        meta:'身高 1.8m · 舞蹈/引导',       mediaType:'image', page:'page-product-detail-4' },
-  { type:'场景', color:'#2E7D32', title:'演绎场景 · 舞台实况',                  meta:'品牌发布会 · 上海',           mediaType:'video',  videoPage:'page-video-scene-show',          page:'page-scene-detail-show' },
-  { type:'系统', color:'#C75E00', title:'自助巡检系统',                         meta:'适配四足机器人 · 7×24h',     mediaType:'image', page:'page-product-detail-3' },
-  { type:'本体', color:'#1859BD', title:'Go2 夜巡这段，有点科幻了',             meta:'园区实测 · 无人值守',         mediaType:'video',  videoPage:'page-video-go2',                 page:'page-product-detail-2' },
-  { type:'本体', color:'#1859BD', title:'G1 人形机器人',                        meta:'轻量化 · 灵活作业',           mediaType:'image', page:'page-product-detail-g1' },
-  { type:'系统', color:'#C75E00', title:'表演控制系统',                         meta:'多机编队 · 音乐同步',         mediaType:'image', page:'page-product-detail-perf' },
-  { type:'系统', color:'#C75E00', title:'迎宾互动系统',                         meta:'NLP 对话 · 人脸识别',         mediaType:'image', page:'page-product-detail-greet' },
-  { type:'本体', color:'#1859BD', title:'H1 · 展会互动高光',                    meta:'NFC 感应 · 访客互动',         mediaType:'image', page:'page-product-detail-4' },
-  { type:'服务', color:'#2E7D32', title:'机器人导览运维人员',                    meta:'持证上岗 · 广州/深圳/上海',   mediaType:'image', page:'page-product-detail-1' },
+  { type:'活动', color:'#9E5070', title:'西湖银泰 · 人形机器人正式上岗',       meta:'6月 · 杭州银泰',              mediaType:'image', img:'图片/银泰导览.jpg',                      page:'page-activity-detail-1' },
+  { type:'场景', color:'#4A7A58', title:'人形机器人 · 基地导览全程执行',        meta:'自主导航 · 真实部署',         mediaType:'image', img:'图片/人形机器人基地导览.jpg',            page:'page-scene-detail-3' },
+  { type:'活动', color:'#9E5070', title:'西子廊桥 · 人形机器人展演现场',        meta:'6月 · 西子廊桥',              mediaType:'image', img:'图片/西子廊桥表演.jpg',                 page:'page-activity-detail-2' },
+  { type:'场景', color:'#4A7A58', title:'品牌活动引流场景',                     meta:'含 4 件商品 · 展会/开幕',    mediaType:'image', page:'page-scene-detail-1' },
+  { type:'活动', color:'#9E5070', title:'机器人跳舞比我好看，直接破防了',       meta:'6月 · 西子廊桥',         mediaType:'image', img:'图片/frames/frame_xizi_01.jpg',         page:'page-activity-detail-2' },
+  { type:'场景', color:'#4A7A58', title:'基地的机器人导览，讲得比人清楚',       meta:'基地导览 · 实拍验证',      mediaType:'image', img:'图片/frames/frame_base_01.jpg',         page:'page-scene-detail-3' },
+  { type:'活动', color:'#9E5070', title:'廊桥展演 · 人形机器人惊艳全场',        meta:'6月 · 西子廊桥',  mediaType:'video',  src:'图片/20260622_西子廊桥展演.mp4',        videoPage:'page-video-xizi',       page:'page-activity-detail-2' },
+  { type:'活动', color:'#9E5070', title:'这机器人比导购还好用，不是开玩笑',     meta:'6月 · 杭州银泰',      mediaType:'image', img:'图片/frames/frame_yintai_01.jpg',       page:'page-activity-detail-1' },
+  { type:'场景', color:'#4A7A58', title:'基地导览 · 机器人任务现场',            meta:'路线规划 · 无人干预',         mediaType:'image', img:'图片/人形机器人基地导览任务.jpg',        page:'page-scene-detail-3' },
+  { type:'活动', color:'#9E5070', title:'银泰商场 · 机器人引路全程记录',        meta:'6月 · 杭州银泰',  mediaType:'video',  portrait:true, src:'图片/20260622_西湖银泰商场导览.mp4', videoPage:'page-video-yintai-nav', page:'page-activity-detail-1' },
+  { type:'活动', color:'#9E5070', title:'在西子廊桥看到这个，杭州人确实不一样', meta:'6月 · 西子廊桥',       mediaType:'image', img:'图片/西子廊桥表演2.jpg',                page:'page-activity-detail-2' },
+  { type:'产品', color:'#8A6038', title:'人形导览系统',                         meta:'适配人形机器人 · 可定制',    mediaType:'image', page:'page-product-detail-1' },
+  { type:'活动', color:'#9E5070', title:'基地导览 · 机器人独立执行全程',        meta:'6月 · 杭州基地',       mediaType:'video',  src:'图片/20260622_人形机器人基地导览.mp4',  videoPage:'page-video-base-nav',   page:'page-scene-detail-3' },
+  { type:'活动', color:'#9E5070', title:'商场里遇到它，我当场停下来拍了一路',   meta:'6月 · 杭州银泰',         mediaType:'image', img:'图片/银泰导览活动.jpg',                  page:'page-activity-detail-1' },
+  { type:'本体', color:'#3A7AC8', title:'近距离实测 · 基地人形导览机器人',      meta:'讲解准确率 98%',              mediaType:'image', img:'图片/基地人形导览-机器人图片.png',       page:'page-product-detail-4' },
+  { type:'本体', color:'#3A7AC8', title:'H1 跳舞能比专业舞者，你信吗',          meta:'4 台编队 · 音乐同步',         mediaType:'video',  videoPage:'page-video-h1',                  page:'page-product-detail-4' },
+  { type:'活动', color:'#9E5070', title:'西子廊桥展演 · 舞蹈编队精准同步',      meta:'6月 · 西子廊桥',         mediaType:'image', img:'图片/frames/frame_xizi_02.jpg',         page:'page-activity-detail-2' },
+  { type:'场景', color:'#4A7A58', title:'全自主执行，没人管，这才叫未来',       meta:'基地导览 · 无人值守',         mediaType:'image', img:'图片/人形机器人-基地导览任务.jpg',      page:'page-scene-detail-3' },
+  { type:'活动', color:'#9E5070', title:'银泰商场 · 智能迎宾全程实拍',          meta:'6月 · 杭州银泰',    mediaType:'image', img:'图片/人形机器人西湖银泰导览活动.jpg',     page:'page-activity-detail-1' },
+  { type:'活动', color:'#9E5070', title:'具身智能到底啥感觉，看这条就懂了',     meta:'6月 · 杭州银泰',       mediaType:'video',  portrait:true, src:'图片/20260622_西湖银泰商场导览.mp4', videoPage:'page-video-yintai-nav', page:'page-activity-detail-1' },
+  { type:'活动', color:'#9E5070', title:'银泰机器人当班 · 路引比 GPS 还准',     meta:'6月 · 杭州银泰',     mediaType:'image', img:'图片/frames/frame_yintai_02.jpg',       page:'page-activity-detail-1' },
+  { type:'场景', color:'#4A7A58', title:'人形导览 · 基地任务全程零人工干预',    meta:'自主导航 · 智能规划',         mediaType:'image', img:'图片/frames/frame_base_02.jpg',         page:'page-scene-detail-3' },
+  { type:'活动', color:'#9E5070', title:'廊桥展演现场 · 观众围得里三层外三层',  meta:'6月 · 西子廊桥',         mediaType:'image', img:'图片/frames/frame_xizi_03.jpg',         page:'page-activity-detail-2' },
+  { type:'场景', color:'#4A7A58', title:'在基地看到它那一刻，我知道未来来了',   meta:'H1 人形机器人 · 基地实测',    mediaType:'image', img:'图片/frames/frame_base_03.jpg',         page:'page-scene-detail-3' },
+  { type:'活动', color:'#9E5070', title:'人形机器人亮相西子廊桥',               meta:'6月 · 西子廊桥',         mediaType:'image', img:'图片/人形机器人西子廊桥展演活动.jpg',     page:'page-activity-detail-2' },
+  { type:'活动', color:'#9E5070', title:'我爸妈第一次见机器人引路，整不会了',   meta:'6月 · 杭州银泰',     mediaType:'image', img:'图片/frames/frame_yintai_03.jpg',       page:'page-activity-detail-1' },
+  { type:'场景', color:'#4A7A58', title:'人形导览场景 · 基地真实部署',          meta:'讲解准确率 98% · 日均 50 组', mediaType:'video',  src:'图片/20260622_人形机器人基地导览.mp4',  videoPage:'page-video-base-nav',   page:'page-scene-detail-3' },
+  { type:'活动', color:'#9E5070', title:'西子廊桥 · 舞蹈同步零失误',            meta:'6月 · 西子廊桥',         mediaType:'video',  src:'图片/20260622_西子廊桥展演.mp4',        videoPage:'page-video-xizi',       page:'page-activity-detail-2' },
+  { type:'本体', color:'#3A7AC8', title:'四足机器人 Go2',                       meta:'负重 8kg · IP67 防护',        mediaType:'image', page:'page-product-detail-2' },
+  { type:'场景', color:'#4A7A58', title:'园区智能巡检场景',                     meta:'含 2 件商品 · 替代人工巡检',  mediaType:'image', page:'page-scene-detail-2' },
+  { type:'本体', color:'#3A7AC8', title:'H1 人形机器人',                        meta:'身高 1.8m · 舞蹈/引导',       mediaType:'image', page:'page-product-detail-4' },
+  { type:'场景', color:'#4A7A58', title:'演绎场景 · 舞台实况',                  meta:'品牌发布会 · 上海',           mediaType:'video',  videoPage:'page-video-scene-show',          page:'page-scene-detail-show' },
+  { type:'产品', color:'#8A6038', title:'自助巡检系统',                         meta:'适配四足机器人 · 7×24h',     mediaType:'image', page:'page-product-detail-3' },
+  { type:'本体', color:'#3A7AC8', title:'Go2 夜巡这段，有点科幻了',             meta:'园区实测 · 无人值守',         mediaType:'video',  videoPage:'page-video-go2',                 page:'page-product-detail-2' },
+  { type:'本体', color:'#3A7AC8', title:'G1 人形机器人',                        meta:'轻量化 · 灵活作业',           mediaType:'image', page:'page-product-detail-g1' },
+  { type:'产品', color:'#8A6038', title:'表演控制系统',                         meta:'多机编队 · 音乐同步',         mediaType:'image', page:'page-product-detail-perf' },
+  { type:'产品', color:'#8A6038', title:'迎宾互动系统',                         meta:'NLP 对话 · 人脸识别',         mediaType:'image', page:'page-product-detail-greet' },
+  { type:'本体', color:'#3A7AC8', title:'H1 · 展会互动高光',                    meta:'NFC 感应 · 访客互动',         mediaType:'image', page:'page-product-detail-4' },
+  { type:'服务', color:'#4A7A58', title:'机器人导览运维人员',                    meta:'持证上岗 · 广州/深圳/上海',   mediaType:'image', page:'page-product-detail-1' },
 ];
 const wfHeights = [128, 145, 118, 155, 135, 142, 122, 150, 130, 138, 125, 148];
 
@@ -3491,6 +3965,7 @@ function wfMakeCard(item, i) {
   const h = wfHeights[i % wfHeights.length];
   const el = document.createElement('div');
   el.className = 'xhs-card';
+  el.dataset.cat = item.type;
   const isVideo = item.mediaType === 'video';
   const dest = isVideo ? item.videoPage : item.page;
   el.onclick = dest ? () => goTo(dest, '首页 › ' + item.title) : () => showModal();
@@ -3518,14 +3993,22 @@ function wfMakeCard(item, i) {
     mediaHtml =
       '<div class="img-ph" style="height:' + h + 'px;' + (isVideo ? 'background:#1c1c2e;color:#666;' : '') + '">' + (isVideo ? '▶' : '图片') + '</div>';
   }
+  const likeCount = (i * 53 + 127) % 350 + 50;
+  const hid = 'h' + i;
   el.innerHTML =
     '<div class="xhs-img-wrap">' +
       mediaHtml +
-      '<span class="xhs-src-badge" style="background:' + item.color + ';color:#fff;">' + item.type + '</span>' +
     '</div>' +
     '<div class="xhs-body">' +
       '<div class="xhs-title">' + item.title + '</div>' +
-      '<div class="xhs-meta">' + item.meta + '</div>' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;">' +
+        '<span class="xhs-src-badge" style="position:static;background:rgba(0,0,0,0.06);color:#888;font-size:9px;padding:1px 6px;border-radius:4px;font-weight:600;border:1px solid rgba(0,0,0,0.10);">' + item.type + '</span>' +
+        '<div class="xhs-meta" style="flex:1;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-left:4px;">' + item.meta + '</div>' +
+        '<div class="xhs-heart" id="' + hid + '" onclick="event.stopPropagation();toggleHeart(\'' + hid + '\')">' +
+          '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>' +
+          '<span>' + likeCount + '</span>' +
+        '</div>' +
+      '</div>' +
     '</div>';
   return el;
 }
@@ -3543,9 +4026,21 @@ function wfLoadMore() {
   wfBusy = false;
 }
 
-document.querySelector('#page-home .scroll-area').addEventListener('scroll', function() {
-  if (this.scrollTop + this.clientHeight >= this.scrollHeight - 250) wfLoadMore();
-});
+(function() {
+  const sa = document.querySelector('#page-home .scroll-area');
+  const pg = document.getElementById('page-home');
+  let lastSt = 0;
+  sa.addEventListener('scroll', function() {
+    const st = this.scrollTop;
+    if (st > 50 && st > lastSt) {
+      pg.classList.add('top-hidden');
+    } else if (st < lastSt - 5 || st < 20) {
+      pg.classList.remove('top-hidden');
+    }
+    lastSt = st;
+    if (st + this.clientHeight >= this.scrollHeight - 250) wfLoadMore();
+  });
+})();
 // 首屏预填（3批=12张）
 wfLoadMore(); wfLoadMore(); wfLoadMore();
 
@@ -3793,6 +4288,66 @@ document.addEventListener('click', function(e) {
     menu.style.display = 'none';
   }
 });
+
+// 购物车
+const cartSet = new Set();
+const cartToast = document.createElement('div');
+cartToast.id = 'cartToast';
+cartToast.textContent = '已加入意向清单';
+document.getElementById('page-product').appendChild(cartToast);
+let cartToastTimer = null;
+
+const cartSvgOutline = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>`;
+const cartSvgFilled = `<svg width="13" height="13" viewBox="0 0 24 24" fill="rgba(44,95,158,0.18)" stroke="#3A7AC8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span style="position:absolute;top:-4px;right:-4px;font-size:8px;color:#3A7AC8;font-weight:800;line-height:1;background:#fff;border-radius:50%;width:9px;height:9px;display:flex;align-items:center;justify-content:center;">✓</span>`;
+
+document.querySelectorAll('.mc-tags').forEach(t => {
+  const card = t.closest('.mc');
+  const name = card.querySelector('.mc-name')?.textContent || '';
+  const btn = document.createElement('span');
+  btn.className = 'mc-cart';
+  const inCart = cartSet.has(name);
+  btn.innerHTML = inCart ? cartSvgFilled : cartSvgOutline;
+  if (inCart) btn.classList.add('in-cart');
+  btn.addEventListener('click', e => { e.stopPropagation(); addToCart(btn, name); });
+  t.appendChild(btn);
+});
+
+function addToCart(btn, name) {
+  if (cartSet.has(name)) return;
+  cartSet.add(name);
+  btn.innerHTML = cartSvgFilled;
+  btn.classList.add('in-cart');
+  // 飞入动画
+  const targetEl = document.getElementById('productCartBtn');
+  if (targetEl) {
+    const src = btn.getBoundingClientRect();
+    const dst = targetEl.getBoundingClientRect();
+    const dot = document.createElement('div');
+    dot.className = 'cart-fly-dot';
+    document.body.appendChild(dot);
+    const x0 = src.left + src.width / 2 - 7;
+    const y0 = src.top + src.height / 2 - 7;
+    const x1 = dst.left + dst.width / 2 - 7;
+    const y1 = dst.top + dst.height / 2 - 7;
+    const cx = x0 - 40, cy = y0 - 60;
+    let t = 0;
+    function step() {
+      t += 0.04;
+      if (t > 1) { dot.remove(); return; }
+      const mt = 1 - t;
+      const x = mt*mt*x0 + 2*mt*t*cx + t*t*x1;
+      const y = mt*mt*y0 + 2*mt*t*cy + t*t*y1;
+      const s = 1 - t * 0.7;
+      dot.style.cssText = `position:fixed;z-index:9999;pointer-events:none;width:14px;height:14px;border-radius:50%;background:#3A7AC8;opacity:${0.9*(1-t*0.5)};left:${x}px;top:${y}px;transform:scale(${s});`;
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  // toast
+  clearTimeout(cartToastTimer);
+  cartToast.classList.add('show');
+  cartToastTimer = setTimeout(() => cartToast.classList.remove('show'), 1800);
+}
 </script>
 </body>
 </html>
