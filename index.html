@@ -115,7 +115,9 @@ body {
 .scroll-area::-webkit-scrollbar { width: 0; }
 
 /* ── 底部导航 ── */
-.page:has(.dual-cta) .bottom-nav {
+.page:has(.dual-cta) .bottom-nav,
+.page:has(.main-cta) .bottom-nav,
+#page-wishlist .bottom-nav {
   position: relative; bottom: auto; left: auto; right: auto;
 }
 .bottom-nav {
@@ -354,29 +356,33 @@ body {
 .main-cta:hover { background: #3968A0; }
 
 .dual-cta {
-  display: flex; gap: 10px; padding: 10px 14px 14px; flex-shrink: 0;
+  display: flex; gap: 9px; padding: 10px 14px 14px; flex-shrink: 0;
   background: #fff; border-top: 1px solid #EEF2F9;
 }
 .cta-outline {
-  flex: 1; text-align: center; padding: 12px;
-  border: 1.5px solid #3A7AC8; border-radius: 12px;
+  flex: 1; text-align: center; padding: 11px 8px;
+  border: 1.5px solid #3A7AC8; border-radius: 24px;
   font-size: 11.5px; color: #3A7AC8; font-weight: 600;
   cursor: pointer; transition: background 0.15s;
+  white-space: nowrap;
 }
 .cta-outline:hover { background: #EDF2F7; }
 .cta-outline.wl-added {
   flex: 0 0 40px; padding: 8px 0; position: relative;
   display: flex; align-items: center; justify-content: center;
-  background: #EDF2F7;
+  background: #EDF2F7; border-radius: 24px;
 }
 .cta-fill {
-  flex: 1; text-align: center; padding: 12px;
-  background: #2A8C84; border-radius: 12px;
-  font-size: 11.5px; color: #fff; font-weight: 600;
-  cursor: pointer; transition: background 0.15s;
-  box-shadow: 0 3px 10px rgba(42,140,132,0.25);
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px;
+  padding: 11px 10px;
+  background: linear-gradient(135deg, #3A7AC8 0%, #2C5F9E 100%);
+  border-radius: 24px;
+  font-size: 12px; color: #fff; font-weight: 700;
+  cursor: pointer; transition: opacity 0.15s;
+  box-shadow: 0 4px 14px rgba(44,95,158,0.32);
+  white-space: nowrap;
 }
-.cta-fill:hover { background: #227970; }
+.cta-fill:hover { opacity: 0.88; }
 
 /* ── Tab 栏 ── */
 .tab-bar {
@@ -771,7 +777,7 @@ body {
 /* ── 意向清单 ── */
 .wl-item{margin:8px 12px 0;background:#fff;border-radius:10px;border:1px solid #E8E8E8;padding:10px 10px 10px 8px;display:flex;align-items:center;gap:8px;transition:background 0.15s;}
 .wl-item.wl-selected{border-color:#3A7AC8;background:#F7FAFF;}
-.wl-check{width:20px;height:20px;border-radius:50%;border:1.5px solid #CCC;flex-shrink:0;display:none;align-items:center;justify-content:center;cursor:pointer;font-size:11px;color:transparent;transition:all 0.15s;}
+.wl-check{width:16px;height:16px;border-radius:50%;border:1.5px solid #CCC;flex-shrink:0;display:none;align-items:center;justify-content:center;cursor:pointer;font-size:9px;color:transparent;transition:all 0.15s;}
 #page-wishlist.wl-picking .wl-check{display:flex;}
 .wl-item.wl-selected .wl-check{background:#3A7AC8;border-color:#3A7AC8;color:#fff;}
 .wl-consult{font-size:9px;color:#3A7AC8;background:#EDF2F7;padding:4px 7px;border-radius:8px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
@@ -811,6 +817,23 @@ body {
 .cs-input-bar{display:flex;align-items:center;gap:8px;padding:8px 12px 14px;background:rgba(240,248,255,0.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-top:1px solid rgba(255,255,255,0.7);flex-shrink:0;}
 .cs-input-bar input{flex:1;background:rgba(255,255,255,0.65);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.85);outline:none;border-radius:26px;padding:8px 14px;font-size:11px;color:#1A2A4A;}
 .cs-send-btn{background:linear-gradient(135deg,#35ADA4,#2A8C84);color:#fff;border:none;outline:none;border-radius:20px;padding:8px 16px;font-size:11px;cursor:pointer;flex-shrink:0;box-shadow:0 3px 16px rgba(42,140,132,0.22);}
+/* ── 意向清单删除确认 ── */
+#wlRemoveOverlay{position:absolute;inset:0;background:rgba(30,10,10,0.35);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:60;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.18s;}
+#wlRemoveOverlay.show{opacity:1;pointer-events:all;}
+#wlRemoveDialog{background:#fff;border-radius:18px;width:248px;overflow:hidden;transform:scale(0.90);transition:transform 0.22s cubic-bezier(0.34,1.56,0.64,1);}
+#wlRemoveOverlay.show #wlRemoveDialog{transform:scale(1);}
+.wl-dlg-icon{width:48px;height:48px;border-radius:50%;background:#FEF0F0;display:flex;align-items:center;justify-content:center;margin:20px auto 12px;}
+.wl-dlg-body{padding:0 18px 18px;text-align:center;}
+.wl-dlg-title{font-size:14.5px;font-weight:700;color:#C0392B;margin-bottom:7px;}
+.wl-dlg-desc{font-size:11px;color:#9AAABB;line-height:1.7;}
+.wl-dlg-name{color:#1A2A4A;font-weight:600;}
+.wl-dlg-btns{display:flex;gap:10px;padding:0 16px 18px;}
+.wl-dlg-btn{flex:1;padding:10px 0;font-size:13px;font-weight:600;cursor:pointer;text-align:center;border-radius:22px;transition:opacity 0.12s;}
+.wl-dlg-btn.cancel{background:#F2F5FB;color:#6A88A8;}
+.wl-dlg-btn.cancel:hover{opacity:0.8;}
+.wl-dlg-btn.danger{background:#E05050;color:#fff;box-shadow:0 3px 12px rgba(224,80,80,0.30);}
+.wl-dlg-btn.danger:hover{opacity:0.88;}
+
 /* ── 热线浮层 ── */
 .hotline-overlay{position:absolute;inset:0;background:rgba(10,25,60,0.30);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:200;display:none;align-items:flex-end;}
 .hotline-sheet{background:linear-gradient(to top left,rgba(200,224,246,0.97) 0%,rgba(232,243,252,0.97) 45%,rgba(248,252,255,0.97) 100%);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-radius:20px 20px 0 0;padding:6px 18px 30px;width:100%;box-shadow:0 -4px 24px rgba(44,95,158,0.10);border-top:1px solid rgba(255,255,255,0.85);}
@@ -1018,7 +1041,7 @@ body {
 
       <div class="dual-cta">
         <div class="cta-outline" onclick="toggleWishlistDetail(this)">＋ 加入意向清单</div>
-        <div class="cta-fill" onclick="showModal()">联系客服咨询</div>
+        <div class="cta-fill" onclick="showModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服咨询</div>
       </div>
       <div class="bottom-nav">
         <div class="bn-item active" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
@@ -1091,7 +1114,7 @@ body {
       </div>
       <div class="dual-cta">
         <div class="cta-outline" onclick="toggleWishlistDetail(this)">＋ 加入意向清单</div>
-        <div class="cta-fill" onclick="showModal()">联系客服咨询</div>
+        <div class="cta-fill" onclick="showModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服咨询</div>
       </div>
       <div class="bottom-nav">
         <div class="bn-item active" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
@@ -1154,7 +1177,7 @@ body {
       </div>
       <div class="dual-cta">
         <div class="cta-outline" onclick="toggleWishlistDetail(this)">＋ 加入意向清单</div>
-        <div class="cta-fill" onclick="showModal()">联系客服咨询</div>
+        <div class="cta-fill" onclick="showModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服咨询</div>
       </div>
       <div class="bottom-nav">
         <div class="bn-item active" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
@@ -1191,7 +1214,7 @@ body {
           <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px 6px;background:#F2F5FB;flex-shrink:0;border-bottom:1px solid #EAEEf5;">
             <div id="productCenterTitle" style="font-size:15px;font-weight:700;color:#1A2A4A;letter-spacing:0.5px;max-width:120px;overflow:hidden;white-space:nowrap;transition:max-width 0.25s ease,opacity 0.2s ease;flex-shrink:0;">商品中心</div>
             <div style="display:flex;align-items:center;gap:6px;">
-              <div id="productCsCircle" onclick="showModal()" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(58,122,200,0.10);flex-shrink:0;transition:opacity 0.18s,max-width 0.28s;">
+              <div id="productCsCircle" onclick="showModal()" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(58,122,200,0.10);flex-shrink:0;transition:opacity 0.18s,max-width 0.28s;position:relative;left:6px;">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3A7AC8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
               </div>
               <div id="productSearchBox">
@@ -1419,7 +1442,7 @@ body {
       </div>
       <div class="dual-cta">
         <div class="cta-outline" onclick="toggleWishlistDetail(this)">＋ 加入意向清单</div>
-        <div class="cta-fill" onclick="showModal()">联系客服咨询</div>
+        <div class="cta-fill" onclick="showModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服咨询</div>
       </div>
       <div class="bottom-nav">
         <div class="bn-item" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
@@ -1469,7 +1492,7 @@ body {
       </div>
       <div class="dual-cta">
         <div class="cta-outline" onclick="toggleWishlistDetail(this)">＋ 加入意向清单</div>
-        <div class="cta-fill" onclick="showModal()">联系客服咨询</div>
+        <div class="cta-fill" onclick="showModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服咨询</div>
       </div>
       <div class="bottom-nav">
         <div class="bn-item" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
@@ -1522,7 +1545,7 @@ body {
       </div>
       <div class="dual-cta">
         <div class="cta-outline" onclick="toggleWishlistDetail(this)">＋ 加入意向清单</div>
-        <div class="cta-fill" onclick="showModal()">联系客服咨询</div>
+        <div class="cta-fill" onclick="showModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服咨询</div>
       </div>
       <div class="bottom-nav">
         <div class="bn-item" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
@@ -1570,7 +1593,7 @@ body {
       </div>
       <div class="dual-cta">
         <div class="cta-outline" onclick="toggleWishlistDetail(this)">＋ 加入意向清单</div>
-        <div class="cta-fill" onclick="showModal()">联系客服咨询</div>
+        <div class="cta-fill" onclick="showModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服咨询</div>
       </div>
       <div class="bottom-nav">
         <div class="bn-item" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
@@ -1923,7 +1946,7 @@ body {
       </div>
       <div class="dual-cta">
         <div class="cta-outline" onclick="toggleWishlistDetail(this)">＋ 加入意向清单</div>
-        <div class="cta-fill" onclick="showModal()">联系客服咨询</div>
+        <div class="cta-fill" onclick="showModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服咨询</div>
       </div>
       <div class="bottom-nav"></div>
     </div>
@@ -1975,7 +1998,7 @@ body {
       </div>
       <div class="dual-cta">
         <div class="cta-outline" onclick="toggleWishlistDetail(this)">＋ 加入意向清单</div>
-        <div class="cta-fill" onclick="showModal()">联系客服咨询</div>
+        <div class="cta-fill" onclick="showModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服咨询</div>
       </div>
       <div class="bottom-nav"></div>
     </div>
@@ -2155,7 +2178,7 @@ body {
     </div>
 
     <!-- ════════════ PAGE: 意向清单 ════════════ -->
-    <div class="page" id="page-wishlist">
+    <div class="page wl-picking" id="page-wishlist">
       <div class="status-bar"><span>9:41</span><span>●●●</span></div>
       <div class="top-bar">
         <div class="top-bar-back" onclick="goBack()">‹</div>
@@ -2163,14 +2186,14 @@ body {
         <div style="font-size:10px;color:#AAA;">2 件</div>
       </div>
       <div class="scroll-area">
-        <div style="margin:10px 12px 4px;font-size:10.5px;color:#AAA;line-height:1.7;padding:10px 12px;background:#FFF8E8;border-radius:8px;border:1px solid #FFE8A0;">
+        <div style="margin:10px 12px 4px;font-size:10.5px;color:#6A90B8;line-height:1.7;padding:10px 12px;background:#EEF4FB;border-radius:8px;border:1px solid #D4E4F2;">
           单个商品可点右侧「咨询」；点底部「打包发送」可批量选择一起发给客服。
         </div>
 
         <!-- 清单项 1 -->
         <div class="wl-item" id="wl-1" data-page="page-product-detail-1" data-title="人形导览系统">
           <div class="wl-check" onclick="toggleWlItem('wl-1')">✓</div>
-          <div class="img-ph" style="width:50px;height:50px;border-radius:8px;flex-shrink:0;font-size:9px;">图</div>
+          <div class="img-ph" style="width:60px;height:60px;border-radius:8px;flex-shrink:0;font-size:9px;">图</div>
           <div style="flex:1;min-width:0;">
             <div style="font-size:12px;font-weight:700;color:#222;margin-bottom:3px;">人形导览系统</div>
             <span class="tag" style="font-size:9px;">软件产品</span>
@@ -2178,14 +2201,14 @@ body {
           </div>
           <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
             <div class="wl-consult" onclick="consultItem('page-product-detail-1','人形导览系统')">咨询</div>
-            <div class="wl-remove" onclick="showToast('已移出清单')">×</div>
+            <div class="wl-remove" onclick="wlRemoveConfirm('wl-1','人形导览系统')">×</div>
           </div>
         </div>
 
         <!-- 清单项 2 -->
         <div class="wl-item" id="wl-2" data-page="page-scene-detail-show" data-title="演绎场景方案">
           <div class="wl-check" onclick="toggleWlItem('wl-2')">✓</div>
-          <div class="img-ph" style="width:50px;height:50px;border-radius:8px;flex-shrink:0;font-size:9px;">图</div>
+          <div class="img-ph" style="width:60px;height:60px;border-radius:8px;flex-shrink:0;font-size:9px;">图</div>
           <div style="flex:1;min-width:0;">
             <div style="font-size:12px;font-weight:700;color:#222;margin-bottom:3px;">演绎场景方案</div>
             <span class="tag" style="font-size:9px;">场景方案</span>
@@ -2193,14 +2216,14 @@ body {
           </div>
           <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
             <div class="wl-consult" onclick="consultItem('page-scene-detail-show','演绎场景方案')">咨询</div>
-            <div class="wl-remove" onclick="showToast('已移出清单')">×</div>
+            <div class="wl-remove" onclick="wlRemoveConfirm('wl-2','演绎场景方案')">×</div>
           </div>
         </div>
 
         <!-- 清单项 3 -->
         <div class="wl-item" id="wl-3" data-page="page-product-detail-4" data-title="H1 人形机器人">
           <div class="wl-check" onclick="toggleWlItem('wl-3')">✓</div>
-          <div class="img-ph" style="width:50px;height:50px;border-radius:8px;flex-shrink:0;font-size:9px;">图</div>
+          <div class="img-ph" style="width:60px;height:60px;border-radius:8px;flex-shrink:0;font-size:9px;">图</div>
           <div style="flex:1;min-width:0;">
             <div style="font-size:12px;font-weight:700;color:#222;margin-bottom:3px;">H1 人形机器人</div>
             <span class="tag" style="font-size:9px;">硬件本体</span>
@@ -2208,7 +2231,7 @@ body {
           </div>
           <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
             <div class="wl-consult" onclick="consultItem('page-product-detail-4','H1 人形机器人')">咨询</div>
-            <div class="wl-remove" onclick="showToast('已移出清单')">×</div>
+            <div class="wl-remove" onclick="wlRemoveConfirm('wl-3','H1 人形机器人')">×</div>
           </div>
         </div>
 
@@ -2217,21 +2240,40 @@ body {
         </div>
       </div>
 
-      <!-- 底部操作栏：常态 -->
-      <div id="wlBarNormal" class="wl-bottom-bar" style="justify-content:space-between;">
-        <div style="font-size:10.5px;color:#888;">价格面议，客服报价</div>
-        <div class="wl-pack-btn" onclick="enterWlPickMode()">联系客服 · 打包发送</div>
-      </div>
-      <!-- 底部操作栏：选择态（初始隐藏） -->
-      <div id="wlBarPick" class="wl-bottom-bar" style="display:none;">
-        <div onclick="exitWlPickMode()" style="font-size:11px;color:#666;cursor:pointer;flex-shrink:0;padding:0 4px;">取消</div>
+      <!-- 底部操作栏 -->
+      <div id="wlBarPick" class="wl-bottom-bar" style="display:flex;">
         <div class="wl-sel-all" id="wlSelAllBtn" onclick="toggleWlAll()">
           <div class="wl-sel-all-check">✓</div>全选
         </div>
         <div class="wl-count" style="flex:1;">已选 <b id="wlCount">0</b> 件</div>
-        <div class="wl-pack-btn disabled" id="wlPackBtn" onclick="confirmWlSend()">确认发送</div>
+        <div id="wlBatchDelBtn" onclick="wlBatchRemove()" style="cursor:pointer;flex-shrink:0;padding:0 10px 0 2px;display:flex;align-items:center;opacity:0.35;pointer-events:none;transition:opacity 0.15s;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+        </div>
+        <div class="wl-pack-btn disabled" id="wlPackBtn" onclick="confirmWlSend()">打包发送</div>
       </div>
-      <div style="height:0;flex-shrink:0;"></div>
+      <!-- 删除确认弹窗 -->
+      <div id="wlRemoveOverlay" onclick="if(event.target===this)cancelWlRemove()">
+        <div id="wlRemoveDialog">
+          <div class="wl-dlg-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E05050" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+          </div>
+          <div class="wl-dlg-body">
+            <div class="wl-dlg-title">确认移出清单？</div>
+            <div class="wl-dlg-desc">「<span id="wlRemoveName" class="wl-dlg-name"></span>」<br>将从你的意向清单中移除</div>
+          </div>
+          <div class="wl-dlg-btns">
+            <div class="wl-dlg-btn cancel" onclick="cancelWlRemove()">取消</div>
+            <div class="wl-dlg-btn danger" onclick="confirmWlRemove()">移出</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-nav">
+        <div class="bn-item" onclick="switchTab('home')"><div class="bn-icon-box"></div>首页</div>
+        <div class="bn-item" onclick="switchTab('product')"><div class="bn-icon-box"></div>商品</div>
+        <div class="bn-item" onclick="switchTab('activity')"><div class="bn-icon-box"></div>活动</div>
+        <div class="bn-item active" onclick="switchTab('mine')"><div class="bn-icon-box"></div>我的</div>
+      </div>
     </div>
 
     <!-- ════════════ PAGE: 商品管理（平台） ════════════ -->
@@ -2555,7 +2597,7 @@ body {
       </div>
       <div class="dual-cta">
         <div class="cta-outline" onclick="toggleWishlistDetail(this)">＋ 加入意向清单</div>
-        <div class="cta-fill" onclick="showModal()">联系客服咨询</div>
+        <div class="cta-fill" onclick="showModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服咨询</div>
       </div>
       <div class="bottom-nav"></div>
     </div>
@@ -2592,7 +2634,7 @@ body {
       </div>
       <div class="dual-cta">
         <div class="cta-outline" onclick="toggleWishlistDetail(this)">＋ 加入意向清单</div>
-        <div class="cta-fill" onclick="showModal()">联系客服咨询</div>
+        <div class="cta-fill" onclick="showModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服咨询</div>
       </div>
       <div class="bottom-nav"></div>
     </div>
@@ -2625,7 +2667,7 @@ body {
       </div>
       <div class="dual-cta">
         <div class="cta-outline" onclick="toggleWishlistDetail(this)">＋ 加入意向清单</div>
-        <div class="cta-fill" onclick="showModal()">联系客服咨询</div>
+        <div class="cta-fill" onclick="showModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服咨询</div>
       </div>
       <div class="bottom-nav"></div>
     </div>
@@ -2658,7 +2700,7 @@ body {
       </div>
       <div class="dual-cta">
         <div class="cta-outline" onclick="toggleWishlistDetail(this)">＋ 加入意向清单</div>
-        <div class="cta-fill" onclick="showModal()">联系客服咨询</div>
+        <div class="cta-fill" onclick="showModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服咨询</div>
       </div>
       <div class="bottom-nav"></div>
     </div>
@@ -2698,7 +2740,7 @@ body {
       </div>
       <div class="dual-cta">
         <div class="cta-outline" onclick="toggleWishlistDetail(this)">＋ 加入意向清单</div>
-        <div class="cta-fill" onclick="showModal()">联系客服咨询</div>
+        <div class="cta-fill" onclick="showModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服咨询</div>
       </div>
       <div class="bottom-nav"></div>
     </div>
@@ -2750,7 +2792,7 @@ body {
       </div>
       <div class="dual-cta">
         <div class="cta-outline" onclick="toggleWishlistDetail(this)">＋ 加入意向清单</div>
-        <div class="cta-fill" onclick="showModal()">联系客服咨询</div>
+        <div class="cta-fill" onclick="showModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服咨询</div>
       </div>
       <div class="bottom-nav"></div>
     </div>
@@ -2799,7 +2841,7 @@ body {
       </div>
       <div class="dual-cta">
         <div class="cta-outline" onclick="toggleWishlistDetail(this)">＋ 加入意向清单</div>
-        <div class="cta-fill" onclick="showModal()">联系客服咨询</div>
+        <div class="cta-fill" onclick="showModal()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>联系客服咨询</div>
       </div>
       <div class="bottom-nav"></div>
     </div>
@@ -3552,20 +3594,55 @@ function sendProductToCS(pageId, title) {
   document.getElementById('csRecentStrip').style.display = 'none';
 }
 
+/* ──── 意向清单批量删除 ──── */
+function wlBatchRemove() {
+  const selected = document.querySelectorAll('#page-wishlist .wl-item.wl-selected');
+  if (!selected.length) return;
+  const count = selected.length;
+  _wlRemoveTarget = '__batch__';
+  document.getElementById('wlRemoveName').textContent = '已选 ' + count + ' 件商品';
+  document.getElementById('wlRemoveOverlay').classList.add('show');
+}
+
+/* ──── 意向清单删除确认 ──── */
+let _wlRemoveTarget = null;
+function wlRemoveConfirm(id, name) {
+  _wlRemoveTarget = id;
+  document.getElementById('wlRemoveName').textContent = name;
+  document.getElementById('wlRemoveOverlay').classList.add('show');
+}
+function cancelWlRemove() {
+  _wlRemoveTarget = null;
+  document.getElementById('wlRemoveOverlay').classList.remove('show');
+}
+function confirmWlRemove() {
+  if (_wlRemoveTarget === '__batch__') {
+    const selected = document.querySelectorAll('#page-wishlist .wl-item.wl-selected');
+    const count = selected.length;
+    selected.forEach(el => el.style.display = 'none');
+    document.getElementById('wlRemoveOverlay').classList.remove('show');
+    _wlRemoveTarget = null;
+    updateWlBar();
+    showToast('已移出 ' + count + ' 件');
+  } else {
+    if (_wlRemoveTarget) {
+      const el = document.getElementById(_wlRemoveTarget);
+      if (el) el.style.display = 'none';
+    }
+    document.getElementById('wlRemoveOverlay').classList.remove('show');
+    _wlRemoveTarget = null;
+    showToast('已移出清单');
+  }
+}
+
 /* ──── 意向清单 ──── */
 function enterWlPickMode() {
-  document.getElementById('page-wishlist').classList.add('wl-picking');
-  // 默认全选
   document.querySelectorAll('#page-wishlist .wl-item').forEach(el => el.classList.add('wl-selected'));
-  document.getElementById('wlBarNormal').style.display = 'none';
-  document.getElementById('wlBarPick').style.display = 'flex';
   updateWlBar();
 }
 function exitWlPickMode() {
-  document.getElementById('page-wishlist').classList.remove('wl-picking');
   document.querySelectorAll('#page-wishlist .wl-item').forEach(el => el.classList.remove('wl-selected'));
-  document.getElementById('wlBarNormal').style.display = 'flex';
-  document.getElementById('wlBarPick').style.display = 'none';
+  updateWlBar();
 }
 function toggleWlItem(id) {
   document.getElementById(id).classList.toggle('wl-selected');
@@ -3585,10 +3662,15 @@ function updateWlBar() {
   const btn = document.getElementById('wlPackBtn');
   if (btn) {
     btn.classList.toggle('disabled', checked === 0);
-    btn.textContent = checked > 0 ? '确认发送 (' + checked + ')' : '确认发送';
+    btn.textContent = checked > 0 ? '确认发送 (' + checked + ')' : '打包发送';
   }
   const allBtn = document.getElementById('wlSelAllBtn');
   if (allBtn) allBtn.classList.toggle('all-on', checked === total && total > 0);
+  const delBtn = document.getElementById('wlBatchDelBtn');
+  if (delBtn) {
+    delBtn.style.opacity = checked > 0 ? '1' : '0.35';
+    delBtn.style.pointerEvents = checked > 0 ? 'all' : 'none';
+  }
 }
 function toggleWishlistDetail(el) {
   if (el.classList.contains('wl-added')) {
